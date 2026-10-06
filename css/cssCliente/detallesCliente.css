@@ -1,0 +1,366 @@
+/* =========================================
+   Reset y Estilos Globales
+   ========================================= */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+    font-family: 'Inter', sans-serif;
+}
+
+/* =========================================
+   Contenedor Principal (Mobile Frame)
+   ========================================= */
+.customer-details {
+    width: 428px;
+    height: 1112px;
+    position: relative;
+    background: white;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+/* =========================================
+   Barra de Navegación (Navigation Bar)
+   ========================================= */
+.navigation-bar {
+    width: 100%;
+    height: 80px;
+    position: absolute;
+    top: 1px;
+    left: 0;
+    z-index: 10;
+}
+
+.nav-background {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: white;
+}
+
+.nav-vector {
+    width: 35px;
+    height: 25px;
+    position: absolute;
+    left: 28px;
+    top: 28px;
+    background: black;
+}
+
+.nav-image {
+    width: 59px;
+    height: 59px;
+    position: absolute;
+    left: 345px;
+    top: 11px;
+    border-radius: 50%; /* Añadido para suavizar la imagen */
+}
+
+/* =========================================
+   Barra de Progreso (Progress Bar)
+   ========================================= */
+.progress-bar {
+    width: 100%;
+    height: 90px;
+    position: absolute;
+    top: 80px;
+    left: 0;
+    z-index: 5;
+}
+
+.progress-background {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #EDEFEE;
+}
+
+.progress-step {
+    position: absolute;
+    top: 29px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.step-1 { left: 14px; }
+.step-2 { left: 150px; }
+.step-3 { left: 317px; }
+
+.step-circle {
+    width: 32px;
+    height: 32px;
+    border-radius: 9999px;
+}
+
+.circle-inactive { background: white; }
+.circle-active { background: #F4CE14; }
+
+.step-number {
+    position: absolute;
+    top: 2px;
+    font-size: 23px;
+    font-family: 'Karla', sans-serif;
+    font-weight: 600;
+}
+
+.number-inactive { color: rgba(73, 94, 87, 0.46); }
+.number-active { color: #495E57; }
+
+.step-label {
+    position: absolute;
+    top: 7px;
+    left: 42px;
+    white-space: nowrap;
+    color: black;
+    font-size: 14px;
+    font-family: 'Karla', sans-serif;
+    font-weight: 600;
+}
+
+/* =========================================
+   Sección Hero (Tu información)
+   ========================================= */
+.hero-section {
+    width: 100%;
+    height: 172px;
+    position: absolute;
+    top: 170px;
+    left: 0;
+    background: #495E57;
+    overflow: hidden;
+}
+
+.hero-title {
+    position: absolute;
+    left: 66px;
+    top: 56px;
+    color: #F4CE14;
+    font-size: 50px;
+    font-family: 'Markazi Text', serif;
+    font-weight: 600;
+}
+
+.hero-img {
+    position: absolute;
+    width: 70px;
+    height: 118px;
+}
+
+.img-right {
+    left: 352px;
+    top: -29.5px;
+    transform: rotate(-13deg);
+    transform-origin: top left;
+}
+
+.img-left {
+    left: -8.29px;
+    top: 81.23px;
+    transform: rotate(15deg);
+    transform-origin: top left;
+}
+
+/* =========================================
+   Detalles de la Reserva (Personas, Hora, Fecha)
+   ========================================= */
+.reservation-details {
+    width: 100%;
+    height: 117px;
+    position: absolute;
+    top: 342px;
+    left: 0;
+    background: #EDEFEE;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.details-card {
+    width: 384px;
+    height: 73px;
+    position: relative;
+    background: #E7E7E7;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.detail-item {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+}
+
+.detail-item:nth-child(1) { left: 29px; top: 10px; }
+.detail-item:nth-child(2) { left: 176px; top: 10px; }
+.detail-item:nth-child(3) { left: 293px; top: 10px; }
+
+.detail-label {
+    color: black;
+    font-size: 17px;
+    font-family: 'Karla', sans-serif;
+}
+
+.detail-value {
+    margin-top: 8px;
+    color: black;
+    font-size: 16px;
+    font-family: 'Karla', sans-serif;
+}
+
+/* Iconos Chevron en la tarjeta de detalles */
+.chevron-icon {
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    border: 1.6px solid #1E1E1E;
+    border-radius: 2px;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); /* Ajuste visual simple */
+}
+/* Nota: Como el código original usa divs para dibujar el chevron, aquí simulamos su posición */
+.chevron-1 { left: 101px; top: 12.5px; width: 8px; height: 4px; border: none; border-bottom: 1.6px solid #1E1E1E; border-right: 1.6px solid #1E1E1E; transform: rotate(45deg); }
+.chevron-2 { left: 232px; top: 12.5px; width: 8px; height: 4px; border: none; border-bottom: 1.6px solid #1E1E1E; border-right: 1.6px solid #1E1E1E; transform: rotate(45deg); }
+.chevron-3 { left: 344px; top: 12.5px; width: 8px; height: 4px; border: none; border-bottom: 1.6px solid #1E1E1E; border-right: 1.6px solid #1E1E1E; transform: rotate(45deg); }
+
+/* Líneas divisorias */
+.divider-line {
+    width: 73px;
+    height: 0;
+    position: absolute;
+    border-top: 1px solid #CACACA;
+    transform: rotate(-90deg);
+    transform-origin: top left;
+}
+
+.line-1 { left: 139px; top: 72.5px; }
+.line-2 { left: 262px; top: 72.5px; }
+
+/* =========================================
+   Formulario de Información
+   ========================================= */
+.form-container {
+    width: 379px;
+    height: 500px;
+    position: absolute;
+    left: 25px;
+    top: 479px;
+    background: white;
+    border-radius: 20px;
+    border: 1px solid #E1E1E1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+    padding: 0 16px;
+}
+
+.input-field, .select-field {
+    width: 344px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.input-label {
+    color: #1E1E1E;
+    font-size: 16px;
+    font-family: 'Inter', sans-serif;
+    line-height: 22.4px;
+}
+
+.input-box, .select-box {
+    width: 100%;
+    padding: 12px 16px;
+    background: white;
+    border-radius: 8px;
+    border: 1px solid #D9D9D9;
+    display: flex;
+    align-items: center;
+}
+
+.select-box {
+    justify-content: space-between;
+    height: 40px; /* Ajuste de altura según Figma */
+    padding: 12px 12px 12px 16px;
+}
+
+.input-value, .select-value {
+    color: #1E1E1E;
+    font-size: 16px;
+    font-family: 'Inter', sans-serif;
+    line-height: 16px;
+}
+
+/* Chevron del Select */
+.select-chevron {
+    width: 16px;
+    height: 16px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.select-chevron-icon {
+    width: 8px;
+    height: 4px;
+    border-bottom: 1.6px solid #1E1E1E;
+    border-right: 1.6px solid #1E1E1E;
+    transform: rotate(45deg);
+    margin-top: -2px;
+}
+
+/* =========================================
+   Botón Continuar
+   ========================================= */
+.button-container {
+    position: absolute;
+    top: 1015px;
+    left: 42px;
+    width: 344px;
+    height: 59px;
+}
+
+.btn-continue {
+    width: 100%;
+    height: 100%;
+    background: #EDEFEE;
+    border: none;
+    border-radius: 8px;
+    color: #495E57;
+    font-size: 20px;
+    font-family: 'Karla', sans-serif;
+    font-weight: 800;
+    line-height: 20px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-continue:hover {
+    background: #e0e2e1;
+}
+
+/* =========================================
+   Logo Inferior
+   ========================================= */
+.bottom-logo {
+    width: 179px;
+    height: 60px;
+    position: absolute;
+    left: 124px;
+    top: 11px;
+}

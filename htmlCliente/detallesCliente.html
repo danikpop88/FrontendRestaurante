@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Details</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Fuentes importadas desde Google Fonts para emular las del diseño -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&family=Karla:wght@400;600;800&family=Markazi+Text:wght@600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="customer-details">
+        
+        <!-- Barra de Navegación -->
+        <nav class="navigation-bar">
+            <div class="nav-background"></div>
+            <div class="nav-vector"></div>
+            <img class="nav-image" src="https://placehold.co/59x59" alt="Profile">
+        </nav>
+
+        <!-- Barra de Progreso -->
+        <div class="progress-bar">
+            <div class="progress-background"></div>
+            
+            <div class="progress-step step-1">
+                <div class="step-circle circle-inactive"></div>
+                <div class="step-number number-inactive">1</div>
+                <div class="step-label">Buscar mesa</div>
+            </div>
+            
+            <div class="progress-step step-2">
+                <div class="step-circle circle-active"></div>
+                <div class="step-number number-active">2</div>
+                <div class="step-label">Agregar tus datos</div>
+            </div>
+            
+            <div class="progress-step step-3">
+                <div class="step-circle circle-inactive"></div>
+                <div class="step-number number-inactive">3</div>
+                <div class="step-label">Reservar</div>
+            </div>
+        </div>
+
+        <!-- Encabezado Hero -->
+        <header class="hero-section">
+            <h1 class="hero-title">Tu información</h1>
+            <img class="hero-img img-right" src="https://placehold.co/70x118" alt="Decoration">
+            <img class="hero-img img-left" src="https://placehold.co/70x118" alt="Decoration">
+        </header>
+
+        <!-- Sección de Detalles de la Reserva (Personas, Hora, Fecha) -->
+        <section class="reservation-details">
+            <div class="details-card">
+                <div class="detail-item">
+                    <span class="detail-label">Personas</span>
+                    <span class="detail-value">4</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Hora</span>
+                    <span class="detail-value">6:00PM</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Fecha</span>
+                    <span class="detail-value">1 agosto</span>
+                </div>
+                <!-- Iconos Chevron -->
+                <div class="chevron-icon chevron-1"></div>
+                <div class="chevron-icon chevron-2"></div>
+                <div class="chevron-icon chevron-3"></div>
+                <!-- Líneas divisorias -->
+                <div class="divider-line line-1"></div>
+                <div class="divider-line line-2"></div>
+            </div>
+        </section>
+
+        <!-- Formulario de Información del Cliente -->
+        <section class="form-container">
+            
+            <div class="input-field">
+                <label class="input-label">Nombres*</label>
+                <div class="input-box">
+                    <span class="input-value">Primer Nombre</span>
+                </div>
+            </div>
+
+            <div class="input-field">
+                <label class="input-label">Apellidos*</label>
+                <div class="input-box">
+                    <span class="input-value">Apellidos</span>
+                </div>
+            </div>
+
+            <div class="input-field">
+                <label class="input-label">Email*</label>
+                <div class="input-box">
+                    <span class="input-value">Email</span>
+                </div>
+            </div>
+
+            <div class="input-field">
+                <label class="input-label">Número de telefono</label>
+                <div class="input-box">
+                    <span class="input-value">+57</span>
+                </div>
+            </div>
+
+            <div class="select-field">
+                <label class="input-label">Seleccione una ocasión(opcional)</label>
+                <div class="select-box">
+                    <span class="select-value">Seleccione una ocasión</span>
+                    <div class="select-chevron">
+                        <div class="select-chevron-icon"></div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Botón Continuar -->
+        <div class="button-container">
+            <button class="btn-continue">Continuar</button>
+        </div>
+
+        <!-- Logo inferior -->
+        <img class="bottom-logo" src="https://placehold.co/179x60" alt="Logo">
+
+    </div>
+
+</body>
+</html>
