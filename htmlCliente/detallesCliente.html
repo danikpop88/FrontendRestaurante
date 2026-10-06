@@ -16,7 +16,7 @@
         <nav class="navigation-bar">
             <div class="nav-background"></div>
             <div class="nav-vector"></div>
-            <img class="nav-image" src="../imagenes/logo.jpg" alt="Profile">
+            <a href="../htmlCliente/menu.html"><img class="nav-image" src="../imagenes/logo.jpg" alt="Profile"></a>
         </nav>
 
         <!-- Barra de Progreso -->
@@ -75,53 +75,73 @@
         </section>
 
         <!-- Formulario de Información del Cliente -->
-        <section class="form-container">
-            
-            <div class="input-field">
-                <label class="input-label">Nombres*</label>
-                <div class="input-box">
-                    <span class="input-value">Primer Nombre</span>
-                </div>
-            </div>
+<form id="reserva-form" class="form-container" action="../htmlCliente/revisaReserva.html" method="GET">
+    
+    <div class="input-field">
+        <label for="nombres" class="input-label">Nombres*</label>
+        <input 
+            type="text" 
+            id="nombres" 
+            name="nombres" 
+            class="input-box input-value" 
+            placeholder="Primer Nombre" 
+            required
+        >
+    </div>
 
-            <div class="input-field">
-                <label class="input-label">Apellidos*</label>
-                <div class="input-box">
-                    <span class="input-value">Apellidos</span>
-                </div>
-            </div>
+    <div class="input-field">
+        <label for="apellidos" class="input-label">Apellidos*</label>
+        <input 
+            type="text" 
+            id="apellidos" 
+            name="apellidos" 
+            class="input-box input-value" 
+            placeholder="Apellidos" 
+            required
+        >
+    </div>
 
-            <div class="input-field">
-                <label class="input-label">Email*</label>
-                <div class="input-box">
-                    <span class="input-value">Email</span>
-                </div>
-            </div>
+    <div class="input-field">
+        <label for="email" class="input-label">Email*</label>
+        <input 
+            type="email" 
+            id="email" 
+            name="email" 
+            class="input-box input-value" 
+            placeholder="Email" 
+            required
+        >
+    </div>
 
-            <div class="input-field">
-                <label class="input-label">Número de telefono</label>
-                <div class="input-box">
-                    <span class="input-value">+57</span>
-                </div>
-            </div>
+    <div class="input-field">
+        <label for="telefono" class="input-label">Número de teléfono</label>
+        <input 
+            type="tel" 
+            id="telefono" 
+            name="telefono" 
+            class="input-box input-value" 
+            placeholder="+57"
+        >
+    </div>
 
-            <div class="select-field">
-                <label class="input-label">Seleccione una ocasión(opcional)</label>
-                <div class="select-box">
-                    <span class="select-value">Seleccione una ocasión</span>
-                    <div class="select-chevron">
-                        <div class="select-chevron-icon"></div>
-                    </div>
-                </div>
-            </div>
+    <div class="select-field">
+        <label for="ocasion" class="input-label">Seleccione una ocasión (opcional)</label>
+        <select id="ocasion" name="ocasion" class="select-box select-value">
+            <option value="" disabled selected hidden>Seleccione una ocasión</option>
+            <option value="cumpleanos">Cumpleaños</option>
+            <option value="aniversario">Aniversario</option>
+            <option value="reunion">Reunión de trabajo</option>
+            <option value="otro">Otro</option>
+        </select>
+    </div>
 
-        </section>
+    <!-- Botón de Envío -->
+   
 
-        <!-- Botón Continuar -->
-        <div class="button-container">
-            <button class="btn-continue">Continuar</button>
-        </div>
-
+</form>
+<div class="button-container">
+    <button type="submit" form="reserva-form" class="btn-continue">Continuar</button>
+</div>
         <!-- Logo inferior -->
         <img class="bottom-logo" src="https://placehold.co/179x60" alt="Logo">
 
