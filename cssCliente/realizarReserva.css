@@ -1,0 +1,324 @@
+/* Container Principal */
+.container {
+  width: 428px;
+  height: 1285px;
+  position: relative;
+  background: white;
+  overflow: hidden;
+}
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  background-color: #f4f4f4; /* O el color de fondo que prefieras */
+}
+/* Header Section */
+.header-banner {
+  width: 428px;
+  height: 172px;
+  left: 0px;
+  top: 170px;
+  position: absolute;
+  background: #495E57;
+}
+
+.header-title {
+  left: 13px;
+  top: 57px;
+  position: absolute;
+  color: #F4CE14;
+  font-size: 48px;
+  font-family: 'Markazi Text', serif;
+  font-weight: 600;
+  word-wrap: break-word;
+}
+
+.header-icon {
+  width: 72px;
+  height: 77px;
+  left: 356px;
+  top: 86px;
+  position: absolute;
+}
+
+/* Section Title */
+.section-title-container {
+  width: 428px;
+  height: 54px;
+  padding: 26px 20px;
+  left: -18px;
+  top: 887px;
+  position: absolute;
+  background: white;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  display: inline-flex;
+}
+
+.section-title {
+  color: black;
+  font-size: 20px;
+  font-family: 'Karla', sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  word-wrap: break-word;
+}
+
+/* Stepper / Progress Bar */
+.stepper-container {
+  width: 428px;
+  height: 90px;
+  left: 0px;
+  top: 80px;
+  position: absolute;
+}
+
+.stepper-bg {
+  width: 428px;
+  height: 90px;
+  left: 0px;
+  top: 0px;
+  position: absolute;
+  background: #EDEFEE;
+}
+
+.step-circle {
+  width: 32px;
+  height: 32px;
+  top: 29px;
+  position: absolute;
+  border-radius: 9999px;
+}
+
+.step-circle-1 { left: 14px; background: #F4CE14; }
+.step-circle-2 { left: 150px; background: white; }
+.step-circle-3 { left: 317px; background: white; }
+
+.step-number {
+  top: 31px;
+  position: absolute;
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  font-size: 23px;
+  font-family: 'Karla', sans-serif;
+  font-weight: 600;
+  word-wrap: break-word;
+}
+
+.step-number-1 { left: 25px; color: #495E57; }
+.step-number-2 { left: 160px; color: rgba(73, 94, 87, 0.46); }
+.step-number-3 { left: 327px; color: rgba(73, 94, 87, 0.46); display: block; }
+
+.step-label {
+  top: 36px;
+  position: absolute;
+  color: black;
+  font-family: 'Karla', sans-serif;
+  font-weight: 600;
+  word-wrap: break-word;
+}
+
+.step-label-1 { left: 56px; font-size: 14px; }
+.step-label-2 { left: 192px; font-size: 13px; }
+.step-label-3 { left: 359px; font-size: 14px; }
+
+/* Form Area */
+.form-container {
+  width: 428px;
+  height: 315px;
+  left: 0px;
+  top: 342px;
+  position: absolute;
+}
+
+.form-bg {
+  width: 428px;
+  height: 346px;
+  left: 0px;
+  top: 0px;
+  position: absolute;
+  background: #EDEFEE;
+}
+
+.input-group {
+  width: 349px;
+  height: 71px;
+  left: 39px;
+  position: absolute;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 8px;
+  display: inline-flex;
+}
+
+.input-group-1 { top: 40px; }
+.input-group-2 { top: 137px; }
+.input-group-3 { top: 234px; }
+
+.input-label {
+  align-self: stretch;
+  color: black;
+  font-size: 16px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  line-height: 22.40px;
+  word-wrap: break-word;
+}
+
+.input-box {
+  align-self: stretch;
+  height: 40px;
+  min-width: 240px;
+  padding: 12px 12px 12px 16px;
+  background: var(--Background-Default-Default, white);
+  border-radius: 8px;
+  outline: 1px var(--Border-Default-Default, #D9D9D9) solid;
+  outline-offset: -0.50px;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 8px;
+  display: inline-flex;
+}
+
+.input-text {
+  flex: 1 1 0;
+  color: var(--Text-Default-Default, #1E1E1E);
+  font-size: 16px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  line-height: 16px;
+  word-wrap: break-word;
+}
+
+.dropdown-icon-wrapper {
+  width: 16px;
+  height: 16px;
+  position: relative;
+  overflow: hidden;
+}
+
+.dropdown-icon {
+  width: 8px;
+  height: 4px;
+  left: 4px;
+  top: 6px;
+  position: absolute;
+  outline: 1.60px var(--Icon-Default-Default, #1E1E1E) solid;
+  outline-offset: -0.80px;
+}
+
+/* Button & Decorative Elements */
+.btn-continue {
+  width: 344px;
+  height: 59px;
+  padding: 12px;
+  left: 42px;
+  top: 1193px;
+  position: absolute;
+  background: #EDEFEE;
+  overflow: hidden;
+  border-radius: 8px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  display: inline-flex;
+}
+
+.btn-text {
+  color: #495E57;
+  font-size: 20px;
+  font-family: 'Karla', sans-serif;
+  font-weight: 800;
+  line-height: 20px;
+  word-wrap: break-word;
+}
+
+.card-frame {
+  width: 379px;
+  height: 414px;
+  left: 25px;
+  top: 741px;
+  position: absolute;
+  border-radius: 20px;
+  border: 1px #E1E1E1 solid;
+}
+
+.top-logo {
+  width: 179px;
+  height: 60px;
+  left: 114px;
+  top: 10px;
+  position: absolute;
+}
+
+.top-avatar {
+  width: 59px;
+  height: 59px;
+  left: 335px;
+  top: 11px;
+  position: absolute;
+}
+/* Container para iti seksyon ti horarios disponibles */
+.time-slots-container {
+  width: 379px;
+  background: #FFFFFF;
+  border: 1px solid #E1E1E1;
+  border-radius: 20px;
+  padding: 30px 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Titulo */
+.time-slots-title {
+  color: #000000;
+  font-family: 'Karla', sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+/* Grid layout para kadagiti botones ti oras */
+.time-slots-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px 16px;
+  width: 100%;
+}
+
+/* Boton ti kada oras */
+.time-slot-btn {
+  background-color: #495E57;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 8px;
+  height: 48px;
+  font-family: 'Karla', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.time-slot-btn:hover {
+  background-color: #3d4f49;
+}
+
+.time-slot-btn:active {
+  transform: scale(0.98);
+}

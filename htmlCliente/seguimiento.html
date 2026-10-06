@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seguimiento de Pedido</title>
+  <link rel="stylesheet" href="../cssCliente/seguimiento.css">
+  <!-- Fuentes de Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Karla:wght@800&family=Markazi+Text:wght@600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div class="card-container">
+    
+    <!-- Encabezado superior con logos -->
+    <header class="header-logos">
+      <a href="../htmlCliente/menu.html"><img class="logo-main" src="../imagenes/icono.jpg" alt="Logo Principal"></a>
+      <a href="../htmlCliente/menu.html"><img class="logo-icon" src="../imagenes/logo.jpg" alt="Icono Encabezado"></a>
+    </header>
+
+    <!-- Banner verde de título -->
+    <section class="status-banner">
+      <h1>Segumiento de pedido</h1>
+    </section>
+
+    <!-- Sección de Pasos del Pedido -->
+    <section class="order-steps-container">
+      <div class="step-card">
+        <span>Pedido realizado</span>
+        <div class="check-icon"></div>
+      </div>
+
+      <div class="step-card">
+        <span>En cocina</span>
+        <div class="check-icon"></div>
+      </div>
+
+      <div class="step-card">
+        <span>En camino</span>
+      </div>
+
+      <p class="status-message">Tu pedido va en dirección a tu ubicación</p>
+
+      <div class="step-card">
+        <span>Pedido entregado</span>
+      </div>
+    </section>
+    <a href="#calificacion" class="btn-calificar">Calificar Pedido</a>
+
+    <!-- Sección de Calificación y Comentarios -->
+    <section id="calificacion" class="feedback-container">
+      <h2>¿Qué tal te fue con tu pedido?</h2>
+      
+      <p class="feedback-label">Califica tu pedido:</p>
+
+<div class="rating-container">
+  <!-- Estrellas (ordenadas de 5 a 1 para el truco CSS) -->
+  <div class="stars">
+    <input type="radio" id="star5" name="rating" value="5">
+    <label for="star5" title="5 estrellas">&#9733;</label>
+
+    <input type="radio" id="star4" name="rating" value="4">
+    <label for="star4" title="4 estrellas">&#9733;</label>
+
+    <input type="radio" id="star3" name="rating" value="3">
+    <label for="star3" title="3 estrellas">&#9733;</label>
+
+    <input type="radio" id="star2" name="rating" value="2">
+    <label for="star2" title="2 estrellas">&#9733;</label>
+
+    <input type="radio" id="star1" name="rating" value="1">
+    <label for="star1" title="1 estrella">&#9733;</label>
+  </div>
+
+  <!-- Carita y texto dinámico -->
+  <div class="rating-badge">
+    <span id="rating-emoji">😁</span>
+    <span id="rating-text">¡Excelente!</span>
+  </div>
+</div>
+      <p class="feedback-label">Coméntanos:</p>
+      
+      <div class="textarea-container">
+        <textarea placeholder="Escribe aquí"></textarea>
+      </div>
+
+      <!-- Botones de Acción -->
+      <div class="button-group">
+        <a href="../htmlCliente/menu.html"><button class="btn btn-secondary">Ahora no</button></a>
+        <a href="../htmlCliente/menu.html"><button type ="button" id="btn-enviar" class="btn btn-primary">Enviar</button></a>
+      </div>
+    </section>
+
+    <!-- Botón Principal Inferior -->
+    <footer class="footer-container">
+      <button class="btn btn-full">Continuar</button>
+    </footer>
+
+  </div>
+
+
+<script>
+  // Capturamos el botón de enviar por su ID
+const btnEnviar = document.getElementById('btn-enviar');
+
+btnEnviar.addEventListener('click', () => {
+  alert("Reseña registrada exitosamente");
+  window.location.href = "../htmlCliente/menu.html";
+});
+
+
+  const ratingLabels = {
+    1: { text: '¡Pésimo!', emoji: '😠' },
+    2: { text: '¡Malo!', emoji: '🙁' },
+    3: { text: '¡Regular!', emoji: '😐' },
+    4: { text: '¡Bueno!', emoji: '🙂' },
+    5: { text: '¡Excelente!', emoji: '😁' }
+  };
+
+  const starInputs = document.querySelectorAll('.stars input');
+  const ratingText = document.getElementById('rating-text');
+  const ratingEmoji = document.getElementById('rating-emoji');
+
+  starInputs.forEach(input => {
+    input.addEventListener('change', (e) => {
+      const value = e.target.value;
+      ratingText.textContent = ratingLabels[value].text;
+      ratingEmoji.textContent = ratingLabels[value].emoji;
+    });
+  });
+</script>
+</body>
+</html>

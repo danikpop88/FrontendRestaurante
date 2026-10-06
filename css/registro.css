@@ -1,0 +1,197 @@
+/* Variables de color (de tus Estilos de color en Figma) */
+:root {
+  --color-principal: #495E57;
+  --color-secundario: #F4CE14;
+  --texto-default: #1E1E1E;
+  --borde-default: #D9D9D9;
+  --fondo-default: #ffffff;
+}
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  background-color: #f4f4f4; /* O el color de fondo que prefieras */
+}
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, sans-serif;
+}
+
+.pantalla {
+  width: 419px;
+  height: 829px;
+  position: relative;
+  background: white;
+  overflow: hidden;
+}
+
+/* Barra superior (se repite varias veces en el export original, aquí una sola) */
+.topbar {
+  width: 428px;
+  height: 80px;
+  position: absolute;
+  left: 0;
+  top: 1px;
+  background: white;
+}
+
+.topbar-logo {
+  width: 35px;
+  height: 25px;
+  left: 28px;
+  top: 28px;
+  position: absolute;
+  background: black;
+}
+
+.topbar-avatar {
+  width: 59px;
+  height: 59px;
+  left: 345px;
+  top: 11px;
+  position: absolute;
+}
+
+.logo-principal {
+  width: 179px;
+  height: 60px;
+  left: 118px;
+  top: 11px;
+  position: absolute;
+}
+
+/* Encabezado verde */
+.header {
+  width: 428px;
+  height: 656px;
+  left: 0;
+  top: 71px;
+  position: absolute;
+  background: var(--color-principal);
+}
+
+.header-titulo {
+  left: 143px;
+  top: 26px;
+  position: absolute;
+  color: var(--color-secundario);
+  font-size: 50px;
+  font-family: 'Markazi Text', serif;
+  font-weight: 600;
+}
+
+/* Tarjeta blanca del formulario */
+.form-card {
+  width: 376px;
+  padding: 0 16px;
+  left: 24px;
+  top: 164px;
+  position: absolute;
+  background: white;
+  border-radius: 20px;
+  outline: 1px solid #E1E1E1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+.campo {
+  width: 344px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.campo-label {
+  color: var(--texto-default);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22.4px;
+}
+
+.campo-input {
+  width: 100%;
+  min-width: 240px;
+  padding: 12px 16px;
+  background: var(--fondo-default);
+  border-radius: 8px;
+  outline: 1px solid var(--borde-default);
+}
+
+.campo-texto {
+  color: var(--texto-default);
+  font-size: 16px;
+  font-weight: 400;
+}
+
+/* Select de Rol */
+.select-box {
+  width: 344px;
+  height: 40px;
+  padding: 12px 12px 12px 16px;
+  background: var(--fondo-default);
+  border-radius: 8px;
+  outline: 1px solid var(--borde-default);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  margin: 0 auto;
+}
+
+.chevron {
+  width: 8px;
+  height: 4px;
+  outline: 1.6px solid var(--texto-default);
+}
+
+.dropdown-menu {
+  width: 77px;
+  padding: 8px;
+  position: absolute;
+  left: 247px;
+  top: 260px;
+  background: white;
+  box-shadow: 0px 1px 4px rgba(12, 12, 13, 0.1);
+  border-radius: 8px;
+  outline: 1px solid var(--borde-default);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.dropdown-item {
+  color: var(--texto-default);
+  font-size: 16px;
+  line-height: 22.4px;
+}
+
+/* Botón Registrarse */
+.boton-registrarse {
+  width: 344px;
+  height: 59px;
+  padding: 12px;
+  left: 39px;
+  top: 747px;
+  position: absolute;
+  background: #EDEFEE;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.boton-texto {
+  color: var(--color-principal);
+  font-size: 20px;
+  font-family: Karla, sans-serif;
+  font-weight: 800;
+  text-decoration: none;
+}

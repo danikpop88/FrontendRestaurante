@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Inicio de Sesión</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&family=Markazi+Text:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+  <div class="pantalla">
+
+    <div class="fondo">
+      <div class="titulo">Inicio de Sesion</div>
+    </div>
+
+    <form class="tarjeta" id="form-login" action="/login" method="post" novalidate>
+  <div class="campo" data-has-description="false" data-has-error="false" data-has-label="true" data-state="Default" data-value-type="Default">
+    <label class="campo-etiqueta" for="correo">Correo*</label>
+    <div class="campo-input">
+      <input
+        class="campo-texto"
+        type="email"
+        id="correo"
+        name="correo"
+        placeholder="Email"
+        autocomplete="email"
+        required
+      />
+    </div>
+  </div>
+
+  <div class="campo" data-has-description="false" data-has-error="false" data-has-label="true" data-state="Default" data-value-type="Default">
+    <label class="campo-etiqueta" for="contrasena">Contraseña*</label>
+    <div class="campo-input">
+      <input
+        class="campo-texto"
+        type="password"
+        id="contrasena"
+        name="contrasena"
+        placeholder="Contraseña"
+        autocomplete="current-password"
+        required
+        minlength="8"
+      />
+    </div>
+  </div>
+<div class="boton" data-has-icon-end="false" data-has-icon-start="false" data-size="Medium" data-state="Default" data-variant="Primary">
+  <a href="htmlCliente/menu.html" class="boton-texto">Ingresar</a>
+</div>
+  
+</form>
+
+    <!-- Encabezado (Figma lo exportó repetido 3 veces, apilado) -->
+    <div class="encabezado">
+      <div class="encabezado-fondo"></div>
+      <div class="encabezado-menu"></div>
+      <a href="login.html"><img class="encabezado-icono" src="imagenes/logo.jpg" alt="Icono"></a>
+    </div>
+
+
+    <img class="logo" src="imagenes/icono.jpg" alt="Logo">
+
+  </div>
+</body>
+</html>

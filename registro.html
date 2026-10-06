@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Registro</title>
+  <link rel="stylesheet" href="css/registro.css">
+</head>
+<body>
+
+  <div class="pantalla">
+
+    <!-- Barra superior -->
+    <div class="topbar">
+      <div class="topbar-logo"></div>
+      <a href="registro.html"><img class="topbar-avatar" src="imagenes/logo.jpg" alt="avatar"></a>
+    </div>
+
+    <img class="logo-principal" src="imagenes/icono.jpg" alt="logo">
+
+    <!-- Encabezado verde -->
+    <div class="header">
+      <div class="header-titulo">Registro</div>
+    </div>
+
+    <!-- Tarjeta del formulario -->
+    <form class="form-card" id="form-registro" action="inicio.html" method="get" novalidate>
+
+  <div class="campo">
+    <label class="campo-label" for="nombre">Nombres*</label>
+    <div class="campo-input">
+      <input class="campo-texto" type="text" id="nombre" name="nombre"
+             placeholder="Primer Nombre" autocomplete="given-name" required />
+    </div>
+  </div>
+
+  <div class="campo">
+    <label class="campo-label" for="correo">Correo*</label>
+    <div class="campo-input">
+      <input class="campo-texto" type="email" id="correo" name="correo"
+             placeholder="Email" autocomplete="email" required />
+    </div>
+  </div>
+
+  <div class="campo">
+    <label class="campo-label" for="rol">Rol</label>
+    <div class="select-box">
+      <select class="campo-texto" id="rol" name="rol">
+        <option value="" disabled selected>Selecciona tu rol</option>
+        <option value="cliente">Cliente</option>
+        <option value="chef">Chef</option>
+        <option value="chef">Domiciliario</option>
+        <option value="chef">Administrador</option>
+      </select>
+      <div class="chevron"></div>
+    </div>
+  </div>
+
+  <div class="campo">
+    <label class="campo-label" for="contrasena">Contraseña*</label>
+    <div class="campo-input">
+      <input class="campo-texto" type="password" id="contrasena" name="contrasena"
+             placeholder="Contraseña" autocomplete="new-password" required minlength="8" />
+    </div>
+  </div>
+
+  <div class="campo">
+    <label class="campo-label" for="telefono">Número de teléfono</label>
+    <div class="campo-input">
+      <input class="campo-texto" type="tel" id="telefono" name="telefono"
+             placeholder="+57" autocomplete="tel" />
+    </div>
+  </div>
+
+
+
+</form>
+<div class="boton-registrarse" data-has-icon-end="false" data-has-icon-start="false" data-size="Medium" data-state="Default" data-variant="Primary">
+  <a href="login.html" form=""form-registro class="boton-texto">Ingresar</a>
+</div>
+</body>
+</html>

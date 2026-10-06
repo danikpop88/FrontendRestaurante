@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tu información</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&family=Karla:wght@600;700&family=Markazi+Text:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../cssCliente/pedido.css">
+</head>
+<body>
+  <div class="pagina">
+
+    <!-- Banner -->
+    <div class="banner-titulo">
+      <div class="banner-titulo-texto">Tu información</div>
+    </div>
+  
+
+    <!-- Encabezado -->
+    <div class="encabezado-vacio"></div>
+    <div class="encabezado-menu"></div>
+    <div class="linea-vertical"></div>
+    <a href="../htmlCliente/menu.html"><img class="icono-usuario" src="../imagenes/logo.jpg" alt="Usuario"></a>
+    <!-- Formulario -->
+<form class="formulario">
+  <div class="campo campo--nombres" data-has-description="false" data-has-error="false" data-has-label="true" data-state="Default" data-value-type="Default">
+    <label for="nombres" class="campo-etiqueta">Nombres*</label>
+    <div class="campo-input">
+      <input type="text" id="nombres" name="nombres" class="campo-texto" placeholder="Primer Nombre" required>
+    </div>
+  </div>
+
+  <div class="campo campo--direccion" data-has-description="false" data-has-error="false" data-has-label="true" data-state="Default" data-value-type="Default">
+    <label for="direccion" class="campo-etiqueta">Dirección*</label>
+    <div class="campo-input">
+      <input type="text" id="direccion" name="direccion" class="campo-texto" placeholder="Dirección" required>
+    </div>
+  </div>
+
+  <div class="campo campo--telefono" data-has-description="false" data-has-error="false" data-has-label="true" data-state="Default" data-value-type="Default">
+    <label for="telefono" class="campo-etiqueta">Número de teléfono</label>
+    <div class="campo-input">
+      <input type="tel" id="telefono" name="telefono" class="campo-texto" placeholder="+57">
+    </div>
+  </div>
+
+  <div class="campo campo--email" data-has-description="false" data-has-error="false" data-has-label="true" data-state="Default" data-value-type="Default">
+    <label for="email" class="campo-etiqueta">Email*</label>
+    <div class="campo-input">
+      <input type="email" id="email" name="email" class="campo-texto" placeholder="Email" required>
+    </div>
+  </div>
+
+
+
+    <!-- Paso 1 activo (cabecera superior) -->
+    <div class="paso-activo">
+      <div class="paso-activo-fondo"></div>
+      <div class="circulo circulo--amarillo paso-activo-circulo"></div>
+      <div class="num paso-activo-num">1</div>
+      <div class="paso-activo-vacio"></div>
+      <div class="txt paso-activo-nombre">Dirección</div>
+      <div class="paso-activo-vacio2"></div>
+    </div>
+    <div class="txt txt-resumen-sup">Resumen pedido</div>
+    <div class="circulo circulo--blanco circulo-3-sup"></div>
+    <div class="num num-3-sup">3</div>
+    <div class="txt txt-pago-sup">Método de pago</div>
+    <div class="cuadro-2-sup"></div>
+    <div class="num num-2-sup">2</div>
+
+    <!-- Cabecera gris A -->
+    <div class="paso-gris-a">
+      <div class="paso-gris-a-fondo"></div>
+      <div class="circulo circulo--blanco paso-gris-a-circulo"></div>
+      <div class="num num--tenue paso-gris-a-num">1</div>
+      <div class="txt paso-gris-a-nombre">Dirección</div>
+      <div class="paso-gris-a-vacio"></div>
+    </div>
+
+    <!-- Cabecera gris B -->
+    <div class="paso-gris-b">
+      <div class="paso-gris-b-fondo"></div>
+      <div class="circulo circulo--blanco paso-gris-b-circulo"></div>
+      <div class="num num--tenue paso-gris-b-num">1</div>
+      <div class="txt paso-gris-b-nombre">Dirección</div>
+      <div class="paso-gris-b-vacio"></div>
+    </div>
+
+    <!-- Tabla del resumen -->
+    <div class="tabla-cabecera">
+      <div class="tabla-cabecera-fondo"></div>
+      <div class="tabla-cabecera-vacio1"></div>
+      <div class="tabla-cabecera-vacio2"></div>
+    </div>
+    <div class="txt txt-resumen-b">Resumen Pedido</div>
+    <div class="txt txt-pago-b">Método de pago</div>
+    <div class="txt tabla-titulos">Cant.             Artículo                                                   Precio</div>
+    <div class="txt tabla-total">TOTAL                                                                          46.0000</div>
+    <div class="txt tabla-items">1x                    Patacón con pollo                                 20.000<br/><br/>2x                   copa de tres leches                                26.000</div>
+
+    
+
+    <!-- Paso Método de pago -->
+    <div class="txt txt-pago-a">Método de pago</div>
+    <a href="../htmlCliente/menu.html"><img class="logo" src="../imagenes/icono.jpg" alt="Logo"></a>
+    <div class="txt txt-resumen-a">Resumen Pedido</div>
+    <div class="vacio-circulo"></div>
+    <div class="circulo circulo--amarillo circulo-amarillo-a"></div>
+    <div class="cuadro-amarillo-b"></div>
+    <div class="circulo circulo--blanco circulo-3-a"></div>
+    <div class="num num--tenue num-3-a">3</div>
+    <div class="num num--tenue num-2-a">2</div>
+
+    <div class="caja-pago"></div>
+    <div class="texto-pago">Único metodo de pago: contraentrega en efectivo</div>
+
+    <div class="circulo circulo--blanco circulo-2-b"></div>
+    <div class="num num--tenue num-2-b">2</div>
+    <div class="num num--tenue num-3-b">3</div>
+
+    <!-- Botones -->
+    <div class="boton-gris"><div></div></div>
+<div class="boton-texto boton-texto--confirmar">
+  <a href="../htmlCliente/seguimiento.html">ConfirmarPedido</a>
+</div>
+    
+  </div>
+</form>
+
+</body>
+</html>

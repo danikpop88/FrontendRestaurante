@@ -1,0 +1,278 @@
+/* ===== Página ===== */
+.pagina {
+  width: 430px;
+  height: 1322px;
+  position: relative;
+  background: white;
+  overflow: hidden;
+}
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  background-color: #f4f4f4; /* O el color de fondo que prefieras */
+}
+
+/* ===== Banner y encabezado ===== */
+.banner-titulo {
+  width: 446px;
+  height: 66px;
+  padding-bottom: 40px;
+  padding-left: 16px;
+  padding-right: 16px;
+  left: -8px;
+  top: 170px; /* Inicia el banner */
+  position: absolute;
+  background: #495E57;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 16px;
+  display: inline-flex;
+}
+.banner-titulo-texto {
+  width: 344px;
+  height: 61px;
+  text-align: right;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  color: #F4CE14;
+  font-size: 48px;
+  font-family: 'Markazi Text';
+  font-weight: 600;
+  word-wrap: break-word;
+}
+
+.encabezado-vacio { width: 147.50px; height: 40px; left: 140px; top: 22px; position: absolute; }
+.encabezado-menu  { width: 35.16px; height: 35.69px; left: 16.07px; top: 23.66px; position: absolute; background: black; }
+.icono-usuario    { width: 59px; height: 59px; left: 343px; top: 10px; position: absolute; }
+.logo             { width: 179px; height: 60px; left: 104px; top: 10px; position: absolute; }
+
+.linea-vertical {
+  width: 13px;
+  height: 0px;
+  left: 263px;
+  top: 122px;
+  position: absolute;
+  transform: rotate(90deg);
+  transform-origin: top left;
+  outline: 1px white solid;
+  outline-offset: -0.50px;
+}
+
+/* ===== Campos del formulario ===== */
+.campo {
+  width: 344px;
+  position: absolute;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 8px;
+  display: inline-flex;
+}
+/* ===== Campos del formulario ===== */
+
+.campo--nombres   { height: 55px; left: 35px; top: 285px; } /* Inicia justo abajo del banner verde */
+.campo--direccion { height: 55px; left: 35px; top: 355px; }
+.campo--telefono  { height: 55px; left: 31px; top: 425px; }
+.campo--email     { height: 55px; left: 31px; top: 495px; } /* Termina en 550px, sin chocar con lo gris */
+.campo-etiqueta {
+  align-self: stretch;
+  color: var(--Text-Default-Default, #1E1E1E);
+  font-size: 16px;
+  font-family: 'Inter';
+  font-weight: 400;
+  line-height: 22.40px;
+  word-wrap: break-word;
+}
+
+.campo-input {
+  align-self: stretch;
+  min-width: 240px;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  background: var(--Background-Default-Default, white);
+  overflow: hidden;
+  border-radius: 8px;
+  outline: 1px var(--Border-Default-Default, #D9D9D9) solid;
+  outline-offset: -0.50px;
+  justify-content: flex-start;
+  align-items: center;
+  display: inline-flex;
+}
+
+.campo-texto {
+  flex: 1 1 0;
+  color: var(--Text-Default-Default, #1E1E1E);
+  font-size: 16px;
+  font-family: 'Inter';
+  font-weight: 400;
+  line-height: 16px;
+  word-wrap: break-word;
+}
+
+/* ===== Textos base (Karla) ===== */
+.num {
+  position: absolute;
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  color: #495E57;
+  font-size: 23px;
+  font-family: 'Karla';
+  font-weight: 600;
+  word-wrap: break-word;
+}
+.num--tenue { color: rgba(73, 94, 87, 0.46); }
+
+.txt {
+  position: absolute;
+  color: black;
+  font-size: 14px;
+  font-family: 'Karla';
+  font-weight: 600;
+  word-wrap: break-word;
+}
+
+.circulo { position: absolute; border-radius: 9999px; }
+.circulo--blanco   { background: white; }
+.circulo--amarillo { background: #F4CE14; }
+
+/* ===== Paso 1 activo (arriba) ===== */
+.paso-activo { width: 428px; height: 90px; left: 1px; top: 81px; position: absolute; }
+.paso-activo-fondo   { width: 428px; height: 90px; left: 0px; top: 0px; position: absolute; background: #EDEFEE; }
+.paso-activo-circulo { width: 32px; height: 32px; left: 14px; top: 29px; }
+.paso-activo-num     { left: 25px; top: 31px; }
+.paso-activo-vacio   { left: 167px; top: 31px; position: absolute; text-align: center; justify-content: center; display: flex; flex-direction: column; }
+.paso-activo-nombre  { left: 56px; top: 36px; font-size: 13px; }
+.paso-activo-vacio2  { left: 192px; top: 36px; position: absolute; }
+
+/* Pasos 2 y 3 (cabecera superior) */
+.txt-resumen-sup  { width: 111.52px; height: 16.46px; left: 306px; top: 117px; }
+.circulo-3-sup    { width: 32.15px; height: 32.92px; left: 263px; top: 111px; }
+.num-3-sup        { width: 15.07px; height: 27.78px; left: 273px; top: 111px; }
+.txt-pago-sup     { width: 90.42px; height: 14.40px; left: 159px; top: 118px; font-size: 12px; }
+.cuadro-2-sup     { width: 32.15px; height: 32.92px; left: 122px; top: 110px; position: absolute; background: white; }
+.num-2-sup        { width: 14.07px; height: 27.78px; left: 131px; top: 111px; }
+
+/* ===== Cabecera gris A (paso Método de pago) ===== */
+.paso-gris-a { width: 438px; height: 83px; left: -1px; top: 595px; position: absolute; overflow: hidden; }
+.paso-gris-a-fondo   { width: 438px; height: 83px; left: 0px; top: 0px; position: absolute; background: #EDEFEE; }
+.paso-gris-a-circulo { width: 32.75px; height: 29.51px; left: 14.33px; top: 26.74px; }
+.paso-gris-a-num     { left: 25.58px; top: 27.59px; }
+.paso-gris-a-nombre  { left: 57.31px; top: 33.20px; }
+.paso-gris-a-vacio   { left: 196.49px; top: 33.20px; position: absolute; }
+
+.txt-pago-a     { width: 105.49px; height: 16.46px; left: 162px; top: 625px; }
+.txt-resumen-a  { width: 110.51px; height: 16.46px; left: 306px; top: 625px; }
+.circulo-amarillo-a { width: 33.15px; height: 32.92px; left: 123px; top: 617px; }
+.circulo-3-a    { width: 32.15px; height: 32.92px; left: 270px; top: 615px; }
+.num-3-a        { width: 15.07px; height: 27.78px; left: 278px; top: 617px; }
+.num-2-a        { width: 14.07px; height: 27.78px; left: 130px; top: 617px; }
+.num-suelto     { width: 9.04px; height: 27.78px; left: 25.12px; top: 31.89px; }
+.vacio-circulo  { width: 20px; height: 20px; left: 68px; top: 756px; position: absolute; border-radius: 9999px; }
+
+/* ===== Método de pago ===== */
+.caja-pago {
+  width: 340px;
+  height: 77px;
+  left: 43px;
+  top: 699px;
+  position: absolute;
+  background: #F3F4F6;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) inset;
+  border-radius: 15px;
+}
+
+.texto-pago {
+  width: 292.36px;
+  height: 23.66px;
+  left: 69px;
+  top: 729px;
+  position: absolute;
+  color: black;
+  font-size: 15px;
+  font-family: 'Karla';
+  font-weight: 600;
+  word-wrap: break-word;
+}
+
+/* ===== Cabecera gris B (paso Resumen) ===== */
+.paso-gris-b { width: 428px; height: 90px; left: 1px; top: 795px; position: absolute; overflow: hidden; }
+.paso-gris-b-fondo   { width: 428px; height: 90px; left: 0px; top: 0px; position: absolute; background: #EDEFEE; }
+.paso-gris-b-circulo { width: 32px; height: 32px; left: 14px; top: 29px; }
+.paso-gris-b-num     { left: 25px; top: 31px; }
+.paso-gris-b-nombre  { left: 56px; top: 36px; }
+.paso-gris-b-vacio   { left: 192px; top: 36px; position: absolute; }
+
+.txt-resumen-b  { width: 110.51px; height: 16.46px; left: 310px; top: 831px; }
+.txt-pago-b     { width: 105.49px; height: 16.46px; left: 162px; top: 828px; }
+.cuadro-amarillo-b { width: 33.15px; height: 32.92px; left: 270px; top: 820px; position: absolute; background: #F4CE14; }
+.circulo-2-b    { width: 32.15px; height: 32.92px; left: 123px; top: 822px; }
+.num-2-b        { width: 14.07px; height: 27.78px; left: 130px; top: 822px; }
+.num-3-b        { width: 14.07px; height: 27.78px; left: 280px; top: 819px; }
+
+/* ===== Tabla del resumen ===== */
+.tabla-cabecera {
+  width: 400px;
+  height: 34px;
+  left: 10px;
+  top: 903px;
+  position: absolute;
+  overflow: hidden;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 22px;
+}
+.tabla-cabecera-fondo  { width: 400px; height: 34px; left: 0px; top: 0px; position: absolute; background: #EDEFEE; }
+.tabla-cabecera-vacio1 { left: 52.34px; top: 13.60px; position: absolute; }
+.tabla-cabecera-vacio2 { left: 179.44px; top: 13.60px; position: absolute; }
+
+.tabla-titulos { width: 381px; height: 24px; left: 24px; top: 909px; }
+.tabla-items   { width: 381px; height: 24px; left: 24px; top: 961px; }
+.tabla-total   { width: 381px; height: 24px; left: 31px; top: 1173px; }
+
+/* ===== Botones ===== */
+
+.boton-gris {
+  width: 165px;
+  height: 28px;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  left: 229px;
+  top: 1218px;
+  position: absolute;
+  background: #808F85;
+  border-radius: 16px;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 10px;
+  display: inline-flex;
+}
+
+.boton-texto, a {
+  position: absolute;
+  color: black;
+  font-size: 16px;
+  font-family: 'Karla';
+  font-weight: 700;
+  word-wrap: break-word;
+  text-decoration: none;
+}
+.boton-texto--estado    { left: 250.11px; top: 1279px; }
+.boton-texto--confirmar { left: 243.11px; top: 1222px; }
+
+/* ===== Tarjeta suelta (quedó fuera de la página en el export) ===== */
+.tarjeta-suelta {
+  width: 397px;
+  height: 360px;
+  border-radius: 20px;
+  border: 1px #E1E1E1 solid;
+}
