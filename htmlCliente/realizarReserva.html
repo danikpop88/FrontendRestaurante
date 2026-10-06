@@ -39,38 +39,53 @@
       <div class="form-bg"></div>
 
       <!-- Field 1 -->
-      <div class="input-group input-group-1" data-has-description="false" data-has-error="true" data-has-label="true" data-open="false" data-state="Default" data-value-type="Default">
-        <div class="input-label">¿Cuándo deseas reservar?</div>
-        <div class="input-box">
-          <div class="input-text">Selecciona una fecha</div>
-          <div class="dropdown-icon-wrapper" data-size="16">
-            <div class="dropdown-icon"></div>
-          </div>
-        </div>
-      </div>
+      <form id="form-reserva" action="#" method="POST">
 
-      <!-- Field 2 -->
-      <div class="input-group input-group-2" data-has-description="false" data-has-error="true" data-has-label="true" data-open="false" data-state="Default" data-value-type="Default">
-        <div class="input-label">¿A qué hora?</div>
-        <div class="input-box">
-          <div class="input-text">Selecciona una hora</div>
-          <div class="dropdown-icon-wrapper" data-size="16">
-            <div class="dropdown-icon"></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Field 3 -->
-      <div class="input-group input-group-3" data-has-description="false" data-has-error="true" data-has-label="true" data-open="false" data-state="Default" data-value-type="Default">
-        <div class="input-label">¿Para cuántas personas?</div>
-        <div class="input-box">
-          <div class="input-text">2 personas</div>
-          <div class="dropdown-icon-wrapper" data-size="16">
-            <div class="dropdown-icon"></div>
-          </div>
-        </div>
+  <!-- Field 1: Fecha -->
+  <div class="input-group input-group-1" data-has-description="false" data-has-error="true" data-has-label="true" data-open="false" data-state="Default" data-value-type="Default">
+    <label for="fecha" class="input-label">¿Cuándo deseas reservar?</label>
+    <div class="input-box">
+      <input type="date" id="fecha" name="fecha" class="input-text" required>
+      <div class="dropdown-icon-wrapper" data-size="16">
+        <div class="dropdown-icon"></div>
       </div>
     </div>
+  </div>
+
+  <!-- Field 2: Hora -->
+  <div class="input-group input-group-2" data-has-description="false" data-has-error="true" data-has-label="true" data-open="false" data-state="Default" data-value-type="Default">
+    <label for="hora" class="input-label">¿A qué hora?</label>
+    <div class="input-box">
+      <input type="time" id="hora" name="hora" class="input-text" required>
+      <div class="dropdown-icon-wrapper" data-size="16">
+        <div class="dropdown-icon"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Field 3: Personas -->
+  <div class="input-group input-group-3" data-has-description="false" data-has-error="true" data-has-label="true" data-open="false" data-state="Default" data-value-type="Default">
+    <label for="personas" class="input-label">¿Para cuántas personas?</label>
+    <div class="input-box">
+      <select id="personas" name="personas" class="input-text" required>
+        <option value="" disabled selected>Selecciona cantidad</option>
+        <option value="1">1 persona</option>
+        <option value="2">2 personas</option>
+        <option value="3">3 personas</option>
+        <option value="4">4 personas</option>
+        <option value="5">5 personas</option>
+        <option value="6">6+ personas</option>
+      </select>
+      <div class="dropdown-icon-wrapper" data-size="16">
+        <div class="dropdown-icon"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Botón opcional de envío (si lo necesitas dentro del form) -->
+  <!-- <button type="submit" class="boton-amarillo">Confirmar Reserva</button> -->
+
+</form>
 
     <!-- Section Title -->
     <div class="section-title-container">
@@ -78,14 +93,14 @@
       
       <div class="time-slots-container">
          <div class="time-slots-grid">
-    <button class="time-slot-btn">2:00 PM</button>
-    <button class="time-slot-btn">3:00 PM</button>
-    <button class="time-slot-btn">4:00 PM</button>
-    <button class="time-slot-btn">5:00 PM</button>
-    <button class="time-slot-btn">6:00 PM</button>
-    <button class="time-slot-btn">7:00 PM</button>
-    <button class="time-slot-btn">8:00 PM</button>
-    <button class="time-slot-btn">9:00 PM</button>
+    <button class="time-slot-btn" data-hora="14:00">2:00 PM</button>
+    <button class="time-slot-btn" data-hora="15:00">3:00 PM</button>
+    <button class="time-slot-btn" data-hora="16:00">4:00 PM</button>
+    <button class="time-slot-btn" data-hora="17:00">5:00 PM</button>
+    <button class="time-slot-btn" data-hora="18:00">6:00 PM</button>
+    <button class="time-slot-btn" data-hora="19:00">7:00 PM</button>
+    <button class="time-slot-btn" data-hora="20:00">8:00 PM</button>
+    <button class="time-slot-btn" data-hora="21:00">9:00 PM</button>
   </div>
  
       </div>
@@ -100,6 +115,23 @@
     </div>
 
   </div>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const inputHora = document.getElementById('hora');
+    const botonesHorario = document.querySelectorAll('.time-slot-btn');
 
+    botonesHorario.forEach(boton => {
+      boton.addEventListener('click', () => {
+        // 1. Obtener la hora del atributo data-hora
+        const horaSeleccionada = boton.getAttribute('data-hora');
+
+        // 2. Asignarla al input del formulario
+        if (inputHora && horaSeleccionada) {
+          inputHora.value = horaSeleccionada;
+        }
+      });
+    });
+  });
+</script>
 </body>
 </html>

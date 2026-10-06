@@ -17,7 +17,8 @@
       <div class="lista-envoltura">
         <div class="lista-columna">
 
-          <div class="plato">
+          <!-- Agregado: data-categoria="postres" -->
+          <div class="plato" data-categoria="postres">
             <div class="plato-fila">
               <div class="plato-texto">
                 <div class="plato-nombre">Arroz con Leche de la Abuela</div>
@@ -26,11 +27,15 @@
               </div>
               <div class="plato-imagen"></div>
             </div>
+          <div class="boton-seleccionar boton-seleccionar--arroz" data-property-1="Default">
+            <div class="boton-texto">Seleccionar</div>
+          </div>
             <div class="plato-linea"></div>
             <div class="plato-linea"></div>
           </div>
 
-          <div class="plato">
+          <!-- Agregado: data-categoria="entradas" -->
+          <div class="plato" data-categoria="entradas">
             <div class="plato-fila">
               <div class="plato-texto">
                 <div class="plato-nombre">Arepa paisa rellena</div>
@@ -39,48 +44,50 @@
               </div>
               <img class="plato-imagen" src="img/plato.png" alt="Arepa paisa rellena">
             </div>
+          <div class="boton-seleccionar boton-seleccionar--arepa" data-property-1="Default">
+            <div class="boton-texto">Seleccionar</div>
+          </div>
             <div class="plato-linea"></div>
             <div class="plato-linea"></div>
           </div>
           
-          <div class="boton-seleccionar boton-seleccionar--arepa" data-property-1="Default">
-            <div class="boton-texto">Seleccionar</div>
-          </div>
-          <div class="boton-seleccionar boton-seleccionar--patacon" data-property-1="Default">
-            <div class="boton-texto">Seleccionar</div>
-          </div>
 
-          <div class="plato">
+
+
+          <!-- Agregado: data-categoria="platos-fuertes" -->
+          <div class="plato" data-categoria="platos-fuertes">
             <div class="plato-fila">
               <div class="plato-texto">
                 <div class="plato-nombre">Patacón con Pollo</div>
                 <div class="plato-descripcion">Patacón crujiente cubierto con pollo desmechado, queso, guacamole y hogao.</div>
                 <div class="plato-precio">$20.000</div>
               </div>
-              <img class="plato-imagen" src="img/plato.png" alt="Patacón con Pollo">
             </div>
+          <div class="boton-seleccionar boton-seleccionar--patacon" data-property-1="Default">
+            <div class="boton-texto">Seleccionar</div>
+          </div>
             <div class="plato-linea"></div>
             <div class="plato-linea"></div>
           </div>
 
-          <div class="plato">
+          <!-- Agregado: data-categoria="platos-fuertes" -->
+          <div class="plato" data-categoria="platos-fuertes">
             <div class="plato-fila">
               <div class="plato-texto">
                 <div class="plato-nombre">Picada de la Abuela</div>
                 <div class="plato-descripcion">Chicharrón, chorizo, carne, pollo, papa criolla, arepa y patacón para compartir.</div>
                 <div class="plato-precio">$38.000</div>
               </div>
-              <img class="plato-imagen" src="img/plato.png" alt="Picada de la Abuela">
             </div>
-            <div class="plato-linea"></div>
-            <div class="plato-linea"></div>
-          </div>
-
           <div class="boton-seleccionar boton-seleccionar--picada" data-property-1="Default">
             <div class="boton-texto">Seleccionar</div>
           </div>
+            <div class="plato-linea"></div>
+            <div class="plato-linea"></div>
+          </div>
 
-          <div class="plato">
+          <!-- Agregado: data-categoria="postres" -->
+          <div class="plato" data-categoria="postres">
             <div class="plato-fila">
               <div class="plato-texto">
                 <div class="plato-nombre">Copa de Tres Leches</div>
@@ -89,13 +96,14 @@
               </div>
               <div class="plato-imagen"></div>
             </div>
+          <div class="boton-seleccionar boton-seleccionar--arroz" data-property-1="Default">
+            <div class="boton-texto">Seleccionar</div>
+          </div>
             <div class="plato-linea"></div>
             <div class="plato-linea"></div>
           </div>
 
-          <div class="boton-seleccionar boton-seleccionar--arroz" data-property-1="Default">
-            <div class="boton-texto">Seleccionar</div>
-          </div>
+
 
         </div>
       </div>
@@ -105,10 +113,11 @@
     <div class="categorias">
       <div class="categorias-titulo">Pedir a domicilio</div>
       <div class="categorias-lista">
-        <div class="categoria" data-property-1="Default"><div class="boton-texto">Entradas</div></div>
-        <div class="categoria" data-property-1="Default"><div class="boton-texto">Platos fuertes</div></div>
-        <div class="categoria" data-property-1="Default"><div class="boton-texto">Postres</div></div>
-        <div class="categoria" data-property-1="Default"><div class="boton-texto">Bebidas</div></div>
+        <div class="categoria" data-categoria="todas"><div class="boton-texto">Todas</div></div>
+        <div class="categoria" data-categoria="entradas"><div class="boton-texto">Entradas</div></div>
+        <div class="categoria" data-categoria="platos-fuertes"><div class="boton-texto">Platos fuertes</div></div>
+        <div class="categoria" data-categoria="postres"><div class="boton-texto">Postres</div></div>
+        <div class="categoria" data-categoria="bebidas"><div class="boton-texto">Bebidas</div></div>
       </div>
     </div>
 
@@ -168,20 +177,38 @@
 
     <!-- Encabezado -->
     <div class="encabezado-vacio"></div>
-    <div class="encabezado-menu"></div>
     <a href="../htmlCliente/menu.html"><img class="icono-usuario" src="../imagenes/logo.jpg" alt="Usuario"></a>
     <a href="../htmlCliente/pedido.html"><img class="icono-carrito" src="../imagenes/carrito.jpg" alt="Carrito"></a>
-     <a href="../htmlCliente/menu.html"><img class="logo" src="../imagenes/icono.jpg" alt="Logo"></a>
-    <div class="boton-seleccionar boton-seleccionar--pie" data-property-1="Default">
-      <div class="boton-texto">Seleccionar</div>
-    </div>
+    <a href="../htmlCliente/menu.html"><img class="logo" src="../imagenes/icono.jpg" alt="Logo"></a>
+ 
     <div class="boton-vermas" data-property-1="Default">
       <div class="boton-texto">Ver más</div>
     </div>
 
   </div>
 
-  <!-- Logo: en el export quedó fuera del contenedor principal -->
- 
+  <!-- JavaScript para realizar el filtrado al dar clic -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const botonesCategoria = document.querySelectorAll('.categoria');
+      const platillos = document.querySelectorAll('.plato');
+
+      botonesCategoria.forEach(boton => {
+        boton.addEventListener('click', () => {
+          const categoriaSeleccionada = boton.getAttribute('data-categoria');
+
+          platillos.forEach(plato => {
+            const categoriaPlato = plato.getAttribute('data-categoria');
+
+            if (categoriaSeleccionada === 'todas' || categoriaPlato === categoriaSeleccionada) {
+              plato.style.display = 'block';
+            } else {
+              plato.style.display = 'none';
+            }
+          });
+        });
+      });
+    });
+  </script>
 </body>
 </html>

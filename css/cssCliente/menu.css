@@ -6,7 +6,7 @@
   background: white;
   overflow: hidden;
 }
-a{
+a {
   text-decoration: none;
   color: black;
 }
@@ -207,6 +207,13 @@ body {
   align-items: flex-start;
   gap: 10px;
   display: flex;
+  cursor: pointer; /* Agregado para que indique que se puede dar clic */
+  user-select: none;
+}
+
+/* Regla para interactividad de las categorías */
+.categoria:hover {
+  opacity: 0.8;
 }
 
 /* ===== Hero (se exportó 2 veces, apilado) ===== */
@@ -397,8 +404,17 @@ body {
   position: absolute;
 }
 
-/* ===== Logo (quedó fuera del contenedor en el export) ===== */
+/* ===== Logo ===== */
 .logo {
   width: 179px;
   height: 60px;
+}
+/* Modifica únicamente las posiciones 'top' de los botones para que dependan del plato */
+.boton-seleccionar--arroz,
+.boton-seleccionar--arepa,
+.boton-seleccionar--patacon,
+.boton-seleccionar--picada,
+.boton-seleccionar--pie {
+  left: 298px;
+  top: 0px; /* <--- Ahora todos se alinean arriba a la derecha de su respectivo plato */
 }
