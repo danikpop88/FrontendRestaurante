@@ -1,0 +1,207 @@
+/* Reseteo básico y Box Sizing */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Contenedor Principal Móvil */
+.card-container {
+  width: 428px;
+  height: 984px;
+  position: relative;
+  background: white;
+  overflow: hidden;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Encabezado Top */
+.header-top {
+  width: 428px;
+  height: 80px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: white;
+}
+
+.menu-icon {
+  width: 35px;
+  height: 25px;
+  position: absolute;
+  left: 28px;
+  top: 28px;
+  background: black;
+}
+
+.logo {
+  width: 179px;
+  height: 60px;
+  position: absolute;
+  left: 121px;
+  top: 10px;
+}
+
+.profile-pic {
+  width: 59px;
+  height: 59px;
+  position: absolute;
+  left: 336px;
+  top: 11px;
+  border-radius: 50%;
+}
+
+/* Barra de Pasos / Stepper */
+.stepper-bar {
+  width: 428px;
+  height: 90px;
+  position: absolute;
+  left: 0;
+  top: 80px;
+  background: #EDEFEE;
+  display: flex;
+  align-items: center;
+}
+
+.step-item {
+  display: flex;
+  align-items: center;
+  position: absolute;
+}
+
+.step-item:nth-child(1) { left: 14px; }
+.step-item:nth-child(2) { left: 150px; }
+.step-item:nth-child(3) { left: 317px; }
+
+.circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Karla', sans-serif;
+  font-weight: 600;
+  font-size: 23px;
+}
+
+.circle.inactive {
+  background: white;
+  color: rgba(73, 94, 87, 0.46);
+}
+
+.circle.active {
+  background: #F4CE14;
+  color: #495E57;
+}
+
+.step-label {
+  color: black;
+  font-size: 14px;
+  font-family: 'Karla', sans-serif;
+  font-weight: 600;
+  margin-left: 10px;
+  white-space: nowrap;
+}
+
+.step-item:nth-child(3) .step-label {
+  font-size: 15px;
+}
+
+/* Banner de Título */
+.hero-banner {
+  width: 428px;
+  height: 172px;
+  position: absolute;
+  left: 0;
+  top: 170px;
+  background: #495E57;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-title {
+  color: #F4CE14;
+  font-size: 50px;
+  font-family: 'Markazi Text', serif;
+  font-weight: 600;
+  text-align: center;
+  line-height: 1;
+}
+
+/* Tarjeta de Detalles */
+.details-card {
+  width: 379px;
+  height: 433px;
+  position: absolute;
+  left: 24px;
+  top: 366px;
+  border-radius: 20px;
+  border: 1px #E1E1E1 solid;
+  padding: 43px 42px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.label {
+  color: black;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22.40px;
+}
+
+.value {
+  color: #495E57;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 22.40px;
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background-color: #B3B3B3;
+}
+
+/* Botón de Reservar */
+.btn-primary {
+  width: 344px;
+  height: 59px;
+  padding: 12px;
+  position: absolute;
+  left: 41px;
+  top: 857px;
+  background: #F4CE14;
+  border-radius: 8px;
+  border: none;
+  color: black;
+  font-size: 20px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.2s ease;
+}
+
+.btn-primary:hover {
+  background-color: #e0bd0f;
+}

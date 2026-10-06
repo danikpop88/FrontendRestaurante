@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Revisa tu Reserva</title>
+  
+  <!-- Fuentes de Google -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Karla:wght@600&family=Markazi+Text:wght@600&display=swap" rel="stylesheet">
+  
+  <!-- Archivo de Estilos -->
+  <link rel="stylesheet" href="../css/cssCliente/revisaReserva.css">
+</head>
+<body>
+
+  <div class="card-container">
+    
+    <!-- Encabezado superior -->
+    <header class="header-top">
+      <div class="menu-icon"></div>
+      <img class="logo" src="../imagenes/icono.jpg" alt="Little Lemon Logo" />
+      <img class="profile-pic" src="../imagenes/logo.jpg" alt="Foto de Perfil" />
+    </header>
+
+    <!-- Barra de Pasos / Progreso -->
+    <section class="stepper-bar">
+      <div class="step-item">
+        <div class="circle inactive">1</div>
+        <span class="step-label">Buscar mesa</span>
+      </div>
+      <div class="step-item">
+        <div class="circle inactive">2</div>
+        <span class="step-label">Agregar tus datos</span>
+      </div>
+      <div class="step-item">
+        <div class="circle active">3</div>
+        <span class="step-label">Reservar</span>
+      </div>
+    </section>
+
+    <!-- Banner Principal -->
+    <section class="hero-banner">
+      <h1 class="hero-title">Revisa tu <br/>reserva</h1>
+    </section>
+
+    <!-- Tarjeta con la Información de la Reserva -->
+    <main class="details-card">
+      <div class="detail-row">
+        <span class="label">Name</span>
+        <span class="value">John Doe</span>
+      </div>
+      <div class="divider"></div>
+
+      <div class="detail-row">
+        <span class="label">Email</span>
+        <span class="value">JohnDoe@gmail.com</span>
+      </div>
+      <div class="divider"></div>
+
+      <div class="detail-row">
+        <span class="label">Celular</span>
+        <span class="value">+57  3116032432</span>
+      </div>
+      <div class="divider"></div>
+
+      <div class="detail-row">
+        <span class="label">Fecha</span>
+        <span class="value">20/09/2026</span>
+      </div>
+      <div class="divider"></div>
+
+      <div class="detail-row">
+        <span class="label">Hora</span>
+        <span class="value">6:00 PM</span>
+      </div>
+      <div class="divider"></div>
+
+      <div class="detail-row">
+        <span class="label">Número de personas</span>
+        <span class="value">4</span>
+      </div>
+    </main>
+
+    <!-- Botón de Acción -->
+    <button class="btn-primary">Hacer reservación</button>
+
+  </div>
+
+</body>
+</html>
