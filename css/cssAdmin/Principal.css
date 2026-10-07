@@ -1,0 +1,259 @@
+/* ===== Base ===== */
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  background-color: #f4f4f4; /* O el color de fondo que prefieras */
+}
+html {
+  scroll-behavior: smooth;
+}
+.pantalla {
+  width: 458px;
+  height: 1212px;
+  position: relative;
+  background: white;
+  overflow: hidden;
+}
+a{
+  text-decoration: none;
+  color: black;
+}
+/* ===== Hero ===== */
+.hero {
+  width: 463px;
+  height: 352px;
+  padding-bottom: 40px;
+  padding-left: 16px;
+  padding-right: 16px;
+  left: 0;
+  top: 86px;
+  position: absolute;
+  background: #495E57;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  display: inline-flex;
+}
+
+.hero-titulo-caja {
+  left: 26px;
+  top: 31px;
+  position: absolute;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  display: flex;
+}
+
+.hero-titulo {
+  color: #F4CE14;
+  font-size: 40px;
+  font-family: 'Markazi Text', serif;
+  font-weight: 500;
+  word-wrap: break-word;
+}
+
+/* ===== Botones tipo "pill" ===== */
+.pill {
+  padding: 8px 16px;
+  position: absolute;
+  background: #F4CE14;
+  border-radius: 16px;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 10px;
+  display: inline-flex;
+}
+
+.pill-texto {
+  color: black;
+  font-size: 16px;
+  font-family: 'Karla', sans-serif;
+  font-weight: 700;
+  word-wrap: break-word;
+}
+
+.pill-menu       { left: 26px; top: 125px; }
+.pill-ventas     { left: 26px; top: 190px; }
+.pill-inventario { left: 26px; top: 255px; }
+.pill-agregar    { left: 36px; top: 555px; }
+
+/* ===== Header ===== */
+.header-usuario {
+  width: 59px;
+  height: 59px;
+  left: 364px;
+  top: 10px;
+  position: absolute;
+}
+
+.logo {
+  width: 125px;
+  height: 42px;
+  left: 141px;
+  top: 18px;
+  position: absolute;
+}
+
+/* ===== Título de sección ===== */
+.barra-titulo {
+  width: 472px;
+  height: 94px;
+  left: -10px;
+  top: 425px;
+  position: absolute;
+  background: #EDEFEE;
+}
+
+.titulo-seccion {
+  left: 83px;
+  top: 448px;
+  position: absolute;
+  text-align: right;
+  color: #241623;
+  font-size: 40px;
+  font-family: 'Markazi Text', serif;
+  font-weight: 500;
+  word-wrap: break-word;
+}
+
+/* ===== Productos ===== */
+.producto {
+  width: 396px;
+  height: 123px;
+  left: 18px;
+  position: absolute;
+}
+.producto-1 { top: 627px; }
+.producto-2 { top: 769px; }
+
+.producto-info {
+  left: 0;
+  top: 0;
+  position: absolute;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 15px;
+  display: inline-flex;
+}
+
+.producto-textos {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  display: inline-flex;
+}
+
+.producto-nombre {
+  width: 296px;
+  color: black;
+  font-size: 18px;
+  font-family: 'Karla', sans-serif;
+  font-weight: 700;
+  word-wrap: break-word;
+}
+
+.producto-desc {
+  width: 297px;
+  height: 43px;
+  color: #495E57;
+  font-size: 16px;
+  font-family: 'Karla', sans-serif;
+  font-weight: 400;
+  word-wrap: break-word;
+}
+
+.producto-precio {
+  width: 297px;
+  height: 43px;
+  color: #495E57;
+  font-size: 18px;
+  font-family: 'Karla', sans-serif;
+  font-weight: 500;
+  word-wrap: break-word;
+}
+
+.producto-img {
+  width: 83px;
+  height: 83px;
+}
+
+.producto-linea {
+  width: 394px;
+  height: 0;
+  left: 2px;
+  top: 120px;
+  position: absolute;
+  outline: 1px #EDEFEE solid;
+  outline-offset: -0.50px;
+}
+
+/* ===== Estado (Disponible / Agotado) ===== */
+.estado {
+  width: 118px;
+  height: 44px;
+  padding: 12px;
+  position: absolute;
+  overflow: hidden;
+  border-radius: 8px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  display: inline-flex;
+}
+.estado-disponible1 { left: 323px; top: 621px; background: #2DB98B; }
+.estado-disponible3 { left: 323px; top: 875px; background: #2DB98B; }
+.estado-disponible4 { left: 323px; top: 1010px; background: #2DB98B; }
+.estado-agotado    { left: 330px; top: 758px; background: #495E57; }
+
+.estado-texto {
+  color: #F5F5F5;
+  font-size: 16px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  line-height: 16px;
+  word-wrap: break-word;
+}
+
+/* ===== Iconos (editar / borrar) ===== */
+.icono {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.icono-borde {
+  position: absolute;
+  top: 2px;
+  outline-offset: -1px;
+}
+
+.icono-editar .icono-borde { width: 20px; height: 20px; left: 2px; }
+.icono-borrar .icono-borde { width: 18px; height: 20px; left: 3px; }
+
+.icono-pos-1 { left: 328px; top: 697px; }
+.icono-pos-2 { left: 369px; top: 697px; }
+.icono-pos-3 { left: 328px; top: 833px; }
+.icono-pos-4 { left: 369px; top: 834px; }
+
+
+
+.producto-3 { top: 893px; }
+
+.estado-disponible-3 { left: 323px; top: 887px; background: #2DB98B; }
+
+.icono-pos-5 { left: 328px; top: 953px; }
+.icono-pos-6 { left: 369px; top: 953px; }
+
+.producto-4 { top: 1020px; }
+
+.estado-disponible-3 { left: 323px; top: 887px; background: #2DB98B; }
+
+.icono-pos-7 { left: 328px; top: 1090px; }
+.icono-pos-8 { left: 369px; top: 1090px; }

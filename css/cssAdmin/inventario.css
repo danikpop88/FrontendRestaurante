@@ -1,0 +1,211 @@
+/* ===== Base ===== */
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  background-color: #f4f4f4; /* O el color de fondo que prefieras */
+}
+
+
+.pantalla {
+  width: 458px;
+  height: 912px;
+  position: relative;
+  background: white;
+  overflow: hidden;
+}
+
+/* ===== Header ===== */
+.header-usuario {
+  width: 59px;
+  height: 59px;
+  left: 364px;
+  top: 10px;
+  position: absolute;
+}
+
+.logo {
+  width: 125px;
+  height: 42px;
+  left: 141px;
+  top: 18px;
+  position: absolute;
+}
+
+/* ===== Barras de título ===== */
+.barra-titulo {
+  width: 460px;
+  height: 61px;
+  position: absolute;
+  background: #EDEFEE;
+}
+.barra-historial   { left: 0;    top: 73px; }
+.barra-inventario  { left: -2px; top: 368px; }
+
+.titulo-seccion {
+  position: absolute;
+  text-align: right;
+  color: #241623;
+  font-size: 40px;
+  font-family: 'Markazi Text', serif;
+  font-weight: 500;
+  word-wrap: break-word;
+}
+.titulo-historial  { left: 10px;  top: 76px; }
+.titulo-inventario { left: 154px; top: 375px; }
+
+/* ===== Tabla de historial ===== */
+.col-tabla {
+  height: 188px;
+  top: 152px;
+  position: absolute;
+  background: white;
+  border: 1px #D9D9D9 solid;
+}
+.col-tabla-1 { width: 129px; left: 18px; }
+.col-tabla-2 { width: 129px; left: 156px; }
+.col-tabla-3 { width: 143px; left: 300px; }
+
+.col-titulo {
+  position: absolute;
+  color: black;
+  font-size: 16px;
+  font-family: 'Karla', sans-serif;
+  font-weight: 700;
+  word-wrap: break-word;
+}
+.col-titulo-1 { width: 100px; height: 21px; left: 33px;  top: 158px; }
+.col-titulo-2 { width: 100px; height: 24px; left: 166px; top: 159px; }
+.col-titulo-3 { width: 134px; height: 26px; left: 309px; top: 157px; }
+
+/* Celdas */
+.celda {
+  position: absolute;
+  color: black;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  word-wrap: break-word;
+}
+.celda-id   { font-size: 12px; }
+.celda-dato { font-size: 14px; }
+
+/* Columnas */
+.c1 { left: 33px; }
+.c2 { left: 166px; }
+.c3 { left: 309px; }
+
+/* Filas */
+.f1a { top: 195px; }
+.f1b { top: 215px; }
+.f2a { top: 262px; }
+.f2b { top: 282px; }
+
+/* ===== Buscador ===== */
+.buscador {
+  width: 355px;
+  height: 24px;
+  left: 66px;
+  top: 449px;
+  position: absolute;
+  background: white;
+  border-radius: 12px;
+  border: 1px #D9D9D9 solid;
+}
+
+.buscador-texto {
+  left: 82px;
+  top: 452px;
+  position: absolute;
+  color: black;
+  font-size: 15px;
+  font-family: 'Abhaya Libre', serif;
+  font-weight: 400;
+  word-wrap: break-word;
+}
+
+.buscador-lupa {
+  width: 10px;
+  height: 10px;
+  left: 381px;
+  top: 453px;
+  position: absolute;
+  outline: 2px #DEDED5 solid;
+  outline-offset: -1px;
+}
+
+.buscador-asa {
+  width: 24px;
+  height: 24px;
+  left: 374px;
+  top: 446px;
+  position: absolute;
+  overflow: hidden;
+}
+
+.buscador-asa-borde {
+  width: 4.34px;
+  height: 4.34px;
+  left: 16.66px;
+  top: 16.66px;
+  position: absolute;
+  outline: 2px #DEDED5 solid;
+  outline-offset: -1px;
+}
+
+/* ===== Insumos ===== */
+.insumo {
+  width: 410px;
+  height: 108px;
+  position: absolute;
+  background: white;
+  border: 1px #D9D9D9 solid;
+}
+.insumo-1 { left: 11px; top: 506px; }
+.insumo-2 { left: 18px; top: 635px; }
+.insumo-3 { left: 18px; top: 767px; }
+
+.insumo-texto {
+  position: absolute;
+  color: black;
+  font-size: 15px;
+  font-family: 'Abhaya Libre', serif;
+  font-weight: 400;
+  word-wrap: break-word;
+}
+.i1-nombre   { left: 23px; top: 522px; }
+.i1-cantidad { left: 23px; top: 551px; }
+.i2-nombre   { left: 29px; top: 652px; }
+.i2-cantidad { left: 25px; top: 679px; }
+.i3-nombre   { left: 18px; top: 784px; }
+.i3-cantidad { left: 19px; top: 813px; }
+
+/* ===== Estado (Disponible / Bajo stock) ===== */
+.estado {
+  width: 91px;
+  height: 24px;
+  padding: 12px;
+  position: absolute;
+  overflow: hidden;
+  border-radius: 8px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  display: inline-flex;
+}
+.estado-disponible { background: #2DB98B; }
+.estado-bajo       { background: #FF8D28; }
+
+.i1-estado { left: 29px; top: 576px; }
+.i2-estado { left: 25px; top: 710px; }
+.i3-estado { left: 25px; top: 840px; }
+
+.estado-texto {
+  color: #F5F5F5;
+  font-size: 16px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  line-height: 16px;
+  word-wrap: break-word;
+}

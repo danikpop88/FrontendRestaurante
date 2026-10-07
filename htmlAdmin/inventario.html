@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Historial e inventario</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Abhaya+Libre&family=Inter:wght@400&family=Karla:wght@700&family=Markazi+Text:wght@500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/cssAdmin/inventario.css" />
+</head>
+<body>
+  <div class="pantalla">
+
+    <!-- Encabezado -->
+    <img class="header-usuario" src="../imagenes/logo.jpg" alt="Usuario" />
+    <img class="logo" src="../imagenes/icono.jpg" alt="Logo" />
+
+    <!-- ===== Historial de transacciones ===== -->
+    <div class="barra-titulo barra-historial"></div>
+    <div class="titulo-seccion titulo-historial">Historial transacciones/pagos</div>
+
+    <div class="col-tabla col-tabla-1"></div>
+    <div class="col-tabla col-tabla-2"></div>
+    <div class="col-tabla col-tabla-3"></div>
+
+    <div class="col-titulo col-titulo-1">ID/CLIENTE</div>
+    <div class="col-titulo col-titulo-2">Fecha/hora</div>
+    <div class="col-titulo col-titulo-3">Monto y estado</div>
+
+    <!-- Fila 1 -->
+    <div class="celda celda-id c1 f1a">#PED-1024</div>
+    <div class="celda celda-id c1 f1b">Juan Pérez</div>
+    <div class="celda celda-dato c2 f1a">8/09/24<br/>12:45 PM</div>
+    <div class="celda celda-dato c3 f1a">$46.000</div>
+    <div class="celda celda-dato c3 f1b">Pagado</div>
+
+    <!-- Fila 2 -->
+    <div class="celda celda-id c1 f2a">#PED-1023</div>
+    <div class="celda celda-id c1 f2b">María Gómez</div>
+    <div class="celda celda-dato c2 f2a">1/09/24<br/>1:15 PM</div>
+    <div class="celda celda-dato c3 f2a">$65.000</div>
+    <div class="celda celda-dato c3 f2b">Pagado</div>
+
+    <!-- ===== Inventario ===== -->
+    <div class="barra-titulo barra-inventario"></div>
+    <div class="titulo-seccion titulo-inventario">Inventario</div>
+
+    <!-- Buscador -->
+    <div class="buscador"></div>
+    <div class="buscador-texto">Buscar insumo</div>
+    <div class="buscador-lupa"></div>
+    <div class="buscador-asa" data-size="24">
+      <div class="buscador-asa-borde"></div>
+    </div>
+
+    <!-- Insumo 1 -->
+    <div class="insumo insumo-1"></div>
+    <div class="insumo-texto i1-nombre">Nombre: Leche entera</div>
+    <div class="insumo-texto i1-cantidad">Cantidad: 12 litros</div>
+    <div class="estado estado-disponible i1-estado" data-has-icon-end="false" data-has-icon-start="false" data-size="Medium" data-state="Default" data-variant="Primary">
+      <div class="estado-texto">Disponible</div>
+    </div>
+
+    <!-- Insumo 2 -->
+    <div class="insumo insumo-2"></div>
+    <div class="insumo-texto i2-nombre">Nombre: Platano verde</div>
+    <div class="insumo-texto i2-cantidad">Cantidad: 25 unidades</div>
+    <div class="estado estado-disponible i2-estado" data-has-icon-end="false" data-has-icon-start="false" data-size="Medium" data-state="Default" data-variant="Primary">
+      <div class="estado-texto">Disponible</div>
+    </div>
+
+    <!-- Insumo 3 -->
+    <div class="insumo insumo-3"></div>
+    <div class="insumo-texto i3-nombre">Nombre: Pechuga de pollo</div>
+    <div class="insumo-texto i3-cantidad">Cantidad: 2 Kg</div>
+    <div class="estado estado-bajo i3-estado" data-has-icon-end="false" data-has-icon-start="false" data-size="Medium" data-state="Default" data-variant="Primary">
+      <div class="estado-texto">Bajo stock</div>
+    </div>
+
+  </div>
+</body>
+</html>
