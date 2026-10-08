@@ -209,3 +209,14 @@ body {
   line-height: 16px;
   word-wrap: break-word;
 }
+.buscador-texto {
+  border: none;
+  outline: none;
+  background: transparent;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.buscador-texto::placeholder {
+  color: #8A8A8E;   
+}

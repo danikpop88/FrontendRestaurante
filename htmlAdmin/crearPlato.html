@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agregar Producto - La Mesa de la Abuela</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Karla:wght@400;500;700;800&family=Markazi+Text:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/cssAdmin/crearPlato.css">
+</head>
+<body>
+
+  <div class="product-card-container">
+    <div class="header-placeholder-1"></div>
+    <div class="header-placeholder-2"></div>
+    <a href="../htmlAdmin/Principal.html"><img class="header-avatar" src="../imagenes/logo.jpg" alt="Avatar"></a>
+    <a href="../htmlAdmin/Principal.html"><img class="header-logo" src="../imagenes/icono.jpg" alt="Logo"></a>
+
+    <header class="title-banner">
+      <div class="banner-bg"></div>
+      <h1 class="page-title">Agregar Producto</h1>
+    </header>
+
+    <form class="product-form" action="#">
+      <!-- Campo Nombre -->
+      <label for="product-name" class="form-label label-name">Nombre:</label>
+      <input type="text" id="product-name" name="name" class="input-field field-name" required>
+
+      <!-- Campo Descripción -->
+      <label for="product-description" class="form-label label-description">Descripción:</label>
+      <textarea id="product-description" name="description" class="input-field field-description" rows="1"></textarea>
+
+      <!-- Campo Precio -->
+      <label for="product-price" class="form-label label-price">Precio:</label>
+      <input type="number" id="product-price" name="price" step="0.01" class="input-field field-price" required>
+
+      <!-- Campo Disponibilidad -->
+      <span class="form-label label-availability">Disponibilidad:</span>
+      <div class="availability-options">
+        <button type="button" class="btn btn-available">Disponible</button>
+        <button type="button" class="btn btn-out-of-stock">Agotado</button>
+      </div>
+
+      <!-- Botón Guardar -->
+      <button type="submit" class="btn btn-submit"><a href="../htmlAdmin/Principal.html">Agregar Producto</a></button>
+    </form>
+  </div>
+
+</body>
+</html>

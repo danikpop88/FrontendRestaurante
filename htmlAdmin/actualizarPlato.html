@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gestión del menú</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Karla:wght@400;700&family=Markazi+Text:wght@500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/cssAdmin/actualizarPlato.css" />
+</head>
+<body>
+  <div class="pantalla">
+
+    <!-- Encabezado -->
+    <div class="icono-izq"></div>
+    <a href="../htmlAdmin/Principal.html"><img class="header-usuario" src="../imagenes/logo.jpg" alt="Usuario" /></a>
+    <a href="../htmlAdmin/Principal.html"><img class="logo" src="../imagenes/icono.jpg" alt="Logo" /></a>
+
+    <!-- Título de sección -->
+    <div class="barra-titulo"></div>
+    <div class="titulo-seccion">Gestión del menú</div>
+
+    <!-- Formulario de actualización del plato -->
+    <form action="../htmlAdmin/Principal.html">
+
+      <label class="etiqueta etiqueta-nombre" for="nombre">Nombre:</label>
+      <input class="campo campo-nombre" type="text" id="nombre" name="nombre" value="Arroz con leche de la abuela" />
+
+      <label class="etiqueta etiqueta-descripcion" for="descripcion">Descripción:</label>
+      <textarea class="campo campo-descripcion" id="descripcion" name="descripcion">Arroz cremoso cocinado con leche, canela y un toque de vainilla.</textarea>
+
+      <label class="etiqueta etiqueta-precio" for="precio">Precio:</label>
+      <input class="campo campo-precio" type="text" inputmode="numeric" id="precio" name="precio" value="10.000" />
+
+      <div class="etiqueta etiqueta-disponibilidad">Disponibilidad:</div>
+      <button class="boton boton-disponible" type="button">Disponible</button>
+      <button class="boton boton-agotado" type="button">Agotado</button>
+
+      <button class="boton boton-guardar" type="submit">Guardar Cambios</button>
+
+    </form>
+
+  </div>
+</body>
+</html>

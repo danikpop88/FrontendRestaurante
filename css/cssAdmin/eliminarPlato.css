@@ -1,0 +1,280 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #f4f4f4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Contenedor Principal */
+.product-container {
+  width: 458px;
+  height: 912px;
+  position: relative;
+  background: white;
+  overflow: hidden;
+}
+
+/* Elementos Superiores */
+.box-header-spacer {
+  width: 147.50px;
+  height: 40px;
+  left: 147px;
+  top: 22px;
+  position: absolute;
+}
+
+.box-black-square {
+  width: 37.45px;
+  height: 24.62px;
+  left: 17.12px;
+  top: 16.32px;
+  position: absolute;
+  background: black;
+}
+
+.img-header-right {
+  width: 59px;
+  height: 59px;
+  left: 364px;
+  top: 10px;
+  position: absolute;
+}
+
+.img-header-center {
+  width: 125px;
+  height: 42px;
+  left: 141px;
+  top: 18px;
+  position: absolute;
+}
+
+/* Franja / Banner del Título */
+.header-banner {
+  width: 472px;
+  height: 94px;
+  left: -7px;
+  top: 90px;
+  position: absolute;
+}
+
+.header-banner-bg {
+  width: 472px;
+  height: 94px;
+  left: 0px;
+  top: 0px;
+  position: absolute;
+  background: #EDEFEE;
+}
+
+.header-banner-text-1 {
+  left: 183.45px;
+  top: 33.38px;
+  position: absolute;
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.header-banner-text-2 {
+  left: 211.74px;
+  top: 37.60px;
+  position: absolute;
+}
+
+.title-wrapper {
+  left: 110px;
+  top: 104px;
+  position: absolute;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  display: inline-flex;
+}
+
+.title-text {
+  text-align: right;
+  color: #241623;
+  font-size: 40px;
+  font-family: 'Markazi Text', serif;
+  font-weight: 500;
+  word-wrap: break-word;
+}
+
+/* Etiquetas (Labels) */
+.label-nombre,
+.label-descripcion,
+.label-precio,
+.label-disponibilidad {
+  width: 296px;
+  position: absolute;
+  color: black;
+  font-size: 18px;
+  font-family: 'Karla', sans-serif;
+  font-weight: 700;
+  word-wrap: break-word;
+}
+
+.label-nombre {
+  left: 17px;
+  top: 201px;
+}
+
+.label-descripcion {
+  left: 17px;
+  top: 317px;
+}
+
+.label-precio {
+  left: 17px;
+  top: 445px;
+}
+
+.label-disponibilidad {
+  left: 17px;
+  top: 564px;
+}
+
+/* Campos de Texto e Información */
+.field-bg-nombre {
+  width: 332px;
+  height: 38px;
+  left: 20px;
+  top: 227px;
+  position: absolute;
+  background: rgba(217, 217, 217, 0);
+}
+
+.field-bg-descripcion {
+  width: 332px;
+  height: 38px;
+  left: 30px;
+  top: 343px;
+  position: absolute;
+  background: rgba(217, 217, 217, 0);
+}
+
+.field-bg-precio {
+  width: 332px;
+  height: 38px;
+  left: 26px;
+  top: 471px;
+  position: absolute;
+  background: rgba(217, 217, 217, 0);
+}
+
+.field-box {
+  width: 344px;
+  min-width: 240px;
+  padding: 12px 16px;
+  position: absolute;
+  background: white;
+  overflow: hidden;
+  border-radius: 8px;
+  outline: 1px #D9D9D9 solid;
+  outline-offset: -0.50px;
+  justify-content: flex-start;
+  align-items: center;
+  display: inline-flex;
+}
+
+.field-box-nombre {
+  left: 8px;
+  top: 239px;
+}
+
+.field-box-descripcion {
+  left: 18px;
+  top: 355px;
+}
+
+.field-box-precio {
+  left: 14px;
+  top: 483px;
+}
+
+.field-content {
+  flex: 1 1 0;
+  color: #1E1E1E;
+  font-size: 16px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  line-height: 16px;
+  word-wrap: break-word;
+}
+
+.field-content.text-green {
+  color: #495E57;
+}
+
+/* Badges / Botones de Estado */
+.badge {
+  width: 118px;
+  height: 44px;
+  padding: 12px;
+  top: 607px;
+  position: absolute;
+  overflow: hidden;
+  border-radius: 8px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  display: inline-flex;
+}
+
+.badge-disponible {
+  left: 47px;
+  background: #2DB98B;
+}
+
+.badge-agotado {
+  left: 222px;
+  background: #495E57;
+}
+
+.badge-text {
+  color: #F5F5F5;
+  font-size: 16px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  line-height: 16px;
+  word-wrap: break-word;
+}
+
+/* Botón Eliminar Producto */
+.btn-eliminar {
+  width: 365px;
+  height: 62px;
+  padding: 12px;
+  left: 30px;
+  top: 741px;
+  position: absolute;
+  background: #F4CE14;
+  overflow: hidden;
+  border-radius: 8px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  display: inline-flex;
+  cursor: pointer;
+}
+
+.btn-text {
+  color: #0C0C0D;
+  font-size: 16px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  line-height: 16px;
+  word-wrap: break-word;
+}
+a{
+    text-decoration: none;
+    color: black;
+}

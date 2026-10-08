@@ -31,12 +31,20 @@
       <div class="filtro-texto">Mensual</div>
     </div>
 
+
+
+
     <!-- Botón informe -->
     <div class="boton-informe" data-has-icon-end="false" data-has-icon-start="false" data-size="Medium" data-state="Default" data-variant="Primary">
       <div class="boton-informe-texto">Revisar informe</div>
     </div>
 
+    <!-- Diario-->
+    <div id="vista-diario" class="contenido-vista activa">
     <!-- Tarjetas de resumen -->
+      <div class="selector-fecha">
+        <input type="date" class="selector-fecha-input" value="2026-09-09">
+      </div>
     <div class="tarjeta tarjeta-1"></div>
     <div class="tarjeta tarjeta-2"></div>
     <div class="tarjeta tarjeta-3"></div>
@@ -63,17 +71,221 @@
     </div>
 
     <div class="icono-peligro" data-size="48">
-      <div class="icono-peligro-borde"></div>
+      <img class="equisimg" src="../imagenes/equis.jpg" alt="">
+      
     </div>
 
   </div>
 
-  <!-- Selector de fecha (en el diseño estaba fuera de la pantalla) -->
-  <div class="selector-fecha">
-    <div class="selector-fecha-texto">9/09/26</div>
-    <div class="selector-fecha-icono" data-size="16">
-      <div class="selector-fecha-flecha"></div>
+<div id="vista-semanal" class="contenido-vista">
+<div class="selector-fecha">
+  <input type="week" class="selector-fecha-input" value="2026-W41">
+</div>
+ <div class="semanal-card semanal-card-1">
+  <span class="semanal-card-etiqueta">Ventas totales:</span>
+  <span class="semanal-card-valor" id="semanal-total-ventas">$0</span>
+</div>
+<div class="semanal-card semanal-card-2">
+  <span class="semanal-card-etiqueta">Reservas realizadas:</span>
+  <span class="semanal-card-valor" id="semanal-total-realizadas">0</span>
+</div>
+<div class="semanal-card semanal-card-3">
+  <span class="semanal-card-etiqueta">Reservas canceladas:</span>
+  <span class="semanal-card-valor" id="semanal-total-canceladas">0</span>
+</div>
+
+  <!-- Tabla por día -->
+  <table class="semanal-tabla">
+    <thead>
+      <tr>
+        <th>Día</th>
+        <th>Ventas totales</th>
+        <th>Reservas realizadas</th>
+        <th>Reservas canceladas</th>
+      </tr>
+    </thead>
+    <tbody id="semanal-cuerpo">
+       <tr>
+      <td>Viernes 02/10/26</td>
+      <td>$380.000</td>
+      <td>6</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>Sábado 03/10/26</td>
+      <td>$450.000</td>
+      <td>8</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>Domingo 04/10/26</td>
+      <td>$290.000</td>
+      <td>5</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>Lunes 05/10/26</td>
+      <td>$520.000</td>
+      <td>9</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>Martes 06/10/26</td>
+      <td>$610.000</td>
+      <td>11</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <td>Miércoles 07/10/26</td>
+      <td>$730.000</td>
+      <td>14</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>Jueves 08/10/26</td>
+      <td>$480.000</td>
+      <td>7</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+    </tbody>
+  </table>
+
+
+
+
+   <div class="detalle2"></div>
+    <div class="detalle-titulo2">Detalle reservas canceladas:</div>
+
+    <div class="detalle-fila2 detalle-fila-3">
+      <span>Juan Pérez</span>
+      <span>10/09/26 (8:00pm)</span>
     </div>
+    <div class="detalle-fila2 detalle-fila-4">
+      <span>Maria Gomez</span>
+      <span>11/09/26 (1:30pm)</span>
+    </div>
+
+    <div class="icono-peligro2" data-size="48">
+      <img class="equisimg" src="../imagenes/equis.jpg" alt="">
+      
+    </div>
+    
+</div>
+
+<div id="vista-mensual" class="contenido-vista">
+  <!-- Selector de mes -->
+<div class="selector-fecha">
+  <input type="month" class="selector-fecha-input" value="2026-09">
+</div>
+
+  <!-- Tarjetas de resumen -->
+  <div class="semanal-card semanal-card-1">
+    <span class="semanal-card-etiqueta">Ventas totales:</span>
+    <span class="semanal-card-valor">7.000.000</span>
   </div>
+  <div class="semanal-card semanal-card-2">
+    <span class="semanal-card-etiqueta">Reservas realizadas:</span>
+    <span class="semanal-card-valor">170</span>
+  </div>
+  <div class="semanal-card semanal-card-3">
+    <span class="semanal-card-etiqueta">Reservas canceladas:</span>
+    <span class="semanal-card-valor">24</span>
+  </div>
+
+  <!-- Tabla por semana -->
+  <table class="semanal-tabla">
+    <thead>
+      <tr>
+        <th>Semana</th>
+        <th>Ventas totales</th>
+        <th>Reservas realizadas</th>
+        <th>Reservas canceladas</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Semana 1 (01-06/09)</td>
+        <td>$1.850.000</td>
+        <td>32</td>
+        <td>5</td>
+      </tr>
+      <tr>
+        <td>Semana 2 (07-13/09)</td>
+        <td>$2.400.000</td>
+        <td>41</td>
+        <td>7</td>
+      </tr>
+      <tr>
+        <td>Semana 3 (14-20/09)</td>
+        <td>$2.150.000</td>
+        <td>37</td>
+        <td>4</td>
+      </tr>
+      <tr>
+        <td>Semana 4 (21-27/09)</td>
+        <td>$2.700.000</td>
+        <td>45</td>
+        <td>6</td>
+      </tr>
+      <tr>
+        <td>Semana 5 (28-30/09)</td>
+        <td>$900.000</td>
+        <td>15</td>
+        <td>2</td>
+      </tr>
+    </tbody>
+  </table>
+     <div class="detalle2"></div>
+    <div class="detalle-titulo2">Detalle reservas canceladas:</div>
+
+    <div class="detalle-fila2 detalle-fila-3">
+      <span>Juan Pérez</span>
+      <span>10/09/26 (8:00pm)</span>
+    </div>
+    <div class="detalle-fila2 detalle-fila-4">
+      <span>Maria Gomez</span>
+      <span>11/09/26 (1:30pm)</span>
+    </div>
+
+    <div class="icono-peligro2" data-size="48">
+      <img class="equisimg" src="../imagenes/equis.jpg" alt="">
+      
+    </div>
+</div>
+
+
+
+  </div>
+
+ <script>
+  // Seleccionar botones de filtro y contenedores de vista
+  const btnDiario = document.querySelector('.filtro-diario');
+  const btnSemanal = document.querySelector('.filtro-semanal');
+  const btnMensual = document.querySelector('.filtro-mensual');
+
+  const vistaDiario = document.getElementById('vista-diario');
+  const vistaSemanal = document.getElementById('vista-semanal');
+  const vistaMensual = document.getElementById('vista-mensual');
+
+  const todosLosFiltros = [btnDiario, btnSemanal, btnMensual];
+  const todasLasVistas = [vistaDiario, vistaSemanal, vistaMensual];
+
+  function cambiarVista(botonSeleccionado, vistaAMostrar) {
+    // 1. Quitar clase activa a todas las vistas y estilos de los botones
+    todasLasVistas.forEach(vista => vista.classList.remove('activa'));
+    todosLosFiltros.forEach(filtro => filtro.classList.remove('filtro-activo'));
+
+    // 2. Activar la vista y el botón presionado
+    vistaAMostrar.classList.add('activa');
+    botonSeleccionado.classList.add('filtro-activo');
+  }
+
+  // Asignar eventos de clic
+  btnDiario.addEventListener('click', () => cambiarVista(btnDiario, vistaDiario));
+  btnSemanal.addEventListener('click', () => cambiarVista(btnSemanal, vistaSemanal));
+  btnMensual.addEventListener('click', () => cambiarVista(btnMensual, vistaMensual));
+</script>
+
 </body>
 </html>

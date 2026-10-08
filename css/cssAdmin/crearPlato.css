@@ -1,0 +1,220 @@
+:root {
+  --Text-Brand-On-Brand: #F5F5F5;
+  --Text-Utilities-Text-On-Overlay: #0C0C0D;
+  --Background-Default-Default: #ffffff;
+  --Border-Default-Default: #D9D9D9;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Contenedor Principal */
+.product-card-container {
+  width: 458px;
+  height: 912px;
+  position: relative;
+  background: white;
+  overflow: hidden;
+}
+
+/* Elementos del Header */
+.header-placeholder-1 {
+  width: 147.50px;
+  height: 40px;
+  left: 147px;
+  top: 22px;
+  position: absolute;
+}
+
+.header-placeholder-2 {
+  width: 37.45px;
+  height: 24.62px;
+  left: 17.12px;
+  top: 16.32px;
+  position: absolute;
+  background: black;
+}
+
+.header-avatar {
+  width: 59px;
+  height: 59px;
+  left: 364px;
+  top: 10px;
+  position: absolute;
+}
+
+.header-logo {
+  width: 125px;
+  height: 42px;
+  left: 141px;
+  top: 18px;
+  position: absolute;
+}
+
+/* Banner del Título */
+.title-banner {
+  width: 472px;
+  height: 94px;
+  left: -7px;
+  top: 90px;
+  position: absolute;
+  margin: 0;
+}
+
+.banner-bg {
+  width: 472px;
+  height: 94px;
+  left: 0px;
+  top: 0px;
+  position: absolute;
+  background: #EDEFEE;
+}
+
+.page-title {
+  left: 117px;
+  top: 14px;
+  position: absolute;
+  margin: 0;
+  text-align: right;
+  color: #241623;
+  font-size: 40px;
+  font-family: 'Markazi Text', serif;
+  font-weight: 500;
+  word-wrap: break-word;
+}
+
+/* Etiquetas del Formulario */
+.form-label {
+  width: 296px;
+  position: absolute;
+  color: black;
+  font-size: 18px;
+  font-family: 'Karla', sans-serif;
+  font-weight: 700;
+  word-wrap: break-word;
+  display: block;
+}
+
+.label-name {
+  left: 17px;
+  top: 201px;
+}
+
+.label-description {
+  left: 17px;
+  top: 317px;
+}
+
+.label-price {
+  left: 17px;
+  top: 445px;
+}
+
+.label-availability {
+  left: 17px;
+  top: 564px;
+}
+
+/* Campos Input / Textarea */
+.input-field {
+  box-sizing: border-box;
+  position: absolute;
+  background: var(--Background-Default-Default, white);
+  border-radius: 8px;
+  border: 1px solid var(--Border-Default-Default, #D9D9D9);
+  padding: 12px 16px;
+  font-size: 16px;
+  font-family: 'Karla', sans-serif;
+  outline: none;
+}
+
+.field-name {
+  width: 344px;
+  height: 40px;
+  left: 8px;
+  top: 239px;
+}
+
+.field-description {
+  width: 344px;
+  height: 40px;
+  left: 18px;
+  top: 355px;
+  resize: none;
+}
+
+.field-price {
+  width: 344px;
+  height: 40px;
+  left: 14px;
+  top: 483px;
+}
+
+/* Estilos de Botones */
+.btn {
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+  gap: 8px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.btn-available {
+  width: 118px;
+  height: 44px;
+  left: 47px;
+  top: 607px;
+  position: absolute;
+  background: #2DB98B;
+  color: var(--Text-Brand-On-Brand, #F5F5F5);
+  font-size: 16px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  line-height: 16px;
+  word-wrap: break-word;
+}
+
+.btn-out-of-stock {
+  width: 118px;
+  height: 44px;
+  left: 222px;
+  top: 607px;
+  position: absolute;
+  background: #495E57;
+  color: var(--Text-Brand-On-Brand, #F5F5F5);
+  font-size: 16px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  line-height: 16px;
+  word-wrap: break-word;
+}
+
+.btn-submit {
+  width: 365px;
+  height: 62px;
+  left: 30px;
+  top: 741px;
+  position: absolute;
+  background: #F4CE14;
+  color: var(--Text-Utilities-Text-On-Overlay, #0C0C0D);
+  font-size: 16px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  line-height: 16px;
+  word-wrap: break-word;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
