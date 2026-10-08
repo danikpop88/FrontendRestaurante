@@ -1,0 +1,236 @@
+/* =========================================
+   Reset y Estilos Globales
+   ========================================= */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+    font-family: 'Markazi Text', serif;
+}
+
+/* =========================================
+   Contenedor Principal (Mobile Frame)
+   ========================================= */
+.domiciliario-detalles {
+    width: 430px;
+    height: 774px;
+    position: relative;
+    background: white;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+/* =========================================
+   Encabezado Hero (Detalles de pedido)
+   ========================================= */
+.hero-section {
+    width: 426px;
+    height: 142px;
+    padding: 0 16px 40px 16px;
+    position: absolute;
+    left: 2px;
+    top: 81px;
+    background: #495E57;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.hero-title {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.hero-title-main {
+    color: #F4CE14;
+    font-size: 48px;
+    font-family: 'Markazi Text', serif;
+    font-weight: 500;
+    line-height: 1.1;
+}
+
+/* =========================================
+   Elementos de la Barra Superior (Logo, Iconos)
+   ========================================= */
+.top-logo {
+    width: 147.5px;
+    height: 40px;
+    position: absolute;
+    left: 140px;
+    top: 22px;
+    background: transparent;
+}
+
+.top-vector {
+    width: 35.16px;
+    height: 20.90px;
+    position: absolute;
+    left: 16.07px;
+    top: 13.85px;
+    background: black;
+}
+
+.top-line {
+    width: 13px;
+    height: 0;
+    position: absolute;
+    left: 240px;
+    top: 121px;
+    border-top: 1px solid white;
+    transform: rotate(90deg);
+    transform-origin: top left;
+}
+
+.top-profile-image {
+    width: 59px;
+    height: 59px;
+    position: absolute;
+    left: 343px;
+    top: 10px;
+    border-radius: 50%;
+}
+
+.top-brand-image {
+    width: 125px;
+    height: 42px;
+    position: absolute;
+    left: 134px;
+    top: 18px;
+    object-fit: contain;
+}
+
+/* =========================================
+   Tarjeta de Información del Pedido
+   ========================================= */
+.info-card {
+    width: 407px;
+    height: 360px;
+    position: absolute;
+    left: 11px;
+    top: 282px;
+    background: #FCEFEF;
+    border-radius: 40px;
+}
+
+.info-card-title {
+    position: absolute;
+    left: 89px; /* 100px - 11px del contenedor */
+    top: 16px;  /* 298px - 282px del contenedor */
+    color: black;
+    font-size: 25px;
+    font-family: 'Markazi Text', serif;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+/* =========================================
+   Filas de Información (Labels)
+   ========================================= */
+.info-row {
+    position: absolute;
+    left: 25px; /* 36px - 11px del contenedor */
+    color: black;
+    font-size: 25px;
+    font-family: 'Markazi Text', serif;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.label-nombre { top: 66px; }      /* 348px - 282px */
+.label-telefono { top: 109px; }   /* 391px - 282px */
+.label-direccion { top: 152px; }  /* 434px - 282px */
+.label-especificaciones { top: 195px; } /* 477px - 282px */
+.label-pedido { top: 244px; }     /* 526px - 282px */
+
+/* =========================================
+   Estado del Pedido (Devuelto)
+   ========================================= */
+.status-text {
+    position: absolute;
+    width: 96px;
+    height: 34px;
+    left: 248px; /* 259px - 11px del contenedor */
+    top: 69px;   /* 351px - 282px del contenedor */
+    color: black;
+    font-size: 25px;
+    font-family: 'Markazi Text', serif;
+    font-weight: 500;
+    white-space: nowrap;
+    z-index: 2;
+}
+
+.status-circle {
+    width: 39px;
+    height: 45px;
+    position: absolute;
+    left: 354px; /* 365px - 11px del contenedor */
+    top: 65px;   /* 347px - 282px del contenedor */
+    background: #BF6A02; /* Color naranja para "Devuelto" */
+    border-radius: 9999px;
+}
+
+/* =========================================
+   Botones
+   ========================================= */
+.button-primary {
+    padding: 8px 16px;
+    border-radius: 16px;
+    display: inline-flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 10px;
+    cursor: pointer;
+    position: absolute;
+}
+
+.button-label {
+    color: black;
+    font-size: 16px;
+    font-family: 'Karla', sans-serif;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+/* Botones de acción (Llamar / Enviar mensaje) */
+.btn-llamar {
+    background: #808F85;
+    left: 18px;  /* 29px - 11px */
+    top: 302px;  /* 584px - 282px */
+}
+
+.btn-mensaje {
+    background: #808F85;
+    left: 150px; /* 161px - 11px */
+    top: 302px;  /* 584px - 282px */
+}
+
+/* =========================================
+   Imágenes Decorativas Flotantes
+   ========================================= */
+.floating-image {
+    width: 71px;
+    height: 71px;
+    position: absolute;
+    object-fit: cover;
+}
+
+.img-left {
+    left: -3px;
+    top: 205px;
+}
+
+.img-right {
+    left: 101px;
+    top: 223px;
+}

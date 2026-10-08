@@ -1,0 +1,257 @@
+/* =========================================
+   Reset y Estilos Globales
+   ========================================= */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+    font-family: 'Karla', sans-serif;
+}
+
+/* =========================================
+   Contenedor Principal (Mobile Frame)
+   ========================================= */
+.domiciliario-bienvenida {
+    width: 430px;
+    height: 629px;
+    position: relative;
+    background: white;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+/* =========================================
+   Encabezado Hero Principal (Bienvenido Domiciliario)
+   ========================================= */
+.hero-main {
+    width: 428px;
+    height: 354px;
+    padding: 0 16px 40px 16px;
+    position: absolute;
+    left: 2px;
+    top: 81px;
+    background: #495E57;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.hero-title {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.hero-title-main {
+    color: #F4CE14;
+    font-size: 48px;
+    font-family: 'Markazi Text', serif;
+    font-weight: 500;
+    line-height: 1.1;
+}
+
+.hero-cta {
+    width: 319px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.hero-cta-frame {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 6px;
+}
+
+.hero-cta-text {
+    width: 242px;
+    align-self: stretch;
+}
+
+.hero-cta-image {
+    width: 147px;
+    height: 152px;
+    border-radius: 16px;
+    background: #D9D9D9; /* Placeholder visual */
+}
+
+.hero-main-image {
+    width: 271px;
+    height: 173px;
+    position: absolute;
+    left: 32px;
+    top: 71px;
+    border-radius: 22px;
+    object-fit: cover;
+}
+
+/* =========================================
+   Botones Principales
+   ========================================= */
+.button-primary {
+    padding: 8px 16px;
+    background: #F4CE14;
+    border-radius: 16px;
+    display: inline-flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.button-label {
+    color: black;
+    font-size: 16px;
+    font-family: 'Karla', sans-serif;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.btn-asignados {
+    position: relative; /* Fluye dentro del flex del hero-main */
+}
+
+.btn-entregados {
+    position: absolute;
+    left: 223px;
+    top: 280px;
+}
+
+/* =========================================
+   Encabezados Hero Secundarios (Duplicados de Figma)
+   ========================================= */
+.hero-secondary {
+    width: 428px;
+    padding: 0 16px 40px 16px;
+    position: absolute;
+    left: 0;
+    top: 80px;
+    background: #495E57;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 16px;
+    opacity: 0; /* Ocultos visualmente para no interferir con el hero principal, pero presentes en el DOM */
+    pointer-events: none;
+}
+
+.hero-secondary-alt {
+    /* Variación para el segundo duplicado */
+}
+
+.hero-title-brand {
+    color: #F4CE14;
+    font-size: 64px;
+    font-family: 'Markazi Text', serif;
+    font-weight: 500;
+    line-height: 1;
+}
+
+.hero-title-city {
+    color: #EDEFEE;
+    font-size: 40px;
+    font-family: 'Markazi Text', serif;
+    font-weight: 400;
+    line-height: 1;
+}
+
+.hero-label {
+    color: black;
+    font-size: 16px;
+    font-family: 'Karla', sans-serif;
+    font-weight: 700;
+}
+
+/* =========================================
+   Elementos de la Barra Superior (Logo, Iconos)
+   ========================================= */
+.top-logo {
+    width: 147.5px;
+    height: 40px;
+    position: absolute;
+    left: 140px;
+    top: 22px;
+    background: transparent;
+}
+
+.top-vector {
+    width: 35.16px;
+    height: 16.98px;
+    position: absolute;
+    left: 16.07px;
+    top: 11.26px;
+    background: black;
+}
+
+.top-line {
+    width: 13px;
+    height: 0;
+    position: absolute;
+    left: 240px;
+    top: 121px;
+    border-top: 1px solid white;
+    transform: rotate(90deg);
+    transform-origin: top left;
+}
+
+.top-profile-image {
+    width: 59px;
+    height: 59px;
+    position: absolute;
+    left: 343px;
+    top: 10px;
+    border-radius: 50%;
+}
+
+.top-brand-image {
+    width: 125px;
+    height: 42px;
+    position: absolute;
+    left: 134px;
+    top: 18px;
+    object-fit: contain;
+}
+
+/* =========================================
+   Notificación Flotante (Nuevo pedido asignado)
+   ========================================= */
+.notification-card {
+    width: 264px;
+    height: 129px;
+    position: absolute;
+    left: 74px;
+    top: 28px;
+    background: #F9C22E;
+    border-radius: 33px;
+    border: 2px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 16px;
+    z-index: 100;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.notification-text {
+    width: 200px;
+    color: black;
+    font-size: 16px;
+    font-family: 'Karla', sans-serif;
+    font-weight: 700;
+    line-height: 1.2;
+    text-align: center;
+}

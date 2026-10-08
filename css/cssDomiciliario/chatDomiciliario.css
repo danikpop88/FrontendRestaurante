@@ -1,0 +1,204 @@
+/* =========================================
+   Reset y Estilos Globales
+   ========================================= */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+    font-family: 'Markazi Text', serif;
+}
+
+/* =========================================
+   Contenedor Principal (Mobile Frame)
+   ========================================= */
+.domiciliario-chat {
+    width: 430px;
+    height: 792px;
+    position: relative;
+    background: white;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+/* =========================================
+   Encabezado Hero (Chat)
+   ========================================= */
+.hero-section {
+    width: 428px;
+    height: 80px;
+    padding: 0 16px 40px 16px;
+    position: absolute;
+    left: 2px;
+    top: 81px;
+    background: #495E57;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.hero-title-empty {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.hero-title {
+    position: absolute;
+    left: 13px;
+    top: 11px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.hero-title-main {
+    color: #F4CE14;
+    font-size: 48px;
+    font-family: 'Markazi Text', serif;
+    font-weight: 500;
+    line-height: 1.1;
+}
+
+/* =========================================
+   Elementos de la Barra Superior (Logo, Iconos)
+   ========================================= */
+.top-logo {
+    width: 147.5px;
+    height: 40px;
+    position: absolute;
+    left: 140px;
+    top: 22px;
+    background: transparent;
+}
+
+.top-vector {
+    width: 35.16px;
+    height: 21.38px;
+    position: absolute;
+    left: 16.07px;
+    top: 14.18px;
+    background: black;
+}
+
+.top-profile-image {
+    width: 59px;
+    height: 59px;
+    position: absolute;
+    left: 343px;
+    top: 10px;
+    border-radius: 50%;
+}
+
+.top-brand-image {
+    width: 125px;
+    height: 42px;
+    position: absolute;
+    left: 134px;
+    top: 18px;
+    object-fit: contain;
+}
+
+/* =========================================
+   Área de Mensajes (Fondo)
+   ========================================= */
+.chat-background {
+    width: 430px;
+    height: 242px;
+    position: absolute;
+    left: 0;
+    top: 550px;
+    object-fit: cover;
+}
+
+/* =========================================
+   Barra de Entrada de Mensaje
+   ========================================= */
+.message-input-bar {
+    width: 430px;
+    height: 48px;
+    position: absolute;
+    left: 0;
+    top: 502px;
+    background: #FCEFEF;
+}
+
+.send-button-circle {
+    width: 47px;
+    height: 43px;
+    position: absolute;
+    left: 376px;
+    top: 5px; /* 507px - 502px del contenedor */
+    background: #808F85;
+    border-radius: 9999px;
+}
+
+.send-icon {
+    width: 37px;
+    height: 29px;
+    position: absolute;
+    left: 386px;
+    top: 12px; /* 514px - 502px del contenedor */
+    object-fit: contain;
+}
+
+/* =========================================
+   Información del Cliente en el Chat
+   ========================================= */
+.client-name {
+    width: 328px;
+    height: 46px;
+    position: absolute;
+    left: 74px;
+    top: 173px;
+    color: black;
+    font-size: 28px;
+    font-family: 'Markazi Text', serif;
+    font-weight: 500;
+    line-height: 1.1;
+    word-wrap: break-word;
+}
+
+.client-avatar {
+    width: 45px;
+    height: 45px;
+    position: absolute;
+    left: 418px;
+    top: 206px;
+    transform: rotate(180deg);
+    transform-origin: top left;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* =========================================
+   Imágenes Decorativas Flotantes
+   ========================================= */
+.floating-image {
+    position: absolute;
+    object-fit: cover;
+}
+
+.img-left-offset {
+    width: 58px;
+    height: 58px;
+    left: -63px;
+    top: 150px;
+}
+
+.img-left {
+    width: 71px;
+    height: 71px;
+    left: -5px;
+    top: 150px;
+}
