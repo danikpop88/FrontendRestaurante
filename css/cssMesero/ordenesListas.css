@@ -1,0 +1,263 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #e0e0e0;
+  font-family: sans-serif;
+}
+
+/* Marco del teléfono */
+.phone-frame {
+  width: 428px;
+  height: 781px;
+  position: relative;
+  background: white;
+  overflow: hidden;
+}
+
+/* ---------- Barra rosada ---------- */
+.accent-bar {
+  width: 429px;
+  height: 21px;
+  left: -1px;
+  top: 153px;
+  position: absolute;
+  background: #A26770;
+}
+
+/* ---------- Headers verdes ---------- */
+.header {
+  width: 440px;
+  height: 73px;
+  padding-bottom: 40px;
+  padding-left: 16px;
+  padding-right: 16px;
+  left: 0;
+  top: 80px;
+  position: absolute;
+  background: #495E57;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.header-inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.header-title {
+  color: #F4CE14;
+  font-family: 'Markazi Text', serif;
+  font-weight: 500;
+  word-wrap: break-word;
+}
+
+.header-title-listos {
+  font-size: 48px;
+}
+
+.header-title-entregar {
+  font-size: 40px;
+}
+
+/* ---------- Barra superior (espacio) ---------- */
+.top-bar {
+  width: 147.5px;
+  height: 40px;
+  left: 139px;
+  top: 22px;
+  position: absolute;
+}
+
+/* ---------- Iconos ---------- */
+.top-icon {
+  width: 59px;
+  height: 59px;
+  left: 341px;
+  top: 10px;
+  position: absolute;
+}
+
+.logo {
+  width: 125px;
+  height: 42px;
+  left: 133px;
+  top: 18px;
+  position: absolute;
+}
+
+/* ---------- Contenido principal ---------- */
+.main-content {
+  width: 428px;
+  height: 628px;
+  padding-bottom: 40px;
+  padding-left: 16px;
+  padding-right: 16px;
+  left: 0;
+  top: 164px;
+  position: absolute;
+  background: #495E57;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 22px;
+}
+
+/* ---------- Tarjeta de pedidos ---------- */
+.orders-card {
+  width: 396px;
+  height: 522px;
+  padding-left: 16px;
+  padding-right: 16px;
+  left: 16px;
+  top: 38px;
+  position: absolute;
+  background: white;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  outline: 1px #E1E1E1 solid;
+  outline-offset: -1px;
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+}
+
+/* ---------- Cada pedido (bloque + texto agrupados) ---------- */
+.order-item {
+  width: 288px;
+  position: absolute;
+  left: 28px;
+}
+
+.item-1 { top: 124px; }
+.item-2 { top: 217px; }
+.item-3 { top: 311px; }
+.item-4 { top: 403px; }
+
+/* Bloque gris */
+.order-block {
+  width: 100%;
+  height: 79px;
+  background: #D9D9D9;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  position: relative;
+}
+
+/* Texto sobre el bloque */
+.order-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 4px 8px;
+  color: black;
+  font-size: 16px;
+  font-family: 'Abhaya Libre', serif;
+  font-weight: 400;
+  line-height: 1.15;
+  word-wrap: break-word;
+}
+
+/* Segundo pedido (texto oculto, como en el original) */
+.order-text-hidden {
+  color: rgba(0, 0, 0, 0);
+}
+.okimg {
+  position: absolute; 
+  top: 10px;          
+  left: 50%;          
+  transform: translateX(-50%); 
+  width: 80px;        
+  height: auto;
+  object-fit: contain;
+}
+
+
+.hamburger-btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  padding: 8px;
+  cursor: pointer;
+  position: relative;
+  z-index: 12;
+}
+
+.hamburger-btn span {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background: #1E1E1E;
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Animación a X cuando se abre */
+.menu-toggle:checked + .hamburger-btn span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+.menu-toggle:checked + .hamburger-btn span:nth-child(2) {
+  opacity: 0;
+}
+.menu-toggle:checked + .hamburger-btn span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Panel del menú (el cuadro rosado) */
+.menu-panel {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  width: 230px;
+  padding: 56px 20px 24px;
+  background: #A26770;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 60px;
+  border-bottom-right-radius: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+  z-index: 11;
+}
+
+.menu-toggle:checked ~ .menu-panel {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Ítems del menú */
+.menu-item {
+  color: #FFFFFF;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  text-decoration: none;
+  line-height: 1.3;
+}
+
+.menu-item:hover {
+  text-decoration: underline;
+}

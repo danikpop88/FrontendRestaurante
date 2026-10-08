@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nueva Comanda</title>
+  <link rel="stylesheet" href="../css/cssMesero/PrincipalMesero.css">
+  <link href="https://fonts.googleapis.com/css2?family=Markazi+Text:wght@500&family=Inter:wght@400&family=Karla:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="phone-frame">
+
+    <!-- Header verde -->
+    <div class="header">
+      <div class="header-title">
+        <h1>¡Bienvenido Mesero!</h1>
+      </div>
+      <div class="header-accent"></div>
+    </div>
+
+    <!-- Barra superior -->
+    <div class="top-bar">
+        <!-- Menú hamburguesa -->
+<div class="hamburger-menu">
+  <input type="checkbox" id="menu-toggle" class="menu-toggle">
+  <label for="menu-toggle" class="hamburger-btn">
+    <span></span>
+    <span></span>
+    <span></span>
+  </label>
+  <nav class="menu-panel">
+    <a href="../htmlMesero/ordenesListas.html" class="menu-item">Pedidos listos en cocina</a>
+    <a href="../htmlMesero/PrincipalMesero.html" class="menu-item">Toma de comandos</a>
+  </nav>
+</div>
+      <img class="top-bar-icon" src="../imagenes/logo.jpg" alt="Icono superior">
+      <img class="top-bar-logo" src="../imagenes/icono.jpg" alt="Logo">
+    </div>
+
+    <!-- Contenido principal -->
+    <div class="main-content">
+      <div class="form-card">
+
+        <!-- Campo: Mesero -->
+        <div class="form-field">
+          <label for="mesero">Mesero</label>
+          <input type="text" id="mesero" name="mesero" placeholder="Ejemplo: Juanita Hernandez">
+        </div>
+
+        <!-- Campo: # de mesa -->
+        <div class="form-field">
+          <label for="mesa"># de mesa</label>
+          <input type="text" id="mesa" name="mesa" placeholder="Ejemplo: 1, 2, ...">
+        </div>
+
+        <!-- Campo: Comanda de Productos -->
+        <div class="form-field">
+          <label for="producto1">Comanda de Productos</label>
+          <input type="text" id="producto1" name="producto1" placeholder="Ejemplo: Sopa de papa (1x)" class="input-with-bg">
+        </div>
+
+        <!-- Campo adicional de producto (sin label) -->
+        <div class="form-field no-label">
+          <input type="text" id="producto2" name="producto2" placeholder="Ejemplo: Cafe con leche (2x)" class="input-with-bg">
+        </div>
+
+        <!-- Botón: Agregar otro producto -->
+        <div class="form-field no-label">
+          <input type="text" id="producto3" name="producto3" placeholder="+ Agregar otro producto o bebida" class="input-placeholder-gray">
+        </div>
+
+        <!-- Campo: Notas adicionales -->
+        <div class="form-field">
+          <label for="notas">Notas adicionales</label>
+          <input type="text" id="notas" name="notas" placeholder="Ejemplo: Sin hielo, sin cebolla, ...">
+        </div>
+
+      </div>
+
+      <!-- Botón principal -->
+      <button type="button" class="btn-comanda">
+        Nueva comanda a cocina
+      </button>
+    </div>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,324 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #e0e0e0;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Contenedor principal (marco del teléfono) */
+.phone-frame {
+  width: 428px;
+  height: 781px;
+  position: relative;
+  background: white;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* ---------- Header verde ---------- */
+.header {
+  width: 429px;
+  height: 60px;
+  padding-bottom: 0;
+  padding-left: 16px;
+  padding-right: 16px;
+  left: -1px;
+  top: 70px;
+  position: absolute;
+  background: #495E57;
+  background-image: url('TUIMAGEN');
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.header-title {
+  width: 343px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.header-title h1 {
+  color: #F4CE14;
+  font-size: 36px;
+  font-family: 'Markazi Text', serif;
+  font-weight: 500;
+  line-height: 1.1;
+  word-wrap: break-word;
+}
+
+.header-accent {
+  width: 429px;
+  height: 10px;
+  left: 0;
+  top: 59px;
+  position: absolute;
+  background: #A26770;
+}
+
+/* ---------- Barra superior ---------- */
+.top-bar {
+  width: 147.5px;
+  height: 40px;
+  left: 139px;
+  top: 12px;
+  position: absolute;
+}
+
+.top-bar-left {
+  width: 35px;
+  height: 21.09px;
+  left: -123px;
+  top: -4px;
+  position: absolute;
+  background: black;
+}
+
+.top-bar-icon {
+  width: 48px;
+  height: 48px;
+  left: 210px;
+  top: -8px;
+  position: absolute;
+}
+
+.top-bar-logo {
+  width: 110px;
+  height: 37px;
+  left: -6px;
+  top: -2px;
+  position: absolute;
+}
+
+/* ---------- Contenido principal ---------- */
+.main-content {
+  width: 429px;
+  height: 680px;
+  padding: 16px;
+  left: -1px;
+  top: 136px;
+  position: absolute;
+  background: #495E57;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+/* ---------- Tarjeta del formulario ---------- */
+.form-card {
+  width: 100%;
+  max-width: 397px;
+  height: auto;
+  min-height: 460px;
+  padding: 20px 16px;
+  position: relative;
+  background: white;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  outline: 1px #E1E1E1 solid;
+  outline-offset: -1px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
+  box-sizing: border-box;
+}
+
+/* ---------- Campos del formulario ---------- */
+.form-field {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 8px;
+}
+
+.form-field.no-label {
+  gap: 0;
+}
+
+.form-field label {
+  align-self: stretch;
+  color: #1E1E1E;
+  font-size: 16px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  line-height: 22.4px;
+  word-wrap: break-word;
+}
+
+.form-field input {
+  align-self: stretch;
+  min-width: 240px;
+  padding: 10px 16px;
+  background: white;
+  border-radius: 8px;
+  border: 1px solid #D9D9D9;
+  outline: none;
+  color: #1E1E1E;
+  font-size: 15px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  line-height: 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.form-field input::placeholder {
+  color: #1E1E1E;
+  opacity: 1;
+}
+
+.form-field input:focus {
+  border-color: #F4CE14;
+  box-shadow: 0 0 0 2px rgba(244, 206, 20, 0.3);
+}
+
+.input-with-bg {
+  background-image: url('TUIMAGEN');
+  background-size: cover;
+  background-position: center;
+}
+
+.input-placeholder-gray::placeholder {
+  color: rgba(0, 0, 0, 0.20);
+}
+
+/* ---------- Botón principal ---------- */
+.btn-comanda {
+  width: 258px;
+  padding: 12px 16px;
+  position: relative;
+  left: auto;
+  top: auto;
+  background: #F4CE14;
+  background-image: url('TUIMAGEN');
+  background-size: cover;
+  border-radius: 16px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #000;
+  font-family: 'Karla', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  margin-top: 8px;
+  flex-shrink: 0;
+}
+
+.btn-comanda:hover {
+  opacity: 0.9;
+}
+
+.btn-comanda:active {
+  transform: scale(0.98);
+}
+/* ---------- Menú hamburguesa ---------- */
+.hamburger-menu {
+  position: absolute;
+  left: -123px;
+  top: -4px;
+  z-index: 10;
+}
+
+/* Ocultar el checkbox */
+.menu-toggle {
+  display: none;
+}
+
+/* Botón hamburguesa (las 3 líneas) */
+.hamburger-btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  padding: 8px;
+  cursor: pointer;
+  position: relative;
+  z-index: 12;
+}
+
+.hamburger-btn span {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background: #1E1E1E;
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Animación a X cuando se abre */
+.menu-toggle:checked + .hamburger-btn span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+.menu-toggle:checked + .hamburger-btn span:nth-child(2) {
+  opacity: 0;
+}
+.menu-toggle:checked + .hamburger-btn span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Panel del menú (el cuadro rosado) */
+.menu-panel {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  width: 230px;
+  padding: 56px 20px 24px;
+  background: #A26770;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 60px;
+  border-bottom-right-radius: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+  z-index: 11;
+}
+
+.menu-toggle:checked ~ .menu-panel {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Ítems del menú */
+.menu-item {
+  color: #FFFFFF;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  text-decoration: none;
+  line-height: 1.3;
+}
+
+.menu-item:hover {
+  text-decoration: underline;
+}
