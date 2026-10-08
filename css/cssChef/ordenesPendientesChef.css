@@ -1,0 +1,268 @@
+/* =========================================
+   Reset y Estilos Globales
+   ========================================= */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+    font-family: 'Inter', sans-serif;
+}
+
+/* =========================================
+   Contenedor Principal (Mobile Frame)
+   ========================================= */
+.chef-ordenes {
+    width: 430px;
+    height: 829px;
+    position: relative;
+    background: white;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+/* =========================================
+   Elementos de la Barra Superior (Logo, Iconos)
+   ========================================= */
+.top-logo {
+    width: 147.5px;
+    height: 40px;
+    position: absolute;
+    left: 140px;
+    top: 22px;
+    background: transparent;
+}
+
+.top-vector {
+    width: 35.16px;
+    height: 22.38px;
+    position: absolute;
+    left: 16.07px;
+    top: 14.84px;
+    background: black;
+}
+
+.top-profile-image {
+    width: 59px;
+    height: 59px;
+    position: absolute;
+    left: 343px;
+    top: 10px;
+    border-radius: 50%;
+}
+
+.top-brand-image {
+    width: 125px;
+    height: 42px;
+    position: absolute;
+    left: 134px;
+    top: 18px;
+    object-fit: contain;
+}
+
+/* =========================================
+   Encabezado de la Sección (Ordenes Pendientes)
+   ========================================= */
+.section-header {
+    width: 432px;
+    height: 58px;
+    position: absolute;
+    left: 0;
+    top: 80px;
+}
+
+.section-header-bg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #F2F2F7;
+}
+
+.section-title {
+    position: absolute;
+    left: 45px;
+    top: 0;
+    color: #F4CE14;
+    font-size: 48px;
+    font-family: 'Markazi Text', serif;
+    font-weight: 500;
+    line-height: 58px;
+    white-space: nowrap;
+}
+
+/* =========================================
+   Tarjetas de Pedido
+   ========================================= */
+.order-card {
+    position: absolute;
+    width: 294px;
+}
+
+.card-1 {
+    left: 62px;
+    top: 156px;
+}
+
+.card-2 {
+    left: 67px;
+    top: 498px;
+}
+
+.order-card-bg {
+    width: 294px;
+    height: 298px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: white;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 12px;
+    border: 1px solid black;
+}
+
+/* =========================================
+   Encabezado de la Tarjeta (Mesa y Hora)
+   ========================================= */
+.order-header {
+    position: absolute;
+    width: 100%;
+    top: 10px;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 24px;
+}
+
+.card-1 .order-header { top: 10px; }
+.card-2 .order-header { top: 14px; }
+
+.order-table {
+    color: black;
+    font-size: 24px;
+    font-family: 'Manuale', serif;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.order-time {
+    color: rgba(85, 85, 85, 0.33);
+    font-size: 24px;
+    font-family: 'Abel', sans-serif;
+    font-weight: 400;
+    white-space: nowrap;
+}
+
+/* =========================================
+   Badge de Tipo de Pedido (Restaurante / Domicilio)
+   ========================================= */
+.order-type-badge {
+    width: 118px;
+    height: 44px;
+    padding: 12px;
+    position: absolute;
+    background: #CFF7D3;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #2C2C2C;
+    font-size: 16px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    line-height: 16px;
+}
+
+.badge-1 {
+    left: 6px;   /* 68px - 62px del contenedor */
+    top: 59px;   /* 215px - 156px del contenedor */
+}
+
+.badge-2 {
+    left: 12px;  /* 79px - 67px del contenedor */
+    top: 63px;   /* 561px - 498px del contenedor */
+}
+
+/* =========================================
+   Detalles del Pedido
+   ========================================= */
+.order-details {
+    position: absolute;
+    left: 13px;  /* 75px - 62px del contenedor */
+    top: 121px;  /* 277px - 156px del contenedor */
+    color: #2C2C2C;
+    font-size: 16px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    line-height: 16px;
+}
+
+.card-2 .order-details {
+    left: 16px;  /* 83px - 67px del contenedor */
+    top: 138px;  /* 636px - 498px del contenedor */
+}
+
+.order-line {
+    margin-bottom: 4px;
+}
+
+.order-item {
+    margin-bottom: 2px;
+    white-space: nowrap;
+}
+
+/* =========================================
+   Nota del Pedido
+   ========================================= */
+.order-note {
+    position: absolute;
+    left: 12px;  /* 74px - 62px del contenedor */
+    top: 197px;  /* 353px - 156px del contenedor */
+    color: #2C2C2C;
+    font-size: 16px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    line-height: 16px;
+}
+
+/* =========================================
+   Botones "Pedido listo"
+   ========================================= */
+.button-primary {
+    padding: 8px 16px;
+    background: #F4CE14;
+    border-radius: 16px;
+    display: inline-flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 10px;
+    cursor: pointer;
+    position: absolute;
+}
+
+.button-label {
+    color: black;
+    font-size: 16px;
+    font-family: 'Karla', sans-serif;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.btn-listo-1 {
+    left: 154px; /* 216px - 62px del contenedor */
+    top: 246px;  /* 402px - 156px del contenedor */
+}
+
+.btn-listo-2 {
+    left: 158px; /* 225px - 67px del contenedor */
+    top: 234px;  /* 732px - 498px del contenedor */
+}

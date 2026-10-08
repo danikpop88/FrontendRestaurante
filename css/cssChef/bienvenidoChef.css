@@ -1,0 +1,202 @@
+/* =========================================
+   Reset y Estilos Globales
+   ========================================= */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+    font-family: 'Karla', sans-serif;
+}
+
+/* =========================================
+   Contenedor Principal (Mobile Frame)
+   ========================================= */
+.chef-container {
+    width: 430px;
+    height: 473px;
+    position: relative;
+    background: white;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+/* =========================================
+   Encabezado Hero Principal (Bienvenido Chef)
+   ========================================= */
+.hero-main {
+    width: 428px;
+    height: 352px;
+    padding: 0 16px 40px 16px;
+    position: absolute;
+    left: 2px;
+    top: 81px;
+    background: #495E57;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.hero-title {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.hero-title-main {
+    color: #F4CE14;
+    font-size: 48px;
+    font-family: 'Markazi Text', serif;
+    font-weight: 500;
+    line-height: 1.1;
+}
+
+.hero-cta {
+    width: 319px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.hero-cta-frame {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 6px;
+}
+
+.hero-cta-text {
+    width: 242px;
+    align-self: stretch;
+}
+
+.hero-cta-image {
+    width: 147px;
+    height: 152px;
+    border-radius: 16px;
+    background: #D9D9D9; /* Placeholder visual */
+}
+
+.hero-main-image {
+    width: 260px;
+    height: 150px;
+    position: absolute;
+    left: 70px;
+    top: 93px;
+    object-fit: cover;
+}
+
+/* =========================================
+   Botones Principales
+   ========================================= */
+.button-primary {
+    padding: 8px 16px;
+    background: #F4CE14;
+    border-radius: 16px;
+    display: inline-flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.button-label {
+    color: black;
+    font-size: 16px;
+    font-family: 'Karla', sans-serif;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.btn-ordenes {
+    position: relative; /* Fluye dentro del flex del hero-main */
+}
+
+/* =========================================
+   Encabezados Hero Secundarios (Duplicados de Figma)
+   ========================================= */
+.hero-secondary {
+    width: 428px;
+    padding: 0 16px 40px 16px;
+    position: absolute;
+    left: 0;
+    top: 80px;
+    background: #495E57;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 16px;
+    opacity: 0; /* Ocultos visualmente para no interferir con el hero principal, pero presentes en el DOM */
+    pointer-events: none;
+}
+
+.hero-secondary-alt {
+    /* Variación para el segundo duplicado */
+}
+
+.hero-title-brand {
+    color: #F4CE14;
+    font-size: 64px;
+    font-family: 'Markazi Text', serif;
+    font-weight: 500;
+    line-height: 1;
+}
+
+.hero-title-city {
+    color: #EDEFEE;
+    font-size: 40px;
+    font-family: 'Markazi Text', serif;
+    font-weight: 400;
+    line-height: 1;
+}
+
+/* =========================================
+   Elementos de la Barra Superior (Logo, Iconos)
+   ========================================= */
+.top-logo {
+    width: 147.5px;
+    height: 40px;
+    position: absolute;
+    left: 140px;
+    top: 22px;
+    background: transparent;
+}
+
+.top-vector {
+    width: 35.16px;
+    height: 12.77px;
+    position: absolute;
+    left: 16.07px;
+    top: 8.47px;
+    background: black;
+}
+
+.top-profile-image {
+    width: 59px;
+    height: 59px;
+    position: absolute;
+    left: 343px;
+    top: 10px;
+    border-radius: 50%;
+}
+
+.top-brand-image {
+    width: 125px;
+    height: 42px;
+    position: absolute;
+    left: 134px;
+    top: 18px;
+    object-fit: contain;
+}
