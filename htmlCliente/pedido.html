@@ -11,18 +11,34 @@
 </head>
 <body>
   <div class="pagina">
-
+    
     <!-- Banner -->
     <div class="banner-titulo">
       <div class="banner-titulo-texto">Tu información</div>
     </div>
-  
+    
 
     <!-- Encabezado -->
     <div class="encabezado-vacio"></div>
-    <div class="encabezado-menu"></div>
     <div class="linea-vertical"></div>
     <a href="../htmlCliente/menu.html"><img class="icono-usuario" src="../imagenes/logo.jpg" alt="Usuario"></a>
+
+    <div class="hamburger-menu">
+  <input type="checkbox" id="menu-toggle" class="menu-toggle">
+  <label for="menu-toggle" class="hamburger-btn">
+    <span></span>
+    <span></span>
+    <span></span>
+  </label>
+  <nav class="menu-panel">
+    <br>
+    <a href="../htmlCliente/menu.html" class="menu-item">Volver</a>
+    <a href="../htmlCliente/realizarReserva.html" class="menu-item">Reservar mesa</a>
+  </nav>
+</div>
+
+
+
     <!-- Formulario -->
 <form class="formulario">
   <div class="campo campo--nombres" data-has-description="false" data-has-error="false" data-has-label="true" data-state="Default" data-value-type="Default">
@@ -103,9 +119,14 @@
 
     
 
+    
     <!-- Paso Método de pago -->
     <div class="txt txt-pago-a">Método de pago</div>
     <a href="../htmlCliente/menu.html"><img class="logo" src="../imagenes/icono.jpg" alt="Logo"></a>
+
+
+
+
     <div class="txt txt-resumen-a">Resumen Pedido</div>
     <div class="vacio-circulo"></div>
     <div class="circulo circulo--amarillo circulo-amarillo-a"></div>

@@ -12,7 +12,12 @@ body {
   align-items: center;
   min-height: 100vh;
   margin: 0;
-  background-color: #f4f4f4; /* O el color de fondo que prefieras */
+  background-color: #f4f4f4;
+}
+
+/* Los enlaces ya NO son absolutos por defecto */
+a {
+  text-decoration: none;
 }
 
 /* ===== Banner y encabezado ===== */
@@ -23,7 +28,7 @@ body {
   padding-left: 16px;
   padding-right: 16px;
   left: -8px;
-  top: 170px; /* Inicia el banner */
+  top: 170px;
   position: absolute;
   background: #495E57;
   flex-direction: column;
@@ -73,12 +78,11 @@ body {
   gap: 8px;
   display: inline-flex;
 }
-/* ===== Campos del formulario ===== */
 
-.campo--nombres   { height: 55px; left: 35px; top: 285px; } /* Inicia justo abajo del banner verde */
+.campo--nombres   { height: 55px; left: 35px; top: 285px; }
 .campo--direccion { height: 55px; left: 35px; top: 355px; }
 .campo--telefono  { height: 55px; left: 31px; top: 425px; }
-.campo--email     { height: 55px; left: 31px; top: 495px; } /* Termina en 550px, sin chocar con lo gris */
+.campo--email     { height: 55px; left: 31px; top: 495px; }
 .campo-etiqueta {
   align-self: stretch;
   color: var(--Text-Default-Default, #1E1E1E);
@@ -238,7 +242,6 @@ body {
 .tabla-total   { width: 381px; height: 24px; left: 31px; top: 1173px; }
 
 /* ===== Botones ===== */
-
 .boton-gris {
   width: 165px;
   height: 28px;
@@ -257,13 +260,22 @@ body {
   display: inline-flex;
 }
 
-.boton-texto, a {
+/* Solo el contenedor del botón es absoluto */
+.boton-texto {
   position: absolute;
   color: black;
   font-size: 16px;
   font-family: 'Karla';
   font-weight: 700;
   word-wrap: break-word;
+}
+/* El enlace dentro del botón fluye normal dentro de su contenedor */
+.boton-texto a {
+  position: static;
+  color: black;
+  font-size: 16px;
+  font-family: 'Karla';
+  font-weight: 700;
   text-decoration: none;
 }
 .boton-texto--estado    { left: 250.11px; top: 1279px; }
@@ -275,4 +287,88 @@ body {
   height: 360px;
   border-radius: 20px;
   border: 1px #E1E1E1 solid;
+}
+
+/* ===== Menú hamburguesa ===== */
+.hamburger-menu {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
+.hamburger-btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  padding: 8px;
+  cursor: pointer;
+  position: relative;
+  z-index: 12;
+}
+
+.hamburger-btn span {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background: #1E1E1E;
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Animación a X cuando se abre */
+.menu-toggle:checked + .hamburger-btn span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+.menu-toggle:checked + .hamburger-btn span:nth-child(2) {
+  opacity: 0;
+}
+.menu-toggle:checked + .hamburger-btn span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Panel del menú (el cuadro rosado) */
+.menu-panel {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  width: 230px;
+  padding: 56px 20px 24px;
+  background: #A26770;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 60px;
+  border-bottom-right-radius: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+  z-index: 11;
+}
+
+.menu-toggle:checked ~ .menu-panel {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Ítems del menú */
+.menu-item {
+  position: static;
+  color: #FFFFFF;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  text-decoration: none;
+  line-height: 1.3;
+}
+
+.menu-item:hover {
+  text-decoration: underline;
 }
