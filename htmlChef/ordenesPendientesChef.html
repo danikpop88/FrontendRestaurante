@@ -14,9 +14,22 @@
         
         <!-- Barra Superior (Logo, Iconos) -->
         <div class="top-logo"></div>
-        <div class="top-vector"></div>
-        <img class="top-profile-image" src="../imagenes/logo.jpg" alt="Perfil">
-        <img class="top-brand-image" src="../imagenes/icono.jpg" alt="Logo">
+       <div class="hamburger-menu">
+  <input type="checkbox" id="menu-toggle" class="menu-toggle">
+  <label for="menu-toggle" class="hamburger-btn">
+    <span></span>
+    <span></span>
+    <span></span>
+  </label>
+  <nav class="menu-panel">
+    <br>
+    <a href="../htmlChef/bienvenidoChef.html" class="menu-item">Volver</a>
+    <a href="../htmlChef/ordenesPendientesChef.html" class="menu-item">Ordenes pendientes</a>
+    <a href="../htmlChef/ordenesListasChef.html" class="menu-item">Ordenes listas</a>
+  </nav>
+</div>
+        <a href="../htmlChef/bienvenidoChef.html"><img class="top-profile-image" src="../imagenes/logo.jpg" alt="Perfil"></a>
+        <a href="../htmlChef/bienvenidoChef.html"><img class="top-brand-image" src="../imagenes/icono.jpg" alt="Logo"></a>
 
         <!-- Encabezado de la Sección -->
         <div class="section-header">
@@ -44,7 +57,7 @@
             <div class="order-note">Nota:Sin fresas</div>
 
             <div class="button-primary btn-listo-1">
-                <span class="button-label">Pedido listo</span>
+                <a href="../htmlChef/ordenesListasChef.html"><span class="button-label">Pedido listo</span></a>
             </div>
         </div>
 
@@ -66,7 +79,7 @@
             </div>
 
             <div class="button-primary btn-listo-2">
-                <span class="button-label">Pedido listo</span>
+                <a href="../htmlChef/ordenesListasChef.html"><span class="button-label">Pedido listo</span></a>
             </div>
         </div>
 
