@@ -21,10 +21,23 @@
 
         <!-- Barra Superior (Logo, Iconos) -->
         <div class="top-logo"></div>
-        <div class="top-vector"></div>
+             <div class="hamburger-menu">
+  <input type="checkbox" id="menu-toggle" class="menu-toggle">
+  <label for="menu-toggle" class="hamburger-btn">
+    <span></span>
+    <span></span>
+    <span></span>
+  </label>
+  <nav class="menu-panel">
+    <br>
+    <a href="../htmlDomiciliario/detallesPedido.html" class="menu-item">Volver</a>
+    <a href="../htmlDomiciliario/estadoPedido.html" class="menu-item">Domicilios entregados</a>
+    <a href="../htmlDomiciliario/entregasDomiciliario.html" class="menu-item">Domicilios asignados</a>
+  </nav>
+</div>
         <div class="top-line"></div>
-        <img class="top-profile-image" src="../imagenes/logo.jpg" alt="Perfil">
-        <img class="top-brand-image" src="../imagenes/icono.jpg" alt="Logo">
+        <a href="../htmlDomiciliario/bienvenidoDomiciliario.html"><img class="top-profile-image" src="../imagenes/logo.jpg" alt="Perfil"></a>
+        <a href="../htmlDomiciliario/bienvenidoDomiciliario.html"><img class="top-brand-image" src="../imagenes/icono.jpg" alt="Logo"></a>
 
         <!-- Tarjeta de Información del Pedido -->
         <div class="info-card">
@@ -42,15 +55,14 @@
 
             <!-- Botones de Acción (Llamar / Enviar mensaje) -->
             <div class="button-primary btn-llamar">
-                <span class="button-label">Llamar</span>
+                <a href="../htmlDomiciliario/chatDomiciliario.html"><span class="button-label">Llamar</span></a>
             </div>
             <div class="button-primary btn-mensaje">
-                <span class="button-label">Enviar mensaje</span>
+                <a href="../htmlDomiciliario/chatDomiciliario.html"><span class="button-label">Enviar mensaje</span></a>
             </div>
         </div>
 
-        <!-- Imágenes Decorativas Flotantes -->
-        <img class="floating-image img-left" src="../imagenes/flechaRegreso.png" alt="Decoración">
+
 
     </div>
 

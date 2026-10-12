@@ -21,9 +21,23 @@
 
         <!-- Barra Superior (Logo, Iconos) -->
         <div class="top-logo"></div>
-        <div class="top-vector"></div>
-        <img class="top-profile-image" src="../imagenes/logo.jpg" alt="Perfil">
-        <img class="top-brand-image" src="../imagenes/icono.jpg" alt="Logo">
+     <div class="hamburger-menu">
+  <input type="checkbox" id="menu-toggle" class="menu-toggle">
+  <label for="menu-toggle" class="hamburger-btn">
+    <span></span>
+    <span></span>
+    <span></span>
+  </label>
+  <nav class="menu-panel">
+    <br>
+    <a href="../htmlDomiciliario/bienvenidoDomiciliario.html" class="menu-item">Volver</a>
+    <a href="../htmlDomiciliario/entregasDomiciliario.html" class="menu-item">Domicilios asignados</a>
+    <a href="../htmlDomiciliario/estadoPedido.html" class="menu-item">Domicilios entregados</a>
+  </nav>
+</div>
+        <a href="../htmlDomiciliario/bienvenidoDomiciliario.html"><img class="top-profile-image" src="../imagenes/logo.jpg" alt="Perfil"></a>
+        <a href="../htmlDomiciliario/bienvenidoDomiciliario.html"><img class="top-brand-image" src="../imagenes/icono.jpg" alt="Logo"></a>
+
 
         <!-- Bloques de Fondo (Rectángulos rosados) -->
         <div class="bg-rectangle rect-1"></div>
@@ -42,7 +56,7 @@
             <div class="status-text status-entregado">Entregado</div>
             <div class="status-circle circle-verde"></div>
             <div class="button-primary btn-detalles">
-                <span class="button-label">Detalles de pedido</span>
+                <a href="../htmlDomiciliario/detallesPedidoEntregado.html"><span class="button-label">Detalles de pedido</span></a>
             </div>
         </div>
 
@@ -54,7 +68,7 @@
             <div class="status-text status-entregado">Entregado</div>
             <div class="status-circle circle-verde"></div>
             <div class="button-primary btn-detalles">
-                <span class="button-label">Detalles de pedido</span>
+                <a href="../htmlDomiciliario/detallesPedidoEntregado.html"><span class="button-label">Detalles de pedido</span></a>
             </div>
         </div>
 
@@ -66,7 +80,7 @@
             <div class="status-text status-entregado">Entregado</div>
             <div class="status-circle circle-verde"></div>
             <div class="button-primary btn-detalles">
-                <span class="button-label">Detalles de pedido</span>
+                <a href="../htmlDomiciliario/detallesPedidoEntregado.html"><span class="button-label">Detalles de pedido</span></a>
             </div>
         </div>
 
@@ -78,7 +92,7 @@
             <div class="status-text status-entregado">Entregado</div>
             <div class="status-circle circle-verde"></div>
             <div class="button-primary btn-detalles">
-                <span class="button-label">Detalles de pedido</span>
+                <a href="../htmlDomiciliario/detallesPedidoEntregado.html"><span class="button-label">Detalles de pedido</span></a>
             </div>
         </div>
 
@@ -90,13 +104,12 @@
             <div class="status-text status-devuelto">Devuelto</div>
             <div class="status-circle circle-naranja"></div>
             <div class="button-primary btn-detalles">
-                <span class="button-label">Detalles de pedido</span>
+                <a href="../htmlDomiciliario/detallesPedidoDevuelto.html"><span class="button-label">Detalles de pedido</span></a>
             </div>
         </div>
 
         <!-- Imagen Decorativa Flotante -->
-        <img class="floating-image" src="../imagenes/flechaRegreso.png" alt="Decoración">
-
+       
     </div>
 
 </body>
