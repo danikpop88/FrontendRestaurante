@@ -36,7 +36,11 @@ from app.compartido.excepciones import (
     NoEncontradoError,
     ReglaNegocioError,
     SinPermisoError,
+    ValidacionError,
 )
+from app.menu import rutas as rutas_menu
+from app.menu.repositorio_postgres import RepositorioProductosPostgres
+from app.menu.servicio import GestorMenu
 from app.compartido.reloj import RelojSistema
 from app.compartido.seguridad import GestorSesiones
 
@@ -109,6 +113,10 @@ async def manejar_validacion(request: Request, error: RequestValidationError) ->
             errores.append(f"El campo '{campo}' no es válido.")
     return _respuesta_error(422, "Los datos enviados no son válidos.", errores)
 
+@app.exception_handler(ValidacionError)
+async def manejar_validacion_negocio(request: Request, error: ValidacionError) -> JSONResponse:
+    """Validación de negocio (nombre vacío, precio negativo, categoría inexistente): 422 con los motivos."""
+    return _respuesta_error(422, str(error), error.errores)
 
 @app.exception_handler(Exception)
 async def manejar_error_inesperado(request: Request, error: Exception) -> JSONResponse:
@@ -126,3 +134,13 @@ def _gestor_autenticacion(conexion=Depends(obtener_conexion)) -> GestorAutentica
 
 app.include_router(rutas_autenticacion.router)
 app.dependency_overrides[rutas_autenticacion.obtener_gestor] = _gestor_autenticacion
+
+
+# --- Módulo: Menú y productos (Fase 3) ---------------------------------------
+def _gestor_menu(conexion=Depends(obtener_conexion)) -> GestorMenu:
+    """Arma el gestor del menú con la conexión de ESTA petición."""
+    return GestorMenu(RepositorioProductosPostgres(conexion))
+
+
+app.include_router(rutas_menu.router)
+app.dependency_overrides[rutas_menu.obtener_gestor] = _gestor_menu
