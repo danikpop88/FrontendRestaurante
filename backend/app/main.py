@@ -5,15 +5,13 @@ PAPEL EN LA ARQUITECTURA: es el único archivo que conoce las clases concretas
 y las arma (Artículo 5 de la constitución). Si mañana cambia el reloj, el
 motor de base de datos o el servicio de pago, solo cambia este archivo.
 
-En esta fase hace tres cosas:
+Hace cuatro cosas:
   1. Crea la aplicación FastAPI y el gestor de sesiones (con el reloj real).
   2. Activa CORS únicamente para el origen del front (ORIGEN_FRONT).
   3. Registra los manejadores que traducen cada excepción de negocio a su
      código HTTP (Plan §5.10), siempre con la envoltura de error de los
      Contratos §0:  {"estado": 409, "mensaje": "...", "errores": []}
-
-Los módulos de negocio (autenticación, menú, pedidos...) se irán registrando
-aquí, fase por fase, con app.include_router(...).
+  4. Ensambla cada módulo de negocio y registra sus rutas.
 
 Cómo arrancarla (desde la carpeta backend/):
     uvicorn app.main:app --port 8000
@@ -22,12 +20,17 @@ La documentación automática queda en http://localhost:8000/docs
 
 import logging
 
-from fastapi import FastAPI, Request
+from fastapi import Depends, FastAPI, Request
 from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
 from app import config
+from app.autenticacion import rutas as rutas_autenticacion
+from app.autenticacion.modelos import Administrador, Domiciliario, Mesero
+from app.autenticacion.repositorio_postgres import RepositorioUsuariosPostgres
+from app.autenticacion.servicio import GestorAutenticacion
+from app.compartido.conexion import obtener_conexion
 from app.compartido.excepciones import (
     NoAutenticadoError,
     NoEncontradoError,
@@ -44,6 +47,14 @@ app = FastAPI(title="La mesa de la abuela")
 # --- Ensamblaje de las dependencias concretas -------------------------------
 reloj = RelojSistema()
 app.state.sesiones = GestorSesiones(reloj)
+
+# Qué clase de empleado corresponde a cada tipo_cargo. El Chef se sumará aquí
+# en la Fase 7, cuando exista su clase.
+CLASES_EMPLEADO = {
+    "Mesero": Mesero,
+    "Domiciliario": Domiciliario,
+    "Administrador": Administrador,
+}
 
 # --- CORS: solo el origen del front puede llamar a la API (Artículo 11) -----
 app.add_middleware(
@@ -106,5 +117,12 @@ async def manejar_error_inesperado(request: Request, error: Exception) -> JSONRe
     return _respuesta_error(500, "Ocurrió un error inesperado. Intente de nuevo más tarde.")
 
 
-# --- Aquí se registrarán los módulos, fase por fase -------------------------
-# Fase 2: app.include_router(rutas_autenticacion.router)
+# --- Módulo: Autenticación de usuarios (Fase 2) -----------------------------
+def _gestor_autenticacion(conexion=Depends(obtener_conexion)) -> GestorAutenticacion:
+    """Arma el gestor con la conexión de ESTA petición (una conexión por petición)."""
+    repositorio = RepositorioUsuariosPostgres(conexion, CLASES_EMPLEADO)
+    return GestorAutenticacion(repositorio, app.state.sesiones, CLASES_EMPLEADO)
+
+
+app.include_router(rutas_autenticacion.router)
+app.dependency_overrides[rutas_autenticacion.obtener_gestor] = _gestor_autenticacion
