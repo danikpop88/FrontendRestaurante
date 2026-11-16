@@ -1,0 +1,9 @@
+# Entorno virtual de Python (cada integrante crea el suyo)
+.venv/
+
+# Archivos temporales que Python genera al ejecutar el código
+__pycache__/
+
+# Archivos de configuración del editor (VS Code y JetBrains)
+.vscode/
+.idea/
