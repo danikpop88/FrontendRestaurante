@@ -32,3 +32,17 @@ class NoEncontradoError(Exception):
 
 class ReglaNegocioError(Exception):
     """Se violó una regla de negocio o el dato ya está registrado (409)."""
+    
+
+class ValidacionError(Exception):
+    """
+    Los datos enviados no cumplen una validación de negocio (422).
+    Lleva la lista de motivos para que el usuario vea todos a la vez
+    (por ejemplo: nombre vacío y precio negativo).
+    """
+
+    def __init__(self, errores: list[str] | str):
+        if isinstance(errores, str):
+            errores = [errores]
+        self.errores = errores
+        super().__init__("Los datos enviados no son válidos.")

@@ -17,6 +17,10 @@ constitución). Tiene tres piezas:
      sesión y rol. Rechaza al que no tiene sesión (NoAutenticadoError, 401) y
      al que tiene un rol que no corresponde (SinPermisoError, 403).
 
+El token viaja en la cabecera "Authorization: Bearer <token>". Se lee con el
+esquema HTTPBearer de FastAPI, que además hace aparecer el botón "Authorize" en
+la documentación (/docs) para poder probar las rutas con sesión.
+
 Quién guarda el GestorSesiones: lo crea main.py (el único punto de ensamblaje)
 y lo deja en app.state.sesiones; requiere_rol lo toma de ahí.
 """
@@ -28,7 +32,8 @@ import secrets
 from dataclasses import dataclass
 from datetime import datetime, timedelta
 
-from fastapi import Header, Request
+from fastapi import Depends, Request
+from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 
 from app import config
 from app.compartido.excepciones import NoAutenticadoError, SinPermisoError
@@ -125,6 +130,12 @@ class GestorSesiones:
 # 3. CONTROL DE ROL (dependencia de FastAPI)
 # =====================================================================
 
+# Lee "Authorization: Bearer <token>". Con auto_error=False no responde por su
+# cuenta: si falta la cabecera devuelve None y requiere_rol lanza nuestro
+# NoAutenticadoError, para que el error salga con la envoltura de los Contratos §0.
+esquema_bearer = HTTPBearer(auto_error=False)
+
+
 def extraer_token(authorization: str | None) -> str:
     """Saca el token de la cabecera 'Authorization: Bearer <token>'."""
     if authorization is None or not authorization.startswith("Bearer "):
@@ -139,9 +150,13 @@ def requiere_rol(*roles_permitidos: str):
     Sin roles (requiere_rol()) basta con tener una sesión válida.
     Devuelve la Sesion, así la ruta sabe quién hace la petición.
     """
-    def dependencia(request: Request, authorization: str | None = Header(default=None)) -> Sesion:
-        token = extraer_token(authorization)
-        sesion = request.app.state.sesiones.obtener(token)
+    def dependencia(
+        request: Request,
+        credenciales: HTTPAuthorizationCredentials | None = Depends(esquema_bearer),
+    ) -> Sesion:
+        if credenciales is None:
+            raise NoAutenticadoError("Debe iniciar sesión para continuar.")
+        sesion = request.app.state.sesiones.obtener(credenciales.credentials)
         if roles_permitidos and sesion.rol not in roles_permitidos:
             raise SinPermisoError("No tiene permiso para realizar esta acción.")
         return sesion
