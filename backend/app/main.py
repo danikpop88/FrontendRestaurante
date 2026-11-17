@@ -67,7 +67,7 @@ from app.notificaciones import rutas as rutas_notificaciones
 from app.notificaciones.repositorio_postgres import RepositorioAvisosPostgres
 from app.integraciones.servicio_push import ServicioPush
 from app.notificaciones.modelos import MeseroObservador, DomiciliarioObservador
-from backend.app.cocina.modelos import Chef
+from app.cocina.modelos import Chef
 from app.ventas_pagos import rutas_ventas
 from app.reservas import rutas as rutas_reservas
 

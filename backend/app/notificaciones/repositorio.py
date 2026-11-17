@@ -8,9 +8,6 @@ dependerá de esta interfaz (Artículo 5 SOLID).
 
 from abc import ABC, abstractmethod
 from typing import List
-from app.compartido.modelos import (
-    Aviso,
-)  # Asumiendo que el modelo Aviso está en compartido o lo creamos aquí abajo
 
 
 class IRepositorioAvisos(ABC):
