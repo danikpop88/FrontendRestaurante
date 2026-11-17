@@ -44,12 +44,20 @@ from app.menu import rutas as rutas_menu
 from app.menu.repositorio_postgres import RepositorioProductosPostgres
 from app.menu.servicio import GestorMenu
 from app.pedidos import rutas as rutas_pedidos
-from app.pedidos.creadores.creadores_concretos import CreadorPedidoDomicilio, CreadorPedidoMesa
+from app.pedidos.creadores.creadores_concretos import (
+    CreadorPedidoDomicilio,
+    CreadorPedidoMesa,
+)
 from app.pedidos.modelos import TipoPedido
 from app.pedidos.repositorio_postgres import RepositorioPedidosPostgres
 from app.pedidos.servicio import GestorPedidos
 from app.ventas_pagos.repositorio_postgres import RepositorioPagosPostgres
 from app.ventas_pagos.servicio import ServicioPagoProxy, ServicioPagoReal
+
+# --- Importaciones de la FASE 6 (Domicilios) ---
+from app.domicilios import rutas as rutas_domicilios
+from app.domicilios.repositorio_postgres import RepositorioDomiciliosPostgres
+from app.domicilios.servicio import GestorDomicilios
 
 registro = logging.getLogger("mesa_abuela")
 
@@ -59,8 +67,6 @@ app = FastAPI(title="La mesa de la abuela")
 reloj = RelojSistema()
 app.state.sesiones = GestorSesiones(reloj)
 
-# Qué clase de empleado corresponde a cada tipo_cargo. El Chef se sumará aquí
-# en la Fase 7, cuando exista su clase.
 CLASES_EMPLEADO = {
     "Mesero": Mesero,
     "Domiciliario": Domiciliario,
@@ -77,15 +83,15 @@ app.add_middleware(
 
 
 # --- Traducción de errores a HTTP (Plan §5.10) -------------------------------
-def _respuesta_error(estado: int, mensaje: str, errores: list[str] | None = None) -> JSONResponse:
-    """Arma la envoltura de error de los Contratos §0."""
+def _respuesta_error(
+    estado: int, mensaje: str, errores: list[str] | None = None
+) -> JSONResponse:
     return JSONResponse(
         status_code=estado,
         content={"estado": estado, "mensaje": mensaje, "errores": errores or []},
     )
 
 
-# Excepción de negocio -> código HTTP. El mensaje es el que lanzó el servicio.
 _CODIGOS = {
     NoAutenticadoError: 401,
     SinPermisoError: 403,
@@ -97,6 +103,7 @@ _CODIGOS = {
 def _crear_manejador(codigo: int):
     async def manejador(request: Request, error: Exception) -> JSONResponse:
         return _respuesta_error(codigo, str(error))
+
     return manejador
 
 
@@ -105,16 +112,15 @@ for _clase, _codigo in _CODIGOS.items():
 
 
 @app.exception_handler(RequestValidationError)
-async def manejar_validacion(request: Request, error: RequestValidationError) -> JSONResponse:
-    """Datos con forma inválida (tipo, campo faltante o vacío): 422 con la lista de errores."""
+async def manejar_validacion(
+    request: Request, error: RequestValidationError
+) -> JSONResponse:
     errores = []
     for detalle in error.errors():
-        # El último elemento de 'loc' es el nombre del campo (ej. "email").
         campo = str(detalle["loc"][-1]) if detalle["loc"] else "datos"
         if detalle["type"] == "missing":
             errores.append(f"El campo '{campo}' es obligatorio.")
         elif detalle["type"] == "value_error":
-            # Mensaje propio (ej. clave corta); se quita el prefijo en inglés.
             errores.append(str(detalle["msg"]).removeprefix("Value error, "))
         else:
             errores.append(f"El campo '{campo}' no es válido.")
@@ -122,21 +128,22 @@ async def manejar_validacion(request: Request, error: RequestValidationError) ->
 
 
 @app.exception_handler(ValidacionError)
-async def manejar_validacion_negocio(request: Request, error: ValidacionError) -> JSONResponse:
-    """Validación de negocio (nombre vacío, precio negativo, categoría inexistente): 422 con los motivos."""
+async def manejar_validacion_negocio(
+    request: Request, error: ValidacionError
+) -> JSONResponse:
     return _respuesta_error(422, str(error), error.errores)
 
 
 @app.exception_handler(Exception)
 async def manejar_error_inesperado(request: Request, error: Exception) -> JSONResponse:
-    """Cualquier otro error: 500 genérico. El detalle queda en el registro, no en la respuesta."""
     registro.exception("Error inesperado en %s", request.url.path)
-    return _respuesta_error(500, "Ocurrió un error inesperado. Intente de nuevo más tarde.")
+    return _respuesta_error(
+        500, "Ocurrió un error inesperado. Intente de nuevo más tarde."
+    )
 
 
 # --- Módulo: Autenticación de usuarios (Fase 2) -----------------------------
 def _gestor_autenticacion(conexion=Depends(obtener_conexion)) -> GestorAutenticacion:
-    """Arma el gestor con la conexión de ESTA petición (una conexión por petición)."""
     repositorio = RepositorioUsuariosPostgres(conexion, CLASES_EMPLEADO)
     return GestorAutenticacion(repositorio, app.state.sesiones, CLASES_EMPLEADO)
 
@@ -147,7 +154,6 @@ app.dependency_overrides[rutas_autenticacion.obtener_gestor] = _gestor_autentica
 
 # --- Módulo: Menú y productos (Fase 3) ---------------------------------------
 def _gestor_menu(conexion=Depends(obtener_conexion)) -> GestorMenu:
-    """Arma el gestor del menú con la conexión de ESTA petición."""
     return GestorMenu(RepositorioProductosPostgres(conexion))
 
 
@@ -157,21 +163,42 @@ app.dependency_overrides[rutas_menu.obtener_gestor] = _gestor_menu
 
 # --- Módulo: Pedidos (Fase 5) ------------------------------------------------
 def _gestor_pedidos(conexion=Depends(obtener_conexion)) -> GestorPedidos:
-    """
-    Arma el gestor con la conexión de ESTA petición. Aquí se ensamblan el Factory
-    Method (mapa TipoPedido -> creador) y el Proxy de pago delante del servicio real.
-    """
     repositorio = RepositorioPedidosPostgres(conexion)
     creadores = {
         TipoPedido.EN_RESTAURANTE: CreadorPedidoMesa(repositorio.existe_mesa, reloj),
-        TipoPedido.DOMICILIO: CreadorPedidoDomicilio(repositorio.obtener_telefono_cliente, reloj),
+        TipoPedido.DOMICILIO: CreadorPedidoDomicilio(
+            repositorio.obtener_telefono_cliente, reloj
+        ),
     }
     servicio_pago = ServicioPagoProxy(
-        ServicioPagoReal(RepositorioPagosPostgres(conexion), reloj), reloj,
+        ServicioPagoReal(RepositorioPagosPostgres(conexion), reloj),
+        reloj,
     )
-    return GestorPedidos(repositorio, RepositorioProductosPostgres(conexion),
-                         creadores, servicio_pago, reloj)
+    return GestorPedidos(
+        repositorio,
+        RepositorioProductosPostgres(conexion),
+        creadores,
+        servicio_pago,
+        reloj,
+    )
 
 
 app.include_router(rutas_pedidos.router)
 app.dependency_overrides[rutas_pedidos.obtener_gestor] = _gestor_pedidos
+
+
+# --- Módulo: Domicilios (Fase 6) ---------------------------------------------
+def _gestor_domicilios(conexion=Depends(obtener_conexion)) -> GestorDomicilios:
+    """Arma el gestor de domicilios con su repositorio y el Proxy de pago."""
+    repositorio = RepositorioDomiciliosPostgres(conexion)
+
+    # Reutilizamos el Proxy de pago que ya se usa en pedidos para registrar el cobro
+    servicio_pago = ServicioPagoProxy(
+        ServicioPagoReal(RepositorioPagosPostgres(conexion), reloj), reloj
+    )
+
+    return GestorDomicilios(repositorio, servicio_pago)
+
+
+app.include_router(rutas_domicilios.router)
+app.dependency_overrides[rutas_domicilios.obtener_gestor] = _gestor_domicilios
