@@ -68,6 +68,8 @@ from app.notificaciones.repositorio_postgres import RepositorioAvisosPostgres
 from app.integraciones.servicio_push import ServicioPush
 from app.notificaciones.modelos import MeseroObservador, DomiciliarioObservador
 from backend.app.cocina.modelos import Chef
+from app.ventas_pagos import rutas_ventas
+from app.reservas import rutas as rutas_reservas
 
 registro = logging.getLogger("mesa_abuela")
 
@@ -249,3 +251,6 @@ def _repo_avisos(conexion=Depends(obtener_conexion)):
 
 app.include_router(rutas_notificaciones.router)
 app.dependency_overrides[rutas_notificaciones.obtener_repositorio_avisos] = _repo_avisos
+# --- Ensamblaje Fase 8: Ventas y Reservas ---
+app.include_router(rutas_ventas.router)
+app.include_router(rutas_reservas.router)
