@@ -38,11 +38,18 @@ from app.compartido.excepciones import (
     SinPermisoError,
     ValidacionError,
 )
+from app.compartido.reloj import RelojSistema
+from app.compartido.seguridad import GestorSesiones
 from app.menu import rutas as rutas_menu
 from app.menu.repositorio_postgres import RepositorioProductosPostgres
 from app.menu.servicio import GestorMenu
-from app.compartido.reloj import RelojSistema
-from app.compartido.seguridad import GestorSesiones
+from app.pedidos import rutas as rutas_pedidos
+from app.pedidos.creadores.creadores_concretos import CreadorPedidoDomicilio, CreadorPedidoMesa
+from app.pedidos.modelos import TipoPedido
+from app.pedidos.repositorio_postgres import RepositorioPedidosPostgres
+from app.pedidos.servicio import GestorPedidos
+from app.ventas_pagos.repositorio_postgres import RepositorioPagosPostgres
+from app.ventas_pagos.servicio import ServicioPagoProxy, ServicioPagoReal
 
 registro = logging.getLogger("mesa_abuela")
 
@@ -113,10 +120,12 @@ async def manejar_validacion(request: Request, error: RequestValidationError) ->
             errores.append(f"El campo '{campo}' no es válido.")
     return _respuesta_error(422, "Los datos enviados no son válidos.", errores)
 
+
 @app.exception_handler(ValidacionError)
 async def manejar_validacion_negocio(request: Request, error: ValidacionError) -> JSONResponse:
     """Validación de negocio (nombre vacío, precio negativo, categoría inexistente): 422 con los motivos."""
     return _respuesta_error(422, str(error), error.errores)
+
 
 @app.exception_handler(Exception)
 async def manejar_error_inesperado(request: Request, error: Exception) -> JSONResponse:
@@ -144,3 +153,25 @@ def _gestor_menu(conexion=Depends(obtener_conexion)) -> GestorMenu:
 
 app.include_router(rutas_menu.router)
 app.dependency_overrides[rutas_menu.obtener_gestor] = _gestor_menu
+
+
+# --- Módulo: Pedidos (Fase 5) ------------------------------------------------
+def _gestor_pedidos(conexion=Depends(obtener_conexion)) -> GestorPedidos:
+    """
+    Arma el gestor con la conexión de ESTA petición. Aquí se ensamblan el Factory
+    Method (mapa TipoPedido -> creador) y el Proxy de pago delante del servicio real.
+    """
+    repositorio = RepositorioPedidosPostgres(conexion)
+    creadores = {
+        TipoPedido.EN_RESTAURANTE: CreadorPedidoMesa(repositorio.existe_mesa, reloj),
+        TipoPedido.DOMICILIO: CreadorPedidoDomicilio(repositorio.obtener_telefono_cliente, reloj),
+    }
+    servicio_pago = ServicioPagoProxy(
+        ServicioPagoReal(RepositorioPagosPostgres(conexion), reloj), reloj,
+    )
+    return GestorPedidos(repositorio, RepositorioProductosPostgres(conexion),
+                         creadores, servicio_pago, reloj)
+
+
+app.include_router(rutas_pedidos.router)
+app.dependency_overrides[rutas_pedidos.obtener_gestor] = _gestor_pedidos
