@@ -41,3 +41,8 @@ class IRepositorioDomicilios(ABC):
     def actualizar(self, domicilio: Domicilio) -> None:
         """Actualiza el estado de la entrega y el domiciliario asignado."""
         pass
+
+    @abstractmethod
+    def obtener_por_pedido(self, id_pedido: int) -> Optional[Domicilio]:
+        """Busca el domicilio asociado a un pedido específico."""
+        pass

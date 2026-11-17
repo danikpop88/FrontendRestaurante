@@ -48,6 +48,13 @@ class GestorDomicilios:
 
         return domicilio
 
+    def asignar_automaticamente_por_pedido(self, id_pedido: int) -> Domicilio:
+        """Busca el domicilio de un pedido y le asigna un repartidor automáticamente."""
+        domicilio = self.repositorio.obtener_por_pedido(id_pedido)
+        if domicilio:
+            return self.asignar_automaticamente(domicilio)
+        return None
+
     def listar_mis_domicilios(self, id_domiciliario: int) -> List[Domicilio]:
         """Devuelve los domicilios asignados al domiciliario con los datos del cliente (RF-23)."""
         return self.repositorio.listar_por_domiciliario(id_domiciliario)

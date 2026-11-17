@@ -59,6 +59,16 @@ from app.domicilios import rutas as rutas_domicilios
 from app.domicilios.repositorio_postgres import RepositorioDomiciliosPostgres
 from app.domicilios.servicio import GestorDomicilios
 
+# --- FASE 7 ---
+from app.cocina import rutas as rutas_cocina
+from app.cocina.repositorio_postgres import RepositorioCocinaPostgres
+from app.cocina.servicio import GestorCocina
+from app.notificaciones import rutas as rutas_notificaciones
+from app.notificaciones.repositorio_postgres import RepositorioAvisosPostgres
+from app.integraciones.servicio_push import ServicioPush
+from app.notificaciones.modelos import MeseroObservador, DomiciliarioObservador
+from backend.app.cocina.modelos import Chef
+
 registro = logging.getLogger("mesa_abuela")
 
 app = FastAPI(title="La mesa de la abuela")
@@ -71,6 +81,7 @@ CLASES_EMPLEADO = {
     "Mesero": Mesero,
     "Domiciliario": Domiciliario,
     "Administrador": Administrador,
+    "Chef": Chef,
 }
 
 # --- CORS: solo el origen del front puede llamar a la API (Artículo 11) -----
@@ -202,3 +213,39 @@ def _gestor_domicilios(conexion=Depends(obtener_conexion)) -> GestorDomicilios:
 
 app.include_router(rutas_domicilios.router)
 app.dependency_overrides[rutas_domicilios.obtener_gestor] = _gestor_domicilios
+
+
+# --- Ensamblaje Fase 7: Cocina y Notificaciones ---
+def _gestor_cocina(conexion=Depends(obtener_conexion)) -> GestorCocina:
+    servicio_push = ServicioPush(conexion)
+    obs_mesero = MeseroObservador(servicio_push)
+    obs_domiciliario = DomiciliarioObservador(servicio_push)
+
+    # Instanciamos GestorDomicilios para pasárselo a Cocina (Fase 6)
+    servicio_pago = ServicioPagoProxy(
+        ServicioPagoReal(RepositorioPagosPostgres(conexion), reloj), reloj
+    )
+    gestor_dom = GestorDomicilios(
+        RepositorioDomiciliosPostgres(conexion), servicio_pago
+    )
+
+    return GestorCocina(
+        RepositorioCocinaPostgres(conexion),
+        RepositorioPedidosPostgres(conexion),
+        reloj,
+        obs_mesero,
+        obs_domiciliario,
+        gestor_dom,
+    )
+
+
+app.include_router(rutas_cocina.router)
+app.dependency_overrides[rutas_cocina.obtener_gestor] = _gestor_cocina
+
+
+def _repo_avisos(conexion=Depends(obtener_conexion)):
+    return RepositorioAvisosPostgres(conexion)
+
+
+app.include_router(rutas_notificaciones.router)
+app.dependency_overrides[rutas_notificaciones.obtener_repositorio_avisos] = _repo_avisos
