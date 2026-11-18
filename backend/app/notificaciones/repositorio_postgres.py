@@ -5,42 +5,43 @@ PAPEL EN LA ARQUITECTURA: capa de datos que interactúa con la tabla 'aviso'
 usando psycopg con consultas parametrizadas (Artículo 2 y 6).
 """
 
-from typing import List, Optional
 from app.notificaciones.repositorio import IRepositorioAvisos
 
 
 class RepositorioAvisosPostgres(IRepositorioAvisos):
+
     def __init__(self, conexion):
-        self.conexion = conexion
+        self._conexion = conexion
 
     def listar_por_usuario(
-        self, id_usuario: int, leido: Optional[bool] = None
-    ) -> List[dict]:
+        self, id_usuario: int, leido: bool | None = None
+    ) -> list[dict]:
         sql = "SELECT id_aviso, mensaje, fecha, leido FROM aviso WHERE id_usuario = %s"
-        params = [id_usuario]
-
+        parametros = [id_usuario]
         if leido is not None:
             sql += " AND leido = %s"
-            params.append(leido)
-
+            parametros.append(leido)
         sql += " ORDER BY fecha DESC"
 
-        resultados = []
-        with self.conexion.cursor() as cur:
-            cur.execute(sql, tuple(params))
-            for fila in cur.fetchall():
-                resultados.append(
-                    {
-                        "id_aviso": fila[0],
-                        "mensaje": fila[1],
-                        "fecha": fila[2].isoformat() if fila[2] else None,
-                        "leido": fila[3],
-                    }
-                )
-        return resultados
+        with self._conexion.cursor() as cursor:
+            cursor.execute(sql, tuple(parametros))
+            filas = cursor.fetchall()
+        return [
+            {
+                "id_aviso": f[0],
+                "mensaje": f[1],
+                "fecha": f[2].isoformat() if f[2] else None,
+                "leido": f[3],
+            }
+            for f in filas
+        ]
 
-    def marcar_como_leido(self, id_aviso: int, id_usuario: int) -> None:
-        sql = "UPDATE aviso SET leido = true WHERE id_aviso = %s AND id_usuario = %s"
-        with self.conexion.cursor() as cur:
-            cur.execute(sql, (id_aviso, id_usuario))
-            self.conexion.commit()
+    def marcar_como_leido(self, id_aviso: int, id_usuario: int) -> bool:
+        with self._conexion.cursor() as cursor:
+            cursor.execute(
+                "UPDATE aviso SET leido = true WHERE id_aviso = %s AND id_usuario = %s",
+                (id_aviso, id_usuario),
+            )
+            modificados = cursor.rowcount
+        self._conexion.commit()
+        return modificados > 0

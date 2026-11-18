@@ -51,7 +51,6 @@ from app.pedidos.creadores.creadores_concretos import (
 from app.pedidos.modelos import TipoPedido
 from app.pedidos.repositorio_postgres import RepositorioPedidosPostgres
 from app.pedidos.servicio import GestorPedidos
-from app.ventas_pagos.repositorio_postgres import RepositorioPagosPostgres
 from app.ventas_pagos.servicio import ServicioPagoProxy, ServicioPagoReal
 
 # --- Importaciones de la FASE 6 (Domicilios) ---
@@ -72,6 +71,12 @@ from app.ventas_pagos import rutas_ventas
 from app.reservas import rutas as rutas_reservas
 from app.reservas.repositorio_postgres import RepositorioReservasPostgres
 from app.reservas.servicio import GestorReservas
+from app.ventas_pagos.repositorio_postgres import (
+    RepositorioPagosPostgres,
+    RepositorioVentasPostgres,
+)
+from app.ventas_pagos.servicio_ventas import GestorVentas
+from app.notificaciones.servicio import GestorNotificaciones
 
 registro = logging.getLogger("mesa_abuela")
 
@@ -247,14 +252,22 @@ app.include_router(rutas_cocina.router)
 app.dependency_overrides[rutas_cocina.obtener_gestor] = _gestor_cocina
 
 
-def _repo_avisos(conexion=Depends(obtener_conexion)):
-    return RepositorioAvisosPostgres(conexion)
+def _gestor_notificaciones(conexion=Depends(obtener_conexion)) -> GestorNotificaciones:
+    return GestorNotificaciones(RepositorioAvisosPostgres(conexion))
 
 
 app.include_router(rutas_notificaciones.router)
-app.dependency_overrides[rutas_notificaciones.obtener_repositorio_avisos] = _repo_avisos
+app.dependency_overrides[rutas_notificaciones.obtener_gestor] = _gestor_notificaciones
+
+
 # --- Ensamblaje Fase 8: Ventas y Reservas ---
+def _gestor_ventas(conexion=Depends(obtener_conexion)) -> GestorVentas:
+    return GestorVentas(RepositorioVentasPostgres(conexion))
+
+
 app.include_router(rutas_ventas.router)
+app.dependency_overrides[rutas_ventas.obtener_gestor] = _gestor_ventas
+
 def _gestor_reservas(conexion=Depends(obtener_conexion)) -> GestorReservas:
     return GestorReservas(RepositorioReservasPostgres(conexion))
 
