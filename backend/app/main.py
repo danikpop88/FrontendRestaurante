@@ -202,7 +202,7 @@ app.include_router(rutas_pedidos.router)
 app.dependency_overrides[rutas_pedidos.obtener_gestor] = _gestor_pedidos
 
 
-# --- Módulo: Domicilios (Fase 6) ---------------------------------------------
+# --- Módulo: Domicilios (Fase 6) ---------------------------------------------_gestor_reserva
 def _gestor_domicilios(conexion=Depends(obtener_conexion)) -> GestorDomicilios:
     """Arma el gestor de domicilios con su repositorio y el Proxy de pago."""
     repositorio = RepositorioDomiciliosPostgres(conexion)
