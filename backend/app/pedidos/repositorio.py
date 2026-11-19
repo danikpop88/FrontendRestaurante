@@ -10,8 +10,9 @@ Además de guardar y leer pedidos, ofrece dos consultas pequeñas que main.py
 entrega a los creadores como funciones (Factory Method sin SQL propio):
 obtener_telefono_cliente (RN-07) y existe_mesa.
 
-Cambiar el estado de un pedido y guardar quién es el chef llegan con el módulo
-de Cocina (Fase 7).
+El método actualizar guarda todo lo que puede cambiar en un pedido ya creado:
+el detalle, el total y la mesa (modificar una orden), y también el estado y el
+chef (el módulo de Cocina lo usa al tomar un pedido y al marcarlo listo).
 """
 
 from abc import ABC, abstractmethod
@@ -44,7 +45,10 @@ class IRepositorioPedidos(ABC):
 
     @abstractmethod
     def actualizar(self, pedido: IPedido) -> None:
-        """Guarda el detalle, el total y la mesa de un pedido modificado, en UNA transacción."""
+        """
+        Guarda el estado, el chef, el total, la mesa y el detalle de un pedido
+        que ya existe, en UNA transacción.
+        """
 
     @abstractmethod
     def eliminar(self, id_pedido: int) -> None:

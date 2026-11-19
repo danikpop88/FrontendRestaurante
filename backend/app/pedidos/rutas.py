@@ -4,7 +4,8 @@ rutas.py — Las cinco rutas HTTP de los pedidos (Contratos §3).
 PAPEL EN LA ARQUITECTURA: es la capa de rutas (el controlador) del componente
 "Pedidos". Recibe la petición, valida su FORMA con Pydantic (tipos y campos
 obligatorios: si falla, 422), exige sesión y rol, y delega en el GestorPedidos.
-No contiene reglas de negocio ni SQL (Artículos 2 y 3).
+No contiene reglas de negocio ni SQL (Artículos 2 y 3). El formato JSON del
+pedido vive en pedidos/respuestas.py, compartido con las rutas de cocina.
 
 Rutas (todas bajo /api/pedidos):
     POST   /resumen        Cliente, Mesero   total y detalle sin guardar  RF-03, RF-04
@@ -24,7 +25,9 @@ from fastapi import APIRouter, Depends
 from pydantic import BaseModel, Field
 
 from app.compartido.seguridad import Sesion, requiere_rol
-from app.pedidos.modelos import DetallePedido, IPedido, TipoPedido
+from app.pedidos.modelos import TipoPedido
+from app.pedidos.respuestas import detalle_json as _detalle_json
+from app.pedidos.respuestas import pedido_json as _pedido_json
 from app.pedidos.servicio import GestorPedidos, ItemPedido
 
 router = APIRouter(prefix="/api/pedidos", tags=["Pedidos"])
@@ -61,35 +64,6 @@ class ModificarEntrada(BaseModel):
 
 def _a_items(items: list[ItemEntrada]) -> list[ItemPedido]:
     return [ItemPedido(i.id_producto, i.cantidad, i.observaciones_especiales) for i in items]
-
-
-# =====================================================================
-# Respuestas
-# =====================================================================
-
-def _detalle_json(d: DetallePedido) -> dict:
-    return {
-        "id_producto": d.id_producto,
-        "nombre": d.nombre,
-        "cantidad": d.cantidad,
-        "precio_unitario": float(d.precio_unitario),
-        "observaciones_especiales": d.observaciones_especiales,
-        "subtotal": float(d.calcular_subtotal()),
-    }
-
-
-def _pedido_json(pedido: IPedido) -> dict:
-    """El pedido como lo muestran los Contratos §3."""
-    return {
-        "id_pedido": pedido.id_pedido,
-        "tipo_pedido": pedido.obtener_tipo().value,
-        "estado_pedido": pedido.obtener_estado(),
-        "fecha": pedido.fecha.isoformat(timespec="seconds"),
-        "total": float(pedido.total),
-        "numero_mesa": getattr(pedido, "numero_mesa", None),
-        "direccion": getattr(pedido, "direccion", None),
-        "detalle": [_detalle_json(d) for d in pedido.detalle],
-    }
 
 
 # =====================================================================
