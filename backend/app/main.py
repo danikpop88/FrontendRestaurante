@@ -67,6 +67,9 @@ from app.notificaciones.repositorio_postgres import RepositorioAvisosPostgres
 from app.integraciones.servicio_push import ServicioPush
 from app.notificaciones.modelos import MeseroObservador, DomiciliarioObservador
 from app.cocina.modelos import Chef
+from app.notificaciones.servicio import GestorNotificaciones
+
+# --- FASE 8 (Ventas y Reservas) ---
 from app.ventas_pagos import rutas_ventas
 from app.reservas import rutas as rutas_reservas
 from app.reservas.repositorio_postgres import RepositorioReservasPostgres
@@ -76,7 +79,6 @@ from app.ventas_pagos.repositorio_postgres import (
     RepositorioVentasPostgres,
 )
 from app.ventas_pagos.servicio_ventas import GestorVentas
-from app.notificaciones.servicio import GestorNotificaciones
 
 registro = logging.getLogger("mesa_abuela")
 
@@ -265,12 +267,12 @@ def _gestor_ventas(conexion=Depends(obtener_conexion)) -> GestorVentas:
     return GestorVentas(RepositorioVentasPostgres(conexion))
 
 
-app.include_router(rutas_ventas.router)
-app.dependency_overrides[rutas_ventas.obtener_gestor] = _gestor_ventas
-
 def _gestor_reservas(conexion=Depends(obtener_conexion)) -> GestorReservas:
     return GestorReservas(RepositorioReservasPostgres(conexion))
 
+
+app.include_router(rutas_ventas.router)
+app.dependency_overrides[rutas_ventas.obtener_gestor] = _gestor_ventas
 
 app.include_router(rutas_reservas.router)
 app.dependency_overrides[rutas_reservas.obtener_gestor] = _gestor_reservas

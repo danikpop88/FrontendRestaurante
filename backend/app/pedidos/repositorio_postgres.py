@@ -8,7 +8,8 @@ fijos escritos aquí; ningún dato del usuario entra en el texto SQL.
 
 Transacciones (Plan §5.9): crear un pedido con su detalle, su domicilio y su pago
 pendiente es UNA transacción; cancelar (eliminar) borra todo en UNA transacción;
-modificar el detalle también. Si algo falla antes del commit se hace rollback.
+actualizar (estado, chef, total, mesa y detalle) también. Si algo falla antes del
+commit se hace rollback.
 
 Las filas se convierten en clases de dominio: el estado se reconstruye con
 estado_desde_nombre(), y el total NO se lee de la base porque IPedido lo calcula
@@ -68,11 +69,16 @@ class RepositorioPedidosPostgres(IRepositorioPedidos):
         return pedido
 
     def actualizar(self, pedido: IPedido) -> None:
+        # Guarda lo que puede cambiar en un pedido ya creado: el estado y el chef
+        # (Cocina: tomar y marcar listo), y el total, la mesa y el detalle
+        # (el mesero modifica la orden).
         try:
             with self._conexion.cursor() as cursor:
                 cursor.execute(
-                    "UPDATE pedido SET total = %s, numero_mesa = %s WHERE id_pedido = %s",
-                    (pedido.total, getattr(pedido, "numero_mesa", None), pedido.id_pedido),
+                    "UPDATE pedido SET estado_pedido = %s, id_chef = %s, total = %s, "
+                    "numero_mesa = %s WHERE id_pedido = %s",
+                    (pedido.obtener_estado(), pedido.id_chef, pedido.total,
+                     getattr(pedido, "numero_mesa", None), pedido.id_pedido),
                 )
                 cursor.execute(
                     "DELETE FROM detalle_pedido WHERE id_pedido = %s", (pedido.id_pedido,)

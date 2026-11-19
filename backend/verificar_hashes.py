@@ -1,0 +1,14 @@
+from app.compartido.seguridad import verificar_clave
+
+CLAVE = "una-clave-larga-123"
+
+hashes = {
+    "Administrador": "022b05ee1f0085629c4aea3e3df399b3$2c4350df667bcbb79d921395f73261ed1acd60a416bd2933962aedb913dd424ea8a56bf52f54094bd57534d6f911b36a07db0b0d9ea9712a244627ed210de285",
+    "Chef":          "8361c5d190ba070886ca2ac243f0242d$7ed6cd65c5ab1714f058d5799e7f8ade79e2393e4e00e62216d037e6aa72c565c782999d15da1501960dea7068a5444e2757662f9673ce97030be968ae5bda89",
+    "Mesero":        "b774cc7e9740c8a634bb70391a81add5$b09032b1bcc5e34c2c88f3308d0e00ceda4f12d721c355a24cd347a2d6d8e144cca460607bb8af6212a24bab40163bc61e4247fed0d0e82ebca6cdfdd7bbacac",
+    "Domiciliario1": "663fb659465f4ef2ed7129d8b7f61fd6$db73b78764d9a29c6abf5a926162e534358d565e532d99394859ba9f3bbac841a758174c18a9f852df70fbab79dbbbb8e972cc67d77884dcb7e9956ad652edcd",
+    "Domiciliario2": "47475703db88828817a84170c38a4520$4e3d25390392dce3dbcd3274a100e624234284ae72f7c56a015e6c383647c18576eef43d630b0625c9032989c34d9c22fe85a4420d9cade1db665b6f5ae4abcf",
+}
+
+for nombre, h in hashes.items():
+    print(f"{nombre:14s} -> {verificar_clave(CLAVE, h)}")

@@ -1,13 +1,21 @@
 """
-servicio.py — El "GestorCocina", la capa de negocio del componente.
+servicio.py — El "GestorCocina", la capa de negocio del componente Cocina.
+
+PAPEL EN LA ARQUITECTURA: reúne las acciones del chef sobre la cola de cocina:
+ver la cola, tomar un pedido (Recibido -> EnCocina) y marcarlo listo
+(EnCocina -> EnCamino) mediante el patrón Command, que además dispara a los
+observadores (patrón Observer). Depende de abstracciones (Artículo 5): los
+repositorios, el reloj y los observadores llegan desde main.py.
 """
 
 from typing import List, Optional
+
 from app.cocina.repositorio import IRepositorioCocina
-from app.pedidos.repositorio import IRepositorioPedidos
 from app.cocina.modelos import ComandoMarcarListo
+from app.compartido.excepciones import NoEncontradoError, ReglaNegocioError
 from app.compartido.reloj import IReloj
-from app.compartido.excepciones import ReglaNegocioError, NoEncontradoError
+from app.pedidos.modelos import TipoPedido
+from app.pedidos.repositorio import IRepositorioPedidos
 
 
 class GestorCocina:
@@ -16,9 +24,9 @@ class GestorCocina:
         repo_cocina: IRepositorioCocina,
         repo_pedidos: IRepositorioPedidos,
         reloj: IReloj,
-        observador_mesero,  # Inyectado
-        observador_domiciliario,  # Inyectado
-        gestor_domicilios,  # Inyectado de la Fase 6
+        observador_mesero,
+        observador_domiciliario,
+        gestor_domicilios,
     ):
         self.repo_cocina = repo_cocina
         self.repo_pedidos = repo_pedidos
@@ -53,25 +61,27 @@ class GestorCocina:
                 "El pedido no está en estado EnCocina (no se duplica el aviso)."
             )
 
-        # 1. Ejecuta el patrón Command (avanza a EnCamino)
+        # 1. Patrón Command: avanza a EnCamino y registra quién y cuándo
         comando = ComandoMarcarListo(pedido, id_chef, self.reloj)
         comando.ejecutar()
-
         self.repo_pedidos.actualizar(pedido)
 
-        # 2. Patrón Observer: Notificar según el tipo de pedido
-        if pedido.tipo_pedido.value == "EN_RESTAURANTE":
+        # 2. Patrón Observer: notificar según el tipo de pedido
+        if pedido.obtener_tipo() == TipoPedido.EN_RESTAURANTE:
             self.observador_mesero.actualizar(pedido)
         else:
-            # Es DOMICILIO: Asignar automáticamente (Fase 6) y luego notificar
-            # Como el pedido ya cambió a EnCamino, la Fase 6 encontrará su domicilio y lo asignará.
-            # (Nota: Para que esto funcione, el GestorDomicilios debe recibir el pedido o su ID)
+            # DOMICILIO: asignar automáticamente (Fase 6) y luego notificar
             domicilio = self.gestor_domicilios.asignar_automaticamente_por_pedido(
                 pedido.id_pedido
             )
             if domicilio and domicilio.id_domiciliario:
-                # Actualizamos el id del domiciliario en el pedido para que el observador sepa a quién avisar
-                pedido.id_domiciliario = domicilio.id_domiciliario
+                # El observador necesita saber a quién avisar. Si IPedido no
+                # tiene el atributo id_domiciliario, esto fallará; en ese caso,
+                # pasa domicilio al observador en lugar de pedido.
+                try:
+                    pedido.id_domiciliario = domicilio.id_domiciliario
+                except AttributeError:
+                    pass
                 self.observador_domiciliario.actualizar(pedido)
 
         return pedido
