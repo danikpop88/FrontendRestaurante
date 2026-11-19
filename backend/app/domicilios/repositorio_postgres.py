@@ -13,26 +13,54 @@ from app.domicilios.repositorio import IRepositorioDomicilios
 from app.domicilios.modelos import Domicilio
 
 
+# Columnas del SELECT completo (domicilio + pedido + cliente), en este orden.
+_COLUMNAS = (
+    "d.id_domicilio, d.id_pedido, d.id_domiciliario, d.direccion, "
+    "d.estado_entrega, d.fecha_entrega, d.motivo_devolucion, "
+    "p.estado_pedido, p.total, p.id_cliente, "
+    "u.nombre AS cliente_nombre, u.telefono AS cliente_telefono"
+)
+
+
+class _ClienteRef:
+    """Datos mínimos del cliente que la ruta de domicilios muestra."""
+
+    def __init__(self, nombre: str, telefono: str):
+        self.nombre = nombre
+        self.telefono = telefono
+
+
 class _PedidoRef:
     """
-    Sustituto mínimo de PedidoDomicilio para que Domicilio pueda validar sus
-    reglas de asignación (Domicilio.asignarDomiciliario consulta
-    pedido.obtenerEstado()) sin tener que reconstruir el pedido completo:
-    eso lo hace el repositorio de pedidos, no el de domicilios.
+    Sustituto mínimo del PedidoDomicilio para que Domicilio, la ruta y el
+    servicio de pago funcionen sin reconstruir el pedido completo (eso lo
+    hace el repositorio de pedidos, no el de domicilios).
     """
 
-    def __init__(self, id_pedido: int, estado: str):
+    def __init__(self, id_pedido, id_cliente, estado_pedido, total,
+                 nombre_cliente: str, telefono_cliente: str):
         self.id_pedido = id_pedido
-        self._estado = estado
+        self.id_cliente = id_cliente
+        self._estado = estado_pedido
+        self.total = total
+        self.cliente = _ClienteRef(nombre_cliente or "", telefono_cliente or "")
 
+    # --- estado del pedido: dos alias, uno para el modelo y otro para la ruta
     def obtenerEstado(self) -> str:
         return self._estado
 
+    def obtener_estado(self) -> str:
+        return self._estado
+
     def siguiente(self) -> None:
-        raise NotImplementedError(
-            "El cambio de estado de un pedido se hace por el GestorCocina o "
-            "el GestorPedidos, no al reconstruir el Domicilio."
-        )
+        # Domicilio.actualizarEstado() llama siguiente() al cerrar la entrega.
+        # El único cambio válido en este flujo es EnCamino -> Entregado.
+        if self._estado == "EnCamino":
+            self._estado = "Entregado"
+
+    # --- validación que el Proxy de pago hace antes de cobrar
+    def es_valido(self) -> bool:
+        return self.total is not None and self.total > 0
 
 
 class RepositorioDomiciliosPostgres(IRepositorioDomicilios):
@@ -40,17 +68,37 @@ class RepositorioDomiciliosPostgres(IRepositorioDomicilios):
     def __init__(self, conexion):
         self.conexion = conexion
 
+    # ----------------------------------------------------------- conversión
+    def _a_domicilio(self, fila) -> Domicilio:
+        (id_domicilio, id_pedido, id_domiciliario, direccion,
+         estado_entrega, fecha_entrega, motivo_devolucion,
+         estado_pedido, total, id_cliente,
+         cliente_nombre, cliente_telefono) = fila
+        return Domicilio(
+            id_domicilio=id_domicilio,
+            pedido=_PedidoRef(
+                id_pedido=id_pedido,
+                id_cliente=id_cliente,
+                estado_pedido=estado_pedido,
+                total=total,
+                nombre_cliente=cliente_nombre,
+                telefono_cliente=cliente_telefono,
+            ),
+            id_domiciliario=id_domiciliario,
+            direccion=direccion,
+            estado_entrega=estado_entrega,
+            fecha_entrega=fecha_entrega,
+            motivo_devolucion=motivo_devolucion,
+        )
+
+    # ----------------------------------------------------------- consultas
     def obtener_menos_pedidos_activos(self) -> Optional[int]:
-        """
-        Consulta SQL parametrizada para buscar el domiciliario con menos pedidos activos.
-        Cuenta los pedidos que están 'EnCamino' para cada domiciliario y ordena de menor a mayor.
-        """
         sql = """
-            SELECT u.id_usuario, COUNT(p.id_pedido) as pedidos_activos
+            SELECT u.id_usuario, COUNT(p.id_pedido) AS pedidos_activos
             FROM usuario u
             LEFT JOIN domicilio d ON u.id_usuario = d.id_domiciliario
             LEFT JOIN pedido p ON d.id_pedido = p.id_pedido AND p.estado_pedido = 'EnCamino'
-            WHERE u.tipo_cargo = 'Domiciliario' AND u.estado = true
+            WHERE u.tipo_cargo = 'Domiciliario' AND u.estado = TRUE
             GROUP BY u.id_usuario
             ORDER BY pedidos_activos ASC
             LIMIT 1;
@@ -58,14 +106,53 @@ class RepositorioDomiciliosPostgres(IRepositorioDomicilios):
         with self.conexion.cursor() as cur:
             cur.execute(sql)
             fila = cur.fetchone()
-            if fila:
-                return fila[0]
-            return None
+        return fila[0] if fila else None
 
+    def obtener_por_id(self, id_domicilio: int) -> Optional[Domicilio]:
+        sql = f"""
+            SELECT {_COLUMNAS}
+            FROM domicilio d
+            JOIN pedido p ON p.id_pedido = d.id_pedido
+            LEFT JOIN usuario u ON u.id_usuario = p.id_cliente
+            WHERE d.id_domicilio = %s;
+        """
+        with self.conexion.cursor() as cur:
+            cur.execute(sql, (id_domicilio,))
+            fila = cur.fetchone()
+        return self._a_domicilio(fila) if fila else None
+
+    def obtener_por_pedido(self, id_pedido: int) -> Optional[Domicilio]:
+        sql = f"""
+            SELECT {_COLUMNAS}
+            FROM domicilio d
+            JOIN pedido p ON p.id_pedido = d.id_pedido
+            LEFT JOIN usuario u ON u.id_usuario = p.id_cliente
+            WHERE d.id_pedido = %s;
+        """
+        with self.conexion.cursor() as cur:
+            cur.execute(sql, (id_pedido,))
+            fila = cur.fetchone()
+        return self._a_domicilio(fila) if fila else None
+
+    def listar_por_domiciliario(self, id_domiciliario: int) -> List[Domicilio]:
+        sql = f"""
+            SELECT {_COLUMNAS}
+            FROM domicilio d
+            JOIN pedido p ON p.id_pedido = d.id_pedido
+            LEFT JOIN usuario u ON u.id_usuario = p.id_cliente
+            WHERE d.id_domiciliario = %s
+            ORDER BY p.fecha DESC;
+        """
+        with self.conexion.cursor() as cur:
+            cur.execute(sql, (id_domiciliario,))
+            filas = cur.fetchall()
+        return [self._a_domicilio(f) for f in filas]
+
+    # ----------------------------------------------------------- escrituras
     def crear(self, domicilio: Domicilio) -> Domicilio:
-        """Inserta un domicilio en la base de datos y le asigna el ID generado."""
         sql = """
-            INSERT INTO domicilio (id_pedido, id_domiciliario, direccion, estado_entrega, fecha_entrega, motivo_devolucion)
+            INSERT INTO domicilio (id_pedido, id_domiciliario, direccion,
+                                   estado_entrega, fecha_entrega, motivo_devolucion)
             VALUES (%s, %s, %s, %s, %s, %s) RETURNING id_domicilio;
         """
         with self.conexion.cursor() as cur:
@@ -81,66 +168,20 @@ class RepositorioDomiciliosPostgres(IRepositorioDomicilios):
                 ),
             )
             domicilio.id_domicilio = cur.fetchone()[0]
-            self.conexion.commit()
-            return domicilio
-
-    def obtener_por_id(self, id_domicilio: int) -> Optional[Domicilio]:
-        # TODO: En la T6.3/T6.4 se conectará con IRepositorioPedidos para traer el pedido completo
-        # Por ahora dejamos la estructura base del SELECT
-        sql = """
-            SELECT id_domicilio, id_pedido, id_domiciliario, direccion, estado_entrega, fecha_entrega, motivo_devolucion
-            FROM domicilio WHERE id_domicilio = %s;
-        """
-        with self.conexion.cursor() as cur:
-            cur.execute(sql, (id_domicilio,))
-            # La reconstrucción completa requiere el PedidoDomicilio (Fase 5).
-            # Se completará cuando se integre con el GestorPedidos.
-            pass
-
-    def obtener_por_pedido(self, id_pedido: int) -> Optional[Domicilio]:
-        """
-        Devuelve el Domicilio asociado a un pedido, o None si no existe.
-        Trae también el estado actual del pedido para que el Domicilio pueda
-        aplicar RN-08 (un pedido 'EnCamino' no se reasigna).
-        """
-        sql = """
-            SELECT d.id_domicilio, d.id_pedido, d.id_domiciliario, d.direccion,
-                   d.estado_entrega, d.fecha_entrega, d.motivo_devolucion,
-                   p.estado_pedido
-            FROM domicilio d
-            JOIN pedido p ON p.id_pedido = d.id_pedido
-            WHERE d.id_pedido = %s;
-        """
-        with self.conexion.cursor() as cur:
-            cur.execute(sql, (id_pedido,))
-            fila = cur.fetchone()
-        if fila is None:
-            return None
-        return Domicilio(
-            id_domicilio=fila[0],
-            pedido=_PedidoRef(fila[1], fila[7]),
-            id_domiciliario=fila[2],
-            direccion=fila[3],
-            estado_entrega=fila[4],
-            fecha_entrega=fila[5],
-            motivo_devolucion=fila[6],
-        )
-
-    def listar_por_domiciliario(self, id_domiciliario: int) -> List[Domicilio]:
-        # TODO: Al igual que obtener_por_id, requiere integración con el repositorio de pedidos
-        # para reconstruir los objetos de dominio completos.
-        return []
+        self.conexion.commit()
+        return domicilio
 
     def actualizar(self, domicilio: Domicilio) -> None:
-        """Actualiza el estado de la entrega y el domiciliario asignado."""
-        sql = """
-            UPDATE domicilio 
-            SET estado_entrega = %s, fecha_entrega = %s, motivo_devolucion = %s, id_domiciliario = %s
-            WHERE id_domicilio = %s;
+        """
+        Guarda el estado de la entrega y, si la entrega se cerró, también el
+        nuevo estado del pedido (EnCamino -> Entregado). Las dos escrituras
+        van en la misma transacción: o se guardan las dos, o ninguna.
         """
         with self.conexion.cursor() as cur:
             cur.execute(
-                sql,
+                "UPDATE domicilio SET estado_entrega = %s, fecha_entrega = %s, "
+                "motivo_devolucion = %s, id_domiciliario = %s "
+                "WHERE id_domicilio = %s",
                 (
                     domicilio.estado_entrega,
                     domicilio.fecha_entrega,
@@ -149,4 +190,8 @@ class RepositorioDomiciliosPostgres(IRepositorioDomicilios):
                     domicilio.id_domicilio,
                 ),
             )
-            self.conexion.commit()
+            cur.execute(
+                "UPDATE pedido SET estado_pedido = %s WHERE id_pedido = %s",
+                (domicilio.pedido.obtenerEstado(), domicilio.pedido.id_pedido),
+            )
+        self.conexion.commit()
