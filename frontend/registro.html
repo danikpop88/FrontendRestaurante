@@ -2,80 +2,45 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Registro</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&family=Karla:wght@700;800&family=Markazi+Text:wght@600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/registro.css">
 </head>
 <body>
-
   <div class="pantalla">
+    <div class="topbar"><img class="topbar-avatar" src="imagenes/logo.jpg" alt="Usuario"></div>
+    <img class="logo-principal" src="imagenes/icono.jpg" alt="Logo">
+    <div class="header"><div class="header-titulo">Registro</div></div>
 
-    <!-- Barra superior -->
-    <div class="topbar">
-      <div class="topbar-logo"></div>
-      <a href="registro.html"><img class="topbar-avatar" src="imagenes/logo.jpg" alt="avatar"></a>
-    </div>
+    <form id="form-registro" class="form-card" style="padding:20px 16px">
+      <div class="campo">
+        <label class="campo-label" for="nombre">Nombre completo</label>
+        <div class="campo-input"><input class="campo-texto" id="nombre" type="text" required style="border:none;outline:none;width:100%"></div>
+      </div>
+      <div class="campo">
+        <label class="campo-label" for="telefono">Teléfono</label>
+        <div class="campo-input"><input class="campo-texto" id="telefono" type="tel" required style="border:none;outline:none;width:100%"></div>
+      </div>
+      <div class="campo">
+        <label class="campo-label" for="email">Correo electrónico</label>
+        <div class="campo-input"><input class="campo-texto" id="email" type="email" required style="border:none;outline:none;width:100%"></div>
+      </div>
+      <div class="campo">
+        <label class="campo-label" for="contrasena">Contraseña (mínimo 12 caracteres)</label>
+        <div class="campo-input"><input class="campo-texto" id="contrasena" type="password" required autocomplete="new-password" style="border:none;outline:none;width:100%"></div>
+      </div>
+      <label style="display:flex;gap:8px;align-items:flex-start;font-size:14px;width:344px">
+        <input type="checkbox" id="acepta"> Acepto el tratamiento de mis datos personales.
+      </label>
+      <div id="mensajes" class="v-mensajes"></div>
+    </form>
 
-    <img class="logo-principal" src="imagenes/icono.jpg" alt="logo">
-
-    <!-- Encabezado verde -->
-    <div class="header">
-      <div class="header-titulo">Registro</div>
-    </div>
-
-    <!-- Tarjeta del formulario -->
-    <form class="form-card" id="form-registro" action="inicio.html" method="get" novalidate>
-
-  <div class="campo">
-    <label class="campo-label" for="nombre">Nombres*</label>
-    <div class="campo-input">
-      <input class="campo-texto" type="text" id="nombre" name="nombre"
-             placeholder="Primer Nombre" autocomplete="given-name" required />
-    </div>
+    <button type="submit" form="form-registro" class="boton-registrarse boton-texto" style="border:none;cursor:pointer">Registrarse</button>
+    <a href="login.html" style="position:absolute;left:0;width:100%;top:812px;text-align:center;color:#495E57;font:600 14px Karla,sans-serif;text-decoration:none">¿Ya tiene cuenta? Inicie sesión</a>
   </div>
 
-  <div class="campo">
-    <label class="campo-label" for="correo">Correo*</label>
-    <div class="campo-input">
-      <input class="campo-texto" type="email" id="correo" name="correo"
-             placeholder="Email" autocomplete="email" required />
-    </div>
-  </div>
-
-  <div class="campo">
-    <label class="campo-label" for="rol">Rol</label>
-    <div class="select-box">
-      <select class="campo-texto" id="rol" name="rol">
-        <option value="" disabled selected>Selecciona tu rol</option>
-        <option value="cliente">Cliente</option>
-        <option value="chef">Chef</option>
-        <option value="chef">Domiciliario</option>
-        <option value="chef">Administrador</option>
-      </select>
-      <div class="chevron"></div>
-    </div>
-  </div>
-
-  <div class="campo">
-    <label class="campo-label" for="contrasena">Contraseña*</label>
-    <div class="campo-input">
-      <input class="campo-texto" type="password" id="contrasena" name="contrasena"
-             placeholder="Contraseña" autocomplete="new-password" required minlength="8" />
-    </div>
-  </div>
-
-  <div class="campo">
-    <label class="campo-label" for="telefono">Número de teléfono</label>
-    <div class="campo-input">
-      <input class="campo-texto" type="tel" id="telefono" name="telefono"
-             placeholder="+57" autocomplete="tel" />
-    </div>
-  </div>
-
-
-
-</form>
-<div class="boton-registrarse" data-has-icon-end="false" data-has-icon-start="false" data-size="Medium" data-state="Default" data-variant="Primary">
-  <a href="login.html" form=""form-registro class="boton-texto">Ingresar</a>
-</div>
+  <script src="js/cliente_api.js"></script>
+  <script src="js/autenticacion.js"></script>
 </body>
 </html>

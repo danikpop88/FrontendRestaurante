@@ -3,66 +3,37 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Inicio de Sesión</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&family=Markazi+Text:wght@600&display=swap" rel="stylesheet">
+  <title>Iniciar sesión</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&family=Karla:wght@700&family=Markazi+Text:wght@600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/login.css">
 </head>
 <body>
   <div class="pantalla">
-
-    <div class="fondo">
-      <div class="titulo">Inicio de Sesion</div>
-    </div>
-
-    <form class="tarjeta" id="form-login" action="/login" method="post" novalidate>
-  <div class="campo" data-has-description="false" data-has-error="false" data-has-label="true" data-state="Default" data-value-type="Default">
-    <label class="campo-etiqueta" for="correo">Correo*</label>
-    <div class="campo-input">
-      <input
-        class="campo-texto"
-        type="email"
-        id="correo"
-        name="correo"
-        placeholder="Email"
-        autocomplete="email"
-        required
-      />
-    </div>
-  </div>
-
-  <div class="campo" data-has-description="false" data-has-error="false" data-has-label="true" data-state="Default" data-value-type="Default">
-    <label class="campo-etiqueta" for="contrasena">Contraseña*</label>
-    <div class="campo-input">
-      <input
-        class="campo-texto"
-        type="password"
-        id="contrasena"
-        name="contrasena"
-        placeholder="Contraseña"
-        autocomplete="current-password"
-        required
-        minlength="8"
-      />
-    </div>
-  </div>
-<div class="boton" data-has-icon-end="false" data-has-icon-start="false" data-size="Medium" data-state="Default" data-variant="Primary">
-  <a href="htmlCliente/menu.html" class="boton-texto">Ingresar</a>
-</div>
-  
-</form>
-
-    <!-- Encabezado (Figma lo exportó repetido 3 veces, apilado) -->
-    <div class="encabezado">
-      <div class="encabezado-fondo"></div>
-      <div class="encabezado-menu"></div>
-      <a href="login.html"><img class="encabezado-icono" src="imagenes/logo.jpg" alt="Icono"></a>
-    </div>
-
-
+    <div class="fondo"></div>
     <img class="logo" src="imagenes/icono.jpg" alt="Logo">
+    <img class="encabezado-icono" src="imagenes/logo.jpg" alt="Usuario">
+    <div class="titulo" style="top:110px;left:0;width:100%;text-align:center;font-size:42px">Iniciar sesión</div>
 
+    <form id="form-login" class="tarjeta" style="height:auto;min-height:268px;padding:20px 16px;top:200px">
+      <div class="campo">
+        <label class="campo-etiqueta" for="email">Correo electrónico</label>
+        <div class="campo-input">
+          <input class="campo-texto" id="email" type="email" required autocomplete="username" style="border:none;outline:none;background:transparent;width:100%">
+        </div>
+      </div>
+      <div class="campo">
+        <label class="campo-etiqueta" for="contrasena">Contraseña</label>
+        <div class="campo-input">
+          <input class="campo-texto" id="contrasena" type="password" required autocomplete="current-password" style="border:none;outline:none;background:transparent;width:100%">
+        </div>
+      </div>
+      <div id="mensajes" class="v-mensajes"></div>
+      <div class="boton"><button type="submit" class="boton-texto">Ingresar</button></div>
+      <a href="registro.html" style="color:#495E57;font:600 14px Karla,sans-serif;text-decoration:none">¿No tiene cuenta? Regístrese</a>
+    </form>
   </div>
+
+  <script src="js/cliente_api.js"></script>
+  <script src="js/autenticacion.js"></script>
 </body>
 </html>
