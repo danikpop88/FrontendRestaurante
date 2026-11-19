@@ -15,10 +15,15 @@ from app.compartido.reloj import IReloj
 
 
 class Chef(IEmpleado):
-    def __init__(self, id_empleado: int, nombre: str, email: str, contrasena: str):
-        super().__init__(id_empleado, nombre, email, contrasena, "Chef", True)
+    """
+    Empleado de cocina. No define constructor propio: usa el de IEmpleado, igual
+    que Mesero, Domiciliario y Administrador. Así el repositorio de usuarios
+    puede crearlo de la misma forma que a los demás empleados.
+    """
+
     def obtener_rol(self) -> str:
         return "Chef"
+
 
 class IComandoCocina(ABC):
     @abstractmethod
