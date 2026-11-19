@@ -341,8 +341,6 @@ pytest pruebas -k state                   # un patrón por separado: state, fact
 
 **No aplica.** El MVP se ejecuta en un único equipo (`localhost`), con los tres nodos del diagrama de despliegue en la misma máquina. El despliegue en un servidor, con HTTPS (TLS 1.3), disponibilidad del 98,5 % y respaldos automáticos, está **proyectado** y no forma parte del MVP.
 
-Diagrama de despliegue: _(pendiente: pegar el enlace editable)_
-
 ## 10. Documentación técnica y diagramas
 
 ### Especificación del backend (Spec Kit)
@@ -357,10 +355,6 @@ Diagrama de despliegue: _(pendiente: pegar el enlace editable)_
 | [6_contracts.md](speckit-Llenos/6_contracts.md) | Endpoints y formatos exactos de entrada y salida |
 | [7_quickstart.md](speckit-Llenos/7_quickstart.md) | Cómo levantar y validar el proyecto |
 | [8_tasks.md](speckit-Llenos/8_tasks.md) | Orden de construcción por fases |
-
-### Documento del Entregable 3
-
-Entregable #3 completo (PDF): 
 
 ### Diagramas
 
@@ -377,8 +371,7 @@ Todos los diagramas son consistentes con el modelo C4 del Entregable 2.
 | Diagrama de actividades(Gestión de pagos) | Código PlantUML, sección «Diagrama de actividades» |
 | Diagrama de actividades(administración de cocina ) | [Ver diagrama]( https://drive.google.com/file/d/1EmHkqzTTPOYjEKbkJBL3gKSPVKRJ5sx/view?usp=sharing ) |
 | Máquina de estados |Código PlantUML en el Entregable 3, sección «Máquina de estados»|
-| Diagrama de componentes | [Ver diagrama]( https://drive.google.com/file/d/1SiM4sw7RkpF_RK2GHAhHKms0oFZt2iwL/view?usp=
-sharing ) |
+| Diagrama de componentes | [Ver diagrama]( https://drive.google.com/file/d/1SiM4sw7RkpF_RK2GHAhHKms0oFZt2iwL/view?usp=sharing ) |
 | Diagrama de despliegue  | [Ver diagrama](https://drive.google.com/file/d/19R14UidVvwAdNxDyatDmqnitnBoNz3u/view?usp=sharing  ) |
 | Diagrama de secuencia: gestión de pedidos |[Ver diagrama](https://drive.google.com/file/d/1LRgDLZlz_ga5qkIJa9u0B_6N0kPZihC5/view?usp=sharing ) |
 | Diagrama de secuencia: gestión de domicilios |[Ver diagrama](https://drive.google.com/file/d/1Pru5jD4ekIvK5xOH4A4Pz5JUvYC8I0aA/view?usp=sharing  ) |
@@ -387,25 +380,7 @@ sharing ) |
   
 
 ## 11. Evidencias del MVP
-
-> Esta sección se completa al terminar la implementación: cada captura e indicador debe salir de correr el sistema real.
-
-### Capturas del MVP
-
-Guardar las imágenes en `docs/evidencias/` y enlazarlas aquí.
-
-| Pantalla | Captura |
-|---|---|
-| Registro e inicio de sesión | _pendiente_ |
-| Cliente: menú con producto agotado bloqueado | _pendiente_ |
-| Cliente: carrito, resumen y confirmación del pedido | _pendiente_ |
-| Cliente: seguimiento del estado | _pendiente_ |
-| Mesero: orden de mesa y aviso de plato listo | _pendiente_ |
-| Chef: cola de cocina | _pendiente_ |
-| Domiciliario: domicilio asignado y cierre de entrega | _pendiente_ |
-| Administrador: menú, ventas y reservas | _pendiente_ |
-| Mensajes de error de los flujos alternativos (RN-01, RN-04, RN-05, RN-07) | _pendiente_ |
-| API apagada: la pantalla sigue en pie sin mostrar datos | _pendiente_ |
+Las capturas de cada pantalla del MVP están en este documento:[Ver capturas](https://docs.google.com/document/d/19Lx-qeQxUOB-fd23FJ7ihpmsrZiTqF-3/edit?usp=sharing&ouid=109810464831418010377&rtpof=true&sd=true) 
 
 
 

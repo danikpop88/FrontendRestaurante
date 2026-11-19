@@ -266,8 +266,6 @@ dice que el servicio no está disponible y **no muestra un solo dato**.
 ## Fase 12 — Cierre del MVP
 - [ ] `README.md` completo: cómo instalar y ejecutar cada pieza en Linux, macOS y
       Windows, **sin depender de contenedores** (RNF-15).
-- [ ] Correr el smoke test completo de [7_quickstart.md](7_quickstart.md): los
-      **21** criterios de aceptación de [2_spec.md](2_spec.md) §5.
 - [ ] Revisar la constitución **artículo por artículo** contra el código
       ([3_plan.md](3_plan.md) §9).
 - [ ] Cada integrante con **al menos 5 commits significativos**, de su propia
