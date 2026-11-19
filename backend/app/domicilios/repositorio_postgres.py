@@ -8,8 +8,31 @@ datos a objetos de dominio (Domicilio) y viceversa.
 """
 
 from typing import List, Optional
+
 from app.domicilios.repositorio import IRepositorioDomicilios
 from app.domicilios.modelos import Domicilio
+
+
+class _PedidoRef:
+    """
+    Sustituto mínimo de PedidoDomicilio para que Domicilio pueda validar sus
+    reglas de asignación (Domicilio.asignarDomiciliario consulta
+    pedido.obtenerEstado()) sin tener que reconstruir el pedido completo:
+    eso lo hace el repositorio de pedidos, no el de domicilios.
+    """
+
+    def __init__(self, id_pedido: int, estado: str):
+        self.id_pedido = id_pedido
+        self._estado = estado
+
+    def obtenerEstado(self) -> str:
+        return self._estado
+
+    def siguiente(self) -> None:
+        raise NotImplementedError(
+            "El cambio de estado de un pedido se hace por el GestorCocina o "
+            "el GestorPedidos, no al reconstruir el Domicilio."
+        )
 
 
 class RepositorioDomiciliosPostgres(IRepositorioDomicilios):
@@ -74,10 +97,39 @@ class RepositorioDomiciliosPostgres(IRepositorioDomicilios):
             # Se completará cuando se integre con el GestorPedidos.
             pass
 
+    def obtener_por_pedido(self, id_pedido: int) -> Optional[Domicilio]:
+        """
+        Devuelve el Domicilio asociado a un pedido, o None si no existe.
+        Trae también el estado actual del pedido para que el Domicilio pueda
+        aplicar RN-08 (un pedido 'EnCamino' no se reasigna).
+        """
+        sql = """
+            SELECT d.id_domicilio, d.id_pedido, d.id_domiciliario, d.direccion,
+                   d.estado_entrega, d.fecha_entrega, d.motivo_devolucion,
+                   p.estado_pedido
+            FROM domicilio d
+            JOIN pedido p ON p.id_pedido = d.id_pedido
+            WHERE d.id_pedido = %s;
+        """
+        with self.conexion.cursor() as cur:
+            cur.execute(sql, (id_pedido,))
+            fila = cur.fetchone()
+        if fila is None:
+            return None
+        return Domicilio(
+            id_domicilio=fila[0],
+            pedido=_PedidoRef(fila[1], fila[7]),
+            id_domiciliario=fila[2],
+            direccion=fila[3],
+            estado_entrega=fila[4],
+            fecha_entrega=fila[5],
+            motivo_devolucion=fila[6],
+        )
+
     def listar_por_domiciliario(self, id_domiciliario: int) -> List[Domicilio]:
         # TODO: Al igual que obtener_por_id, requiere integración con el repositorio de pedidos
         # para reconstruir los objetos de dominio completos.
-        pass
+        return []
 
     def actualizar(self, domicilio: Domicilio) -> None:
         """Actualiza el estado de la entrega y el domiciliario asignado."""
