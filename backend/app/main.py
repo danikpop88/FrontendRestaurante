@@ -31,6 +31,10 @@ from app.autenticacion.modelos import Administrador, Domiciliario, Mesero
 from app.autenticacion.repositorio_postgres import RepositorioUsuariosPostgres
 from app.autenticacion.servicio import GestorAutenticacion
 from app.compartido.conexion import obtener_conexion
+from app.reservas.repositorio_postgres import RepositorioReservasPostgres
+from app.reservas.servicio import GestorReservas
+from app.ventas_pagos.repositorio_ventas_postgres import RepositorioVentasPostgres
+from app.ventas_pagos.servicio_ventas import GestorVentas
 from app.compartido.excepciones import (
     NoAutenticadoError,
     NoEncontradoError,
@@ -251,6 +255,18 @@ def _repo_avisos(conexion=Depends(obtener_conexion)):
 
 app.include_router(rutas_notificaciones.router)
 app.dependency_overrides[rutas_notificaciones.obtener_repositorio_avisos] = _repo_avisos
+
 # --- Ensamblaje Fase 8: Ventas y Reservas ---
+def _gestor_ventas(conexion=Depends(obtener_conexion)) -> GestorVentas:
+    return GestorVentas(RepositorioVentasPostgres(conexion))
+
+
+def _gestor_reservas(conexion=Depends(obtener_conexion)) -> GestorReservas:
+    return GestorReservas(RepositorioReservasPostgres(conexion))
+
+
 app.include_router(rutas_ventas.router)
+app.dependency_overrides[rutas_ventas.obtener_gestor_ventas] = _gestor_ventas
+
 app.include_router(rutas_reservas.router)
+app.dependency_overrides[rutas_reservas.obtener_gestor] = _gestor_reservas

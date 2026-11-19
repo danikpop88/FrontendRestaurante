@@ -1,56 +1,48 @@
 """
-servicio_ventas.py — El "GestorVentas", capa de negocio para reportes.
+servicio_ventas.py — El "GestorVentas", capa de negocio del reporte de ventas.
 
-PAPEL EN LA ARQUITECTURA: se encarga de consultar las ventas (pedidos Entregados
-con pago Cobrado) en un rango de fechas. Solo el Administrador puede usarlo (RN-10).
+PAPEL EN LA ARQUITECTURA: consulta las ventas (pedidos Entregados con pago
+Cobrado) en un rango de fechas. Solo el Administrador puede usarlo (RN-10): esa
+regla la exige la ruta con requiere_rol. Depende de IRepositorioVentas, no de
+PostgreSQL (Artículo 5). Cuando el rango es inválido lanza ValidacionError y
+main.py lo traduce a 422 con la envoltura de los Contratos §0.
 """
 
 from datetime import date
-from typing import List, Dict, Any
-from app.compartido.conexion import obtener_conexion
+from decimal import Decimal
+
+from app.compartido.excepciones import ValidacionError
+from app.ventas_pagos.repositorio_ventas import IRepositorioVentas
 
 
 class GestorVentas:
-    def __init__(self, conexion):
-        self.conexion = conexion
 
-    def consultar_ventas(self, desde: date, hasta: date) -> Dict[str, Any]:
+    def __init__(self, repositorio: IRepositorioVentas):
+        self._repositorio = repositorio
+
+    def consultar_ventas(self, desde: date, hasta: date) -> dict:
         if desde > hasta:
-            raise ValueError("La fecha 'desde' no puede ser posterior a 'hasta'.")
+            raise ValidacionError("La fecha 'desde' no puede ser posterior a 'hasta'.")
 
-        sql = """
-            SELECT p.id_pedido, p.fecha, p.total, pa.id_pago, pa.estado_pago, pa.monto, pa.fecha
-            FROM pedido p
-            JOIN pago pa ON p.id_pedido = pa.id_pedido
-            WHERE p.estado_pedido = 'Entregado' 
-              AND pa.estado_pago = 'Cobrado'
-              AND DATE(p.fecha) >= %s AND DATE(p.fecha) <= %s
-            ORDER BY p.fecha DESC;
-        """
+        registros = self._repositorio.listar_ventas(desde, hasta)
+        total_ventas = sum((r.monto for r in registros), Decimal("0"))
 
-        datos = []
-        total_ventas = 0.0
-
-        with self.conexion.cursor() as cur:
-            cur.execute(sql, (desde, hasta))
-            for fila in cur.fetchall():
-                datos.append(
-                    {
-                        "id_pedido": fila[0],
-                        "fecha": fila[1].isoformat(),
-                        "total": float(fila[2]),
-                        "id_pago": fila[3],
-                        "estado_pago": fila[4],
-                        "monto": float(fila[5]),
-                        "fecha_pago": fila[6].isoformat(),
-                    }
-                )
-                total_ventas += float(fila[5])
-
+        datos = [
+            {
+                "id_pedido": r.id_pedido,
+                "fecha": r.fecha_pedido.isoformat(),
+                "total": float(r.total),
+                "id_pago": r.id_pago,
+                "estado_pago": r.estado_pago,
+                "monto": float(r.monto),
+                "fecha_pago": r.fecha_pago.isoformat(),
+            }
+            for r in registros
+        ]
         return {
             "desde": desde.isoformat(),
             "hasta": hasta.isoformat(),
             "cantidad": len(datos),
-            "total_ventas": total_ventas,
+            "total_ventas": float(total_ventas),
             "datos": datos,
         }

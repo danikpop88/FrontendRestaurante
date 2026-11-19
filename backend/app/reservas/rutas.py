@@ -1,24 +1,27 @@
 """
-rutas.py — Capa de rutas para Reservas.
+rutas.py — Capa de rutas para Reservas (RF-11).
+
+PAPEL EN LA ARQUITECTURA: recibe la petición HTTP y delega en el gestor.
+No conoce el repositorio de PostgreSQL: main.py arma el gestor concreto y lo
+inyecta con app.dependency_overrides (Artículo 5).
 """
 
 from fastapi import APIRouter, Depends
-from typing import List
-from app.compartido.seguridad import requiere_rol
+
+from app.compartido.seguridad import Sesion, requiere_rol
 from app.reservas.servicio import GestorReservas
-from app.reservas.repositorio_postgres import RepositorioReservasPostgres
-from app.compartido.conexion import obtener_conexion
 
 router = APIRouter(prefix="/api/reservas", tags=["Reservas"])
 
 
-def obtener_gestor(conexion=Depends(obtener_conexion)):
-    return GestorReservas(RepositorioReservasPostgres(conexion))
+def obtener_gestor() -> GestorReservas:
+    """Marcador de posición: main.py lo reemplaza con el gestor ensamblado."""
+    raise NotImplementedError("main.py debe ensamblar el gestor de reservas.")
 
 
 @router.get("")
 def listar_reservas(
-    id_usuario: int = Depends(requiere_rol(["Administrador"])),
+    sesion: Sesion = Depends(requiere_rol("Administrador")),
     gestor: GestorReservas = Depends(obtener_gestor),
 ):
     reservas = gestor.listar_vigentes()
