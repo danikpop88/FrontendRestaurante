@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cuentas del personal - La Mesa de la Abuela</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Karla:wght@400;500;700;800&family=Markazi+Text:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/cssAdmin/crearPlato.css">
+</head>
+<body>
+  <div class="product-card-container">
+    <a href="../htmlAdmin/Principal.html"><img class="header-avatar" src="../imagenes/logo.jpg" alt="Usuario"></a>
+    <a href="../htmlAdmin/Principal.html"><img class="header-logo" src="../imagenes/icono.jpg" alt="Logo"></a>
+
+    <div class="hamburger-menu">
+      <input type="checkbox" id="menu-toggle" class="menu-toggle">
+      <label for="menu-toggle" class="hamburger-btn"><span></span><span></span><span></span></label>
+      <nav class="menu-panel"><br>
+        <a href="../htmlAdmin/Principal.html" class="menu-item">Volver</a>
+        <a href="../htmlAdmin/ventasReservas.html" class="menu-item">Ventas y reservas</a>
+      </nav>
+    </div>
+
+    <header class="title-banner">
+      <div class="banner-bg"></div>
+      <h1 class="page-title" style="left:60px">Cuentas del personal</h1>
+    </header>
+
+    <form id="form-cuenta" class="product-form" autocomplete="off">
+      <label class="form-label" style="left:17px;top:201px" for="nombre">Nombre:</label>
+      <input class="input-field" style="left:8px;top:239px;width:344px;height:40px" id="nombre" type="text" required>
+
+      <label class="form-label" style="left:17px;top:281px" for="telefono">Teléfono:</label>
+      <input class="input-field" style="left:8px;top:319px;width:344px;height:40px" id="telefono" type="tel" required>
+
+      <label class="form-label" style="left:17px;top:361px" for="email">Correo electrónico:</label>
+      <input class="input-field" style="left:8px;top:399px;width:344px;height:40px" id="email" type="email" required>
+
+      <label class="form-label" style="left:17px;top:441px" for="contrasena">Contraseña (mínimo 12 caracteres):</label>
+      <input class="input-field" style="left:8px;top:479px;width:344px;height:40px" id="contrasena" type="password" required autocomplete="new-password">
+
+      <label class="form-label" style="left:17px;top:521px" for="tipo_cargo">Cargo:</label>
+      <select class="input-field" style="left:8px;top:559px;width:344px;height:40px" id="tipo_cargo">
+        <option value="Mesero">Mesero</option>
+        <option value="Chef">Chef</option>
+        <option value="Domiciliario">Domiciliario</option>
+        <option value="Administrador">Administrador</option>
+      </select>
+
+      <div id="mensajes" class="v-mensajes" style="position:absolute;left:17px;top:610px;width:420px"></div>
+      <button type="submit" class="btn btn-submit">Crear cuenta</button>
+    </form>
+  </div>
+
+  <script src="../js/cliente_api.js"></script>
+  <script src="../js/autenticacion.js"></script>
+  <script src="../js/vistas_admin.js"></script>
+</body>
+</html>
