@@ -1,56 +1,33 @@
 """
-servicio_ventas.py — El "GestorVentas", capa de negocio para reportes.
+servicio_ventas.py — GestorVentas, la capa de negocio del reporte de ventas.
 
-PAPEL EN LA ARQUITECTURA: se encarga de consultar las ventas (pedidos Entregados
-con pago Cobrado) en un rango de fechas. Solo el Administrador puede usarlo (RN-10).
+PAPEL EN LA ARQUITECTURA: valida el rango de fechas y calcula el total de las
+ventas (un pedido 'Entregado' con pago 'Cobrado'). No escribe SQL: pide los datos
+a un IRepositorioVentas (Artículo 5). El rol Administrador (RN-10) lo exige la
+ruta con requiere_rol.
 """
 
 from datetime import date
-from typing import List, Dict, Any
-from app.compartido.conexion import obtener_conexion
+
+from app.compartido.excepciones import ValidacionError
+from app.ventas_pagos.repositorio import IRepositorioVentas
 
 
 class GestorVentas:
-    def __init__(self, conexion):
-        self.conexion = conexion
 
-    def consultar_ventas(self, desde: date, hasta: date) -> Dict[str, Any]:
+    def __init__(self, repositorio: IRepositorioVentas):
+        self._repositorio = repositorio
+
+    def consultar_ventas(self, desde: date, hasta: date) -> dict:
+        """Ventas del rango con su total. 'desde' posterior a 'hasta' -> 422."""
         if desde > hasta:
-            raise ValueError("La fecha 'desde' no puede ser posterior a 'hasta'.")
-
-        sql = """
-            SELECT p.id_pedido, p.fecha, p.total, pa.id_pago, pa.estado_pago, pa.monto, pa.fecha
-            FROM pedido p
-            JOIN pago pa ON p.id_pedido = pa.id_pedido
-            WHERE p.estado_pedido = 'Entregado' 
-              AND pa.estado_pago = 'Cobrado'
-              AND DATE(p.fecha) >= %s AND DATE(p.fecha) <= %s
-            ORDER BY p.fecha DESC;
-        """
-
-        datos = []
-        total_ventas = 0.0
-
-        with self.conexion.cursor() as cur:
-            cur.execute(sql, (desde, hasta))
-            for fila in cur.fetchall():
-                datos.append(
-                    {
-                        "id_pedido": fila[0],
-                        "fecha": fila[1].isoformat(),
-                        "total": float(fila[2]),
-                        "id_pago": fila[3],
-                        "estado_pago": fila[4],
-                        "monto": float(fila[5]),
-                        "fecha_pago": fila[6].isoformat(),
-                    }
-                )
-                total_ventas += float(fila[5])
-
+            raise ValidacionError("La fecha 'desde' no puede ser posterior a 'hasta'.")
+        ventas = self._repositorio.listar_ventas(desde, hasta)
+        total_ventas = round(sum(float(v["monto"]) for v in ventas), 2)
         return {
             "desde": desde.isoformat(),
             "hasta": hasta.isoformat(),
-            "cantidad": len(datos),
+            "cantidad": len(ventas),
             "total_ventas": total_ventas,
-            "datos": datos,
+            "datos": ventas,
         }

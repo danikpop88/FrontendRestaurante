@@ -14,14 +14,15 @@ Reglas clave que se aplican aquí:
 """
 
 from typing import List, Optional
-from app.domicilios.repositorio import IRepositorioDomicilios
-from app.domicilios.modelos import Domicilio
-from app.ventas_pagos.servicio import IServicioPago
+
 from app.compartido.excepciones import (
-    ReglaNegocioError,
     NoEncontradoError,
+    ReglaNegocioError,
     SinPermisoError,
 )
+from app.domicilios.modelos import Domicilio
+from app.domicilios.repositorio import IRepositorioDomicilios
+from app.ventas_pagos.servicio import IServicioPago
 
 
 class GestorDomicilios:
@@ -37,18 +38,15 @@ class GestorDomicilios:
         Si no hay domiciliarios, el pedido queda pendiente (id_domiciliario = None).
         """
         id_domiciliario = self.repositorio.obtener_menos_pedidos_activos()
-
         if id_domiciliario:
             try:
-                domicilio.asignar_domiciliario(id_domiciliario)
+                domicilio.asignarDomiciliario(id_domiciliario)
                 self.repositorio.actualizar(domicilio)
             except ValueError as e:
-                # Atrapamos el error de RN-08 si intentara reasignar un pedido En camino
                 raise ReglaNegocioError(str(e))
-
         return domicilio
 
-    def asignar_automaticamente_por_pedido(self, id_pedido: int) -> Domicilio:
+    def asignar_automaticamente_por_pedido(self, id_pedido: int) -> Optional[Domicilio]:
         """Busca el domicilio de un pedido y le asigna un repartidor automáticamente."""
         domicilio = self.repositorio.obtener_por_pedido(id_pedido)
         if domicilio:
@@ -66,9 +64,7 @@ class GestorDomicilios:
         motivo_devolucion: Optional[str],
         id_domiciliario: int,
     ) -> Domicilio:
-        """
-        El domiciliario marca el pedido como Entregado o Devuelto (RF-21).
-        """
+        """El domiciliario marca el pedido como Entregado o Devuelto (RF-21)."""
         domicilio = self.repositorio.obtener_por_id(id_domicilio)
         if not domicilio:
             raise NoEncontradoError("Domicilio no encontrado.")
@@ -77,12 +73,10 @@ class GestorDomicilios:
             raise SinPermisoError("Este domicilio no está asignado a usted.")
 
         try:
-            # actualizar_estado cambia el estado del Domicilio y del Pedido
-            domicilio.actualizar_estado(estado_entrega, motivo_devolucion)
+            domicilio.actualizarEstado(estado_entrega, motivo_devolucion)
         except ValueError as e:
             raise ReglaNegocioError(str(e))
 
-        # Si se entregó, se registra el cobro a través del Proxy (RF-21)
         if estado_entrega == "Entregado":
             self.servicio_pago.registrar_cobro(domicilio.pedido)
 
