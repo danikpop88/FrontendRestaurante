@@ -1,19 +1,21 @@
 """
-servicio.py — El "GestorCocina", la capa de negocio del componente.
+servicio.py — El "GestorCocina", la capa de negocio del componente Cocina.
+
+PAPEL EN LA ARQUITECTURA: reúne las acciones del chef sobre la cola de cocina:
+ver la cola, tomar un pedido (Recibido -> EnCocina) y marcarlo listo
+(EnCocina -> EnCamino) mediante el patrón Command, que además dispara a los
+observadores (patrón Observer). Depende de abstracciones (Artículo 5): los
+repositorios, el reloj y los observadores llegan desde main.py.
 """
 
 from typing import List, Optional
 
 from app.cocina.repositorio import IRepositorioCocina
-from app.pedidos.repositorio import IRepositorioPedidos
 from app.cocina.modelos import ComandoMarcarListo
+from app.compartido.excepciones import NoEncontradoError, ReglaNegocioError
 from app.compartido.reloj import IReloj
-from app.compartido.excepciones import ReglaNegocioError, NoEncontradoError
-
-
-def _valor_tipo_pedido(tipo) -> str:
-    """Devuelve 'EN_RESTAURANTE' o 'DOMICILIO' venga como enum o como str."""
-    return tipo.value if hasattr(tipo, "value") else tipo
+from app.pedidos.modelos import TipoPedido
+from app.pedidos.repositorio import IRepositorioPedidos
 
 
 class GestorCocina:
@@ -65,7 +67,7 @@ class GestorCocina:
         self.repo_pedidos.actualizar(pedido)
 
         # 2. Patrón Observer: notificar según el tipo de pedido
-        if _valor_tipo_pedido(pedido.tipo_pedido) == "EN_RESTAURANTE":
+        if pedido.obtener_tipo() == TipoPedido.EN_RESTAURANTE:
             self.observador_mesero.actualizar(pedido)
         else:
             # DOMICILIO: asignar automáticamente (Fase 6) y luego notificar
