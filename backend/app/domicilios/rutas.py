@@ -28,7 +28,7 @@ def obtener_gestor() -> GestorDomicilios:
 
 @router.get("")
 def listar_domicilios(
-    id_usuario: int = Depends(requiere_rol(["Domiciliario"])),
+    id_usuario: int = Depends(requiere_rol("Domiciliario")),
     gestor: GestorDomicilios = Depends(obtener_gestor),
 ):
     """RF-23: El domiciliario consulta sus pedidos asignados."""
@@ -57,7 +57,7 @@ def listar_domicilios(
 def actualizar_estado_entrega(
     id_domicilio: int,
     payload: CerrarEntregaRequest,
-    id_usuario: int = Depends(requiere_rol(["Domiciliario"])),
+    id_usuario: int = Depends(requiere_rol("Domiciliario")),
     gestor: GestorDomicilios = Depends(obtener_gestor),
 ):
     """RF-21: El domiciliario cierra la entrega y registra el cobro."""

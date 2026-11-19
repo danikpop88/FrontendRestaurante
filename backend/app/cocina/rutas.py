@@ -17,7 +17,7 @@ def obtener_gestor() -> GestorCocina:
 @router.get("/pedidos")
 def ver_cola(
     tipo_pedido: Optional[str] = None,
-    id_usuario: int = Depends(requiere_rol(["Chef"])),
+    id_usuario: int = Depends(requiere_rol("Chef")),
     gestor: GestorCocina = Depends(obtener_gestor),
 ):
     pedidos = gestor.ver_cola(tipo_pedido)
@@ -35,7 +35,7 @@ def ver_cola(
 @router.post("/pedidos/{id_pedido}/tomar")
 def tomar_pedido(
     id_pedido: int,
-    id_usuario: int = Depends(requiere_rol(["Chef"])),
+    id_usuario: int = Depends(requiere_rol("Chef")),
     gestor: GestorCocina = Depends(obtener_gestor),
 ):
     pedido = gestor.tomar_pedido(id_pedido, id_usuario)
@@ -45,7 +45,7 @@ def tomar_pedido(
 @router.post("/pedidos/{id_pedido}/marcar-listo")
 def marcar_listo(
     id_pedido: int,
-    id_usuario: int = Depends(requiere_rol(["Chef"])),
+    id_usuario: int = Depends(requiere_rol("Chef")),
     gestor: GestorCocina = Depends(obtener_gestor),
 ):
     pedido = gestor.marcar_listo(id_pedido, id_usuario)

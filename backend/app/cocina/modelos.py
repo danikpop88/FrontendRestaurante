@@ -17,7 +17,8 @@ from app.compartido.reloj import IReloj
 class Chef(IEmpleado):
     def __init__(self, id_empleado: int, nombre: str, email: str, contrasena: str):
         super().__init__(id_empleado, nombre, email, contrasena, "Chef", True)
-
+    def obtener_rol(self) -> str:
+        return "Chef"
 
 class IComandoCocina(ABC):
     @abstractmethod
